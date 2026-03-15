@@ -1,0 +1,416 @@
+
+%%%%%%%%%%%%%%%%%% 关系与序 %%%%%%%%%%%%%%%%%%%
+
+\chapter{关系与序}
+
+在这一章我们将介绍关系。关系一般分为不同集合之间元素的关系以及同一个集合元素的相互关系。我们将专注于同一个集合自身的关系。我们将介绍几种特殊性质的关系，其中最重要的是所谓的等价关系。等价关系可以帮助我们在一个集合之间做分类，有时定出一个好的等价关系可以帮助我们更加了解一个集合的特性。所以学习关系是一个重要的课题。我们还会介绍另一种关系，就是所谓的序。序的意义就是所谓的排序（比较大小），所以它是另一个帮助我们了解一个集合的重要工具。
+
+\section{关系}
+
+给定两个集合 $X, Y$。若 $S$ 是 $X \times Y$ 的一个非空子集，我们就称 $S$ 是一个从 $X$ 到 $Y$ 的\textbf{关系（relation）}\index{关系（relation）}。特别地，一个 $X \times X$ 的非空子集 $S$ 就称为一个在 $X$ 上的关系。
+
+给定一个关系 $S$ 之后，我们一般会用 $x \sim y$ 来表示 $(x, y)$ 是 $S$ 里的元素。这个符号 $x \sim y$ 的好处是容易让人感受 $x$ 和 $y$ 是有关系的，比较贴切“关系”字面上的意思。不过当我们要回归到利用集合的性质处理关系的问题时，回归到 $(x, y) \in S$ 的定义，会比较方便。
+
+\begin{example}
+\begin{enumerate}
+    \item 考虑 $X = \{1, 0, -1\}$, $Y = \{0, 1, 2\}$。定义 $S = \{(x, y) \in X \times Y : y = x^2 + 1\}$。则 $S$ 是一个 $X$ 到 $Y$ 的关系。在此关系之下我们有 $1 \sim 2$, $0 \sim 1$ 以及 $-1 \sim 2$。
+    \item 考虑 $X = \{1, 0, -1\}$。定义 $S = \{(x, x') \in X \times X : x > x'\}$。则 $S$ 是 $X$ 上的一个关系。在此关系之下我们有 $1 \sim 0$, $1 \sim -1$ 以及 $0 \sim -1$。
+\end{enumerate}
+\end{example}
+
+\begin{question}
+假设 $X$ 为非空集合。考虑 $X$ 上的关系 $S$。试证明 $S = X \times X$ 当且仅当对任意 $x, y \in X$ 皆有 $x \sim y$。
+\end{question}
+
+% 一般来说两个不同集合的关系主要是用来探讨两集合之间的关系，例如例 4.1.1(1) 就是有关 $X, Y$ 两集合间的函数 $f(x) = x^2 + 1$ 所产生的关系。另一方面同一集合的关系，主要用来探讨这个集合元素之间的关系，例如例 4.1.1(2) 就是有关集合 $X$ 元素之间的大小关系所产生的关系。
+
+虽然一开始我们的关系是由一个 $X \times Y$ 的子集合开始定起，然后我们利用 $S$ 来描绘 $X, Y$ 里的元素之间的关系，不过我们也可以由一个已知 $X, Y$ 里的元素之间的关系，来得到 $S$ 这样的 $X \times Y$ 的子集合。这样我们便可以利用集合的性质来谈论这个关系的性质。例 4.1.1 中的例子事实上就是由已知的关系（函数，大小关系）来描绘 $S$ 这一个集合。我们看下一个较抽象的例子。
+
+\begin{example}
+给定一集合 $X$ 我们要如何定一个关系来描绘 $X$ 的子集合间 “包含于” 的关系呢？
+
+首先这个关系所关联的元素应该是 $X$ 的子集合，所以我们应该建立的是 $X$ 的幂集 $\mathcal{P}(X)$ 上的关系。也就是说我们要找到 $S \subseteq \mathcal{P}(X) \times \mathcal{P}(X)$ 满足 $A \subseteq B$ 当且仅当 $(A, B) \in S$。所以我们可以定 $S = \{(A, B) \in \mathcal{P}(X) \times \mathcal{P}(X) : A \subseteq B\}$。在这个关系之下我们就会有 $A \sim B$ 当且仅当 $A \subseteq B$ 了。
+\end{example}
+
+接下来在本章中，我们专注于谈论一个集合上的关系。也就是假设 $S$ 是一个在 $X$ 上的关系，在这情况之下，我们特别有兴趣于有以下三种特性的关系。
+
+\begin{description}
+    \item[自反性:] 当 $S$ 满足对所有 $x \in X$ 皆有 $x \sim x$，即
+    $$ (x, x) \in S, \forall x \in X, $$
+    我们称此关系是自反的（reflexive）。\index{自反的（reflexive）}
+    \item[对称性:] 当 $S$ 满足对于 $x, y \in X$ 若 $x \sim y$，则 $y \sim x$，即
+    $$ (x, y) \in S \Rightarrow (y, x) \in S, $$
+    我们称此关系是对称的（symmetric）。\index{对称的（symmetric）}
+    \item[传递性:] 当 $S$ 满足对于 $x, y, z \in X$ 若 $x \sim y$ 且 $y \sim z$，则 $x \sim z$，即
+    $$ ((x, y) \in S) \wedge ((y, z) \in S) \Rightarrow (x, z) \in S, $$
+    我们称此关系是传递的（transitive）。\index{传递的（transitive）}
+\end{description}
+
+对于这三种性质，我们特别针对几种大家可能误解的情况说明一下。
+
+\begin{enumerate}
+    \item $S$ 为自反的，指的是对任意的 $x \in X$ 皆必须有 $(x, x)$ 一定在 $S$中。并不是说只要存在 $x \in X$ 使得 $(x, x) \in S$ 就是自反的。另外它也没有说如果 $(x, y) \in S$ 则 $x = y$。总而言之，要检查 $S$ 是否为自反的，我们仅要检查是否对于 $X$ 中的元素 $x$, $(x, x)$ 皆会在 $S$ 中，而不必管其他 $(x, y)$ 其中 $x \neq y$ 的情况。
+    \item $S$ 为对称的，指的是对任意的 $(x, y) \in S$ 皆必须有 $(y, x)$ 一定也在 $S$中。并不是说只要存在一组 $(x, y)$ 以及 $(y, x)$ 在 $S$ 中就是对称的。总而言之，要检查 $S$ 是否为对称的，我们仅要检查是否有 $(x, y) \in S$ 但 $(y, x) \notin S$ 的情况发生。如果没有才会是对称的，否则就不是对称的。
+    \item $S$ 为传递的，指的是只要 $(x, y)$ 和 $(y, z)$ 在 $S$ 中，则 $(x, z)$ 一定也在 $S$中。并不是说只要存在一组 $(x, y)$, $(y, z)$ 和 $(x, z)$ 在 $S$ 中就是传递的。另外这里也没有说只要 $(x, y) \in S$ 则会有一个 $z \in X$ 使得 $(y, z) \in S$。所以即使 $S$ 仅有一个元素 $(x, y)$ 那么 $S$ 也是传递的。总而言之，要检查 $S$ 是否为传递的，我们仅要检查是否有 $(x, y), (y, z) \in S$ 但 $(x, z) \notin S$ 的情况发生。如果没有才会是传递的，否则就不是传递的。
+\end{enumerate}
+
+\begin{example}
+令 $X = \{1, 2, 3\}$，我们探讨哪些关系 $S \subseteq X \times X$ 是自反的、对称的或传递的。
+\begin{enumerate}
+    \item 如果 $S = \{(1, 1), (2, 2)\}$，那么 $S$ 不是自反的，因为 $3 \in X$ 但是 $(3, 3) \notin S$。如果 $S = \{(1, 1), (2, 2), (3, 3), (1, 2)\}$，那么 $S$ 是自反的。注意在此例中虽然 $S$ 中存在 $(x, y)$ 但 $x \neq y$ 这样的元素（即 $(1, 2) \in S$）但不影响其为自反的事实。
+    \item 当 $S = \{(1, 1), (2, 2)\}$，我们知 $S$ 不是自反的，不过 $S$ 是对称的。但若加入 $(1, 2)$，即 $S = \{(1, 1), (2, 2), (1, 2)\}$，此时因 $(1, 2) \in S$ 但 $(2, 1) \notin S$，故 $S$ 不是对称的。此时 $S$ 还要加入 $(2, 1)$（即 $S = \{(1, 1), (2, 2), (1, 2), (2, 1)\}$）才会变成对称的。
+    \item 当 $S = \{(1, 1), (2, 2), (1, 2)\}$，我们知 $S$ 不是自反的，也不是对称的，但它是传递的。但若加入 $(2, 3)$，即 $S = \{(1, 1), (2, 2), (1, 2), (2, 3)\}$，此时因 $(1, 2), (2, 3) \in S$ 但 $(1, 3) \notin S$，故 $S$ 不是传递的。此时 $S$ 还要加入 $(1, 3)$（即 $S = \{(1, 1), (2, 2), (1, 2), (2, 3), (1, 3)\}$）才会变成传递的。
+\end{enumerate}
+\end{example}
+
+从上一个例子我们可以看出自反性、对称性以及传递性是相互独立的。也就是说这三个性质相互之间没有关系。有可能一个关系符合其中一个性质，但不符合另外两个性质。例如有可能一个关系是自反的但不是对称的也不是传递的。另一方面，也有可能一个关系符合其中两个性质，但不符合另外一个性质。例如有可能一个关系是自反的以及对称的但不是传递的。这里最常发现的是以下错误的论述——误以为对称性和传递性可推得自反性。
+
+\begin{example}
+假设 $X$ 为一个集合，而 $S$ 为 $X$ 上的一个关系。假设 $S$ 有对称性以及传递性，是否可推得 $S$ 为自反的？以下的论述哪里有错？
+
+假设 $x \sim y$，由于 $S$ 为对称的，因此知 $y \sim x$。也就是说，我们有 $x \sim y$ 且 $y \sim x$，故利用传递性，推得 $x \sim x$。
+\end{example}
+
+这个论述没有错，错的是它并没有证得 $S$ 是自反的。它仅证得了，对于 $x \in X$，如果存在 $y \in X$ 满足 $x \sim y$，则 $x \sim x$。但自反性，最重要的在于对每一个 $x \in X$，皆有 $x \sim x$。现若在 $X$ 中存在一元素 $x$ 根本没有任何元素和它有关，也就是说找不到 $y \in X$ 满足 $x \sim y$，那么我们就没办法得到 $x \sim x$ 了。例如 $X = \{1, 2, 3\}$ 的情形，若 $S = \{(1, 1), (2, 2), (1, 2), (2, 1)\}$，很容易验证 $S$ 有对称性以及传递性。由于 $1$ 找得到元素和它有关（例如我们有 $1 \sim 2$），而 $2$ 也找得 $1$ 和它有关（即 $2 \sim 1$），所以由 $S$ 有对称性以及传递性知 $(1, 1), (2, 2)$ 皆在 $S$ 中。然而，没有任何和 $3$ 有关的元素，所以 $(3, 3)$ 未必会出现在 $S$ 中。在此例中 $(3, 3) \notin S$，所以 $S$ 虽有对称性以及传递性，但 $S$ 不是自反的。
+
+\begin{question}
+令 $X = \{1, 2, 3\}$，举例说明存在在 $X$ 上的关系满足自反性以及对称性，但不满足传递性。并举例说明存在在 $X$ 上的关系满足自反性以及传递性，但不满足对称性。
+\end{question}
+
+最后我们再看例 4.1.2 中的关系符合哪些性质。
+
+\begin{example}
+假设 $X$ 为非空集合。考虑 $S = \{(A, B) \in \mathcal{P}(X) \times \mathcal{P}(X) : A \subseteq B\}$ 为 $\mathcal{P}(X)$ 上的关系。首先我们说明 $S$ 为自反的。这是因为对于任意 $A \in \mathcal{P}(X)$，我们有 $A \subseteq A$（参见命题 3.1.4(1)），故 $(A, A) \in S$。得知 $S$ 为自反的。我们也可以得 $S$ 为传递的。这是因为若 $(A, B) \in S$ 且 $(B, C) \in S$，表示 $A \subseteq B$ 且 $B \subseteq C$，故可得 $A \subseteq C$（参见命题 3.1.4(2)）。亦即 $(A, C) \in S$，得证 $S$ 为传递的。不过 $S$ 不是对称的。要说明这一点，我们只要找到 $A, B \in \mathcal{P}(X)$ 满足 $(A, B) \in S$ 但 $(B, A) \notin S$ 即可。考虑 $A = \emptyset$ 以及 $B = X$ 即可。这是因为 $\emptyset \in \mathcal{P}(X)$ 且 $X \in \mathcal{P}(X)$ 且 $\emptyset \subseteq X$，故知 $(\emptyset, X) \in S$。但已知 $X \neq \emptyset$，故 $X \nsubseteq \emptyset$，也就是说 $(X, \emptyset) \notin S$。得证 $S$ 不是对称的。
+\end{example}
+
+\begin{question}
+假设 $X$ 为非空集合。考虑 $S = \{(A, B) \in \mathcal{P}(X) \times \mathcal{P}(X) : A \cup B = X\}$ 为 $\mathcal{P}(X)$ 上的关系。
+\begin{enumerate}
+    \item 试问 $S$ 一定为自反的吗？若答案是否定的，那 $S$ 一定不是自反的吗？
+    \item 试问 $S$ 一定为对称的吗？若答案是否定的，那 $S$ 一定不是对称的吗？
+    \item 试问 $S$ 一定为传递的吗？若答案是否定的，那 $S$ 一定不是传递的吗？
+\end{enumerate}
+\end{question}
+
+\section{等价关系}
+
+在所有的关系中，最重要的便是所谓的等价关系。它可以帮我们将一个很复杂的集合做分类，亦即分成所谓的等价类，以便让我们更容易掌握这个集合。将来在许多数学课程里，大家会发现它是一个很方便的工具。
+
+家里有许多书或是 CD，要如何找到你想要的书或 CD 呢？当然最好的方法就是将它们分类。同样地，在数学中，对于一个有很多元素的集合，我们也可以藉由分类的方法来处理这一个集合的相关问题。一般来说一个好的分类方式必须符合以下三个要素。第一个就是，要被分类的东西，自己和自己必须是同类的；另一要素是若甲和乙是同类的则乙也必须和甲是同类的；最后一个要素是如果甲和乙同类且乙和丙同类，则甲必须和丙同类。如果我们将一个集合 $X$ 的元素利用这个三个原则分类，然后将同类的东西视为相关，例如若 $x, y$ 同类，则用 $x \sim y$ 来表示。在这个符号之下，前面所说的分类的第一要素——自己和自己是同类的——就可以表示为对所有 $x \in X$ 皆有 $x \sim x$。也就是这样定出的关系必为自反的。而第二要素——若甲和乙是同类的则乙也必须和甲是同类的——就可以表示为若 $x \sim y$ 则 $y \sim x$。也就是这样定出的关系必为对称的。最后一个要素——若甲和乙同类且乙和丙同类，则甲必须和丙同类——就可以表示为若 $x \sim y$ 且 $y \sim z$ 则 $x \sim z$。也就是这样定出的关系必为传递的。反之，现如果有一个在 $X$ 上的关系 $S$ 具有自反性、对称性以及传递性这三项性质，而且我们将符合这个关系的元素视为同类（即若 $x \sim y$，则视 $x, y$ 为同类），那么这样的分类方式也会符合好的分类方式的三个要素。因此我们给符合自反性、对称性以及传递性这三项性质的关系一个特殊的名称。由于在本节中我们不需要将一个在 $X$ 上的关系视为 $X \times X$ 的子集来处理问题，为了方便起见，我们直接用 “$\sim$ 是 $X$ 上的一个关系”这样的说法。
+
+\begin{definition}
+假设 $\sim$ 是集合 $X$ 上的关系，若符合以下三个性质，则称此关系为{\bf 等价关系（equivalence relation）}：\index{等价关系（equivalence relation）}
+\begin{description}
+    \item[自反性:] 对所有 $x \in X$，皆有 $x \sim x$。
+    \item[对称性:] 若 $x, y \in X$ 满足 $x \sim y$，则 $y \sim x$。
+    \item[传递性:] 若 $x, y, z \in X$ 满足 $x \sim y$ 且 $y \sim z$，则 $x \sim z$。
+\end{description}
+\end{definition}
+
+到底用等价关系来分类有什么好处呢？首先由自反性可得每一个元素都会被分到某一类。另外由对称性和传递性知不会有一个元素会同时分属于不同的类别，也就是说两个不同类的元素所成的集合不会有交集；这是因为如果 $A, B$ 为不同类，但 $x$ 在 $A$ 类且在 $B$ 类中，则在 $A$ 类中的任一元素 $a$ 因和 $x$ 是同类的故 $a \sim x$；而 $B$ 类中的任一元素 $b$ 因也和 $x$ 同类故 $b \sim x$。故由对称性和传递性知 $a \sim b$。也就是说 $A$ 中的所有元素和 $B$ 中的所有元素都同类。这和 $A$ 与 $B$ 是不同类的假设相矛盾。
+
+现假设 $\sim$ 是一个在集合 $X$ 上的等价关系。对于 $x \in X$，我们考虑集合 $\{y \in X : y \sim x\}$，即我们将 $X$ 中所有和 $x$ 相关的元素收集起来。这样的集合，我们称为 $x$ 的{\bf 等价类（equivalence class）}，\index{等价类（equivalence class）}用 $[x]$ 来表示。用分类的角度来说，$[x]$ 就是所有和 $x$ 同类的元素所成的集合。依自反性的定义，我们知道 $[x]$ 绝对不是空集，因为至少 $x \sim x$，也就是说我们有 $x \in [x]$。另一方面依定义若 $y \sim x$，则 $[x] = [y]$。这是因为，对任意 $z \in [x]$，表示 $z \sim x$。然而又假设 $y \sim x$，故由对称性及传递性得 $z \sim y$，即 $z \in [y]$。得证 $[x] \subseteq [y]$。同理可得 $[y] \subseteq [x]$，故知 $[y] = [x]$。另外一方面如果 $y \nsim x$（即表示 $(y, x) \notin S$），则如同前面不同类的集合交集为空集的解释，我们知 $[y] \cap [x] = \emptyset$。换言之，利用 $X$ 上的等价关系 $\sim$，我们可以将 $X$ 分成一些互不相交的等价类的并集。通常我们会用 $X/ \sim$ 这个符号表示将 $X$ 利用此等价关系所分出的等价类。简单来说 $X/ \sim$ 就是告诉我们用 $\sim$ 这个关系将 $X$ 分成了哪几类。由于这样的分类将 $X$ 分割成好几个不相交的子集的并集，我们称此为 $X$ 上的一个划分，其正式定义如下。
+
+\begin{definition}
+假设 $X$ 为集合，$I$ 为指标集。若对于任意 $i \in I$, $C_i$ 为 $X$ 的非空子集且 $X = \bigcup_{i \in I} C_i$ 以及 $C_i \cap C_j = \emptyset$（ $i \neq j$），则称此 $\{C_i : i \in I\}$ 为 $X$ 的一个{\bf 划分（partition）}。\index{划分（partition）}
+\end{definition}
+
+简单来说给定一个 $X$ 上的划分，就是将 $X$ 上的元素分类。前面已知道，给定一个 $X$ 上的等价关系，考虑此等价关系所成的等价类（也就是说将同类的收集起来）就会是 $X$ 的一个划分。现在我们考虑反过来，若给定 $X$ 上的划分 $X = \bigcup_{i \in I} C_i$，对于任意 $x, y \in X$，我们定义 $x \sim y$ 当且仅当 $x, y \in C_i$（$i \in I$）（亦即同类的元素视为相关），则在此定义之下，我们可以得 $\sim$ 是一个等价关系。这是因为依定义 $X = \bigcup_{i \in I} C_i$，因此对于任意 $x \in X$，皆存在 $i \in I$，使得 $x \in C_i$，因此得 $x \sim x$（证得自反性）。另外若 $x \sim y$，表示 $x, y \in C_i$（$i \in I$），当然也有 $y, x \in C_i$，故得 $y \sim x$（证得对称性）。最后若 $x \sim y, y \sim z$，知存在 $i, j \in I$ 使得 $x, y \in C_i, y, z \in C_j$。由于 $y \in C_i \cap C_j$，利用若 $i \neq j$ 则 $C_i \cap C_j = \emptyset$ 得知 $i = j$。亦即 $x, z \in C_i$，因此得 $x \sim z$（证得传递性）。我们得到以下的定理。
+
+\begin{theorem}
+假设 $X$ 为集合。
+\begin{enumerate}
+    \item 若 $\sim$ 为 $X$ 上的一个等价关系，则 $\{[x] : [x] \in X/ \sim\}$ 是 $X$ 的一个划分。
+    \item 若 $I$ 为指标集且 $\{C_i : i \in I\}$ 为 $X$ 的一个划分，对于任意 $x, y \in X$，定义 $x \sim y$ 当且仅当 $x, y \in C_i$（$i \in I$），则 $\sim$ 为 $X$ 上的一个等价关系。
+\end{enumerate}
+\end{theorem}
+
+\begin{example}
+若我们将整数 $\mathbb{Z}$ 分为 2 的倍数所成的集合 $C_1 = \{2n : n \in \mathbb{Z}\}$，3 的倍数所成的集合 $C_2 = \{3n : n \in \mathbb{Z}\}$ 以及 5 的倍数所成的集合 $C_3 = \{5n : n \in \mathbb{Z}\}$，则 $\{C_1, C_2, C_3\}$ 不是一个 $\mathbb{Z}$ 的划分。因为 7 就不是 2, 3 或是 5 的倍数（亦即 $7 \notin C_1 \cup C_2 \cup C_3$），故知 $\mathbb{Z} \neq C_1 \cup C_2 \cup C_3$。另外 $C_1 \cap C_2 \neq \emptyset$，例如我们有 $6 \in C_1 \cap C_2$。同理 $C_1 \cap C_3 \neq \emptyset, C_2 \cap C_3 \neq \emptyset$。
+
+若考虑 $\mathbb{Z}$ 的 3 个子集 $C_1 = \{n : n = 3m, m \in \mathbb{Z}\}$, $C_2 = \{n : n = 3m + 1, m \in \mathbb{Z}\}$ 以及 $C_3 = \{n : n = 3m + 2, m \in \mathbb{Z}\}$，则 $\{C_1, C_2, C_3\}$ 是一个 $\mathbb{Z}$ 的划分。事实上，我们可以将 $C_1, C_2, C_3$ 分别看成除以 3 余数分别为 0, 1 以及 2 的元素所成的集合。很容易看出 $\mathbb{Z} = C_1 \cup C_2 \cup C_3$，而且 $C_1 \cap C_2 = C_1 \cap C_3 = C_2 \cap C_3 = \emptyset$。利用这个划分，我们可以定出 $\mathbb{Z}$ 中的一个等价关系为 $x \sim y$ 当且仅当 $x, y \in C_i$（$i \in \{1, 2, 3\}$）。$x, y \in C_1$ 表示 $x = 3m, y = 3m'$（$m, m' \in \mathbb{Z}$） 所以 $x - y = 3(m - m')$，亦即 $3 \mid x - y$（表示 3 可以整除 $x - y$）。同理当 $x, y \in C_2$ 或 $x, y \in C_3$，皆有 $3 \mid x - y$。所以我们知此等价关系可定义为 $x \sim y$ 当且仅当 $3 \mid x - y$。很容易检查 $\sim$ 是等价关系。首先对所有 $x \in \mathbb{Z}$，我们有 $3 \mid x - x$，所以 $x \sim x$。另外若 $x \sim y$，表示 $3 \mid x - y$，故有 $3 \mid -(x - y)$。因此得 $3 \mid y - x$，即 $y \sim x$。最后若 $x \sim y$ 且 $y \sim z$，表示 $3 \mid x - y$ 且 $3 \mid y - z$。因此得 $3 \mid (x - y) + (y - z)$，即 $3 \mid x - z$。得证 $x \sim z$。在这里我们有 $C_1 = [0] = [4]$, $C_2 = [1] = [-3]$ 以及 $C_3 = [2] = [11]$ 等。我们有 $\mathbb{Z}/ \sim = \{[0], [1], [2]\}$。
+\end{example}
+
+\begin{question}
+对于任意正整数 $m$，令 $I = \{0, 1, \dots, m - 1\}$ 为指标集。考虑 $\mathbb{Z}$ 的划分，$C_i = \{mk + i : k \in \mathbb{Z}\}, i \in I$。试问此划分所对应的等价关系为何？
+\end{question}
+
+利用等价关系将集合分类成划分后再利用此分类来探讨此集合，这样的方法将来大家学习一些数学的理论时会用到。目前我们仅介绍一个简单的应用，就是它可以帮我们计算一个有限集合的个数。我们有以下的定理。
+
+\begin{proposition}
+假设 $X$ 是一个有限集，且用一个等价关系将其分成等价类 $C_1, \dots, C_n$。若 $\#(X)$ 及 $\#(C_i)$ 表示这些集合的元素的个数，则
+$$ \#(X) = \sum_{i=1}^n \#(C_i). $$
+\end{proposition}
+
+\begin{proof}
+由前面说明已知当 $i \neq j$ 时，$C_i \cap C_j = \emptyset$。也就是说这些 $C_i$ 是两两不相交的。再加上每个 $X$ 中的元素都会落在某个 $C_i$ 中，所以 $X$ 的元素的个数刚好是这些 $C_1, \dots, C_n$ 的元素个数之和。
+\end{proof}
+
+\begin{example}
+令 $A = \{1, 2, 3\}$ 且令 $X = \mathcal{P}(A)$。考虑 $X$ 上的关系，其定义为对任意 $B, C \in X, B \sim C$ 当且仅当 $\#(B) = \#(C)$。很容易看出 $\sim$ 为 $X$ 上的等价关系。这是因为，对任意 $B \in X$，我们有 $\#(B) = \#(B)$，故知 $B \sim B$。又若 $B \sim C$，表示 $\#(B) = \#(C)$，故由 $\#(C) = \#(B)$，得 $C \sim B$。最后若 $B \sim C$ 且 $C \sim D$，则由 $\#(B) = \#(C)$ 以及 $\#(C) = \#(D)$ 得 $\#(B) = \#(D)$。故得 $B \sim D$。
+
+利用这个等价关系所得的等价类形成 $X = \mathcal{P}(A)$ 的一个划分。我们有以下的划分：
+\begin{description}
+    \item[没有元素:] $\{\emptyset\}$
+    \item[一个元素:] $\{\{1\}, \{2\}, \{3\}\}$
+    \item[二个元素:] $\{\{1, 2\}, \{1, 3\}, \{2, 3\}\}$
+    \item[三个元素:] $\{\{1, 2, 3\}\}$
+\end{description}
+注意这几个等价类的元素个数分别为 $\binom{3}{0}, \binom{3}{1}, \binom{3}{2}, \binom{3}{3}$。所以由命题 4.2.5 知
+$$ \binom{3}{0} + \binom{3}{1} + \binom{3}{2} + \binom{3}{3} = \#(X) = \#(\mathcal{P}(A)) = 2^3 = 8. $$
+\end{example}
+
+\begin{question}
+令 $n$ 为正整数，$A = \{1, 2, \dots, n\}$ 且令 $X = \mathcal{P}(A)$。考虑 $X$ 上的关系，其定义为对任意 $B, C \in X, B \sim C$ 当且仅当 $\#(B) = \#(C)$。若 $m \in \mathbb{N}$ 且 $0 < m < n$，试问 $\{1, 2, \dots, m\}$ 所在的等价类其元素个数为何？试证明
+$$ \binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n-1} + \binom{n}{n} = 2^n. $$
+\end{question}
+
+\section{序关系}
+
+在数学上另一种常见的关系就是所谓的序关系（order relation），\index{序关系（order relation）}亦即排序的关系。它是一种符合三种性质的关系，这类关系和我们习惯的比较大小关系有一致的性质，因此称为序关系。
+
+以下介绍的关系由于和比较大小有类似的性质，大家可以将其视为 “小于等于” 这样的关系。为了让大家习惯它的性质，我们不用 $\sim$ 这个符号，不过不希望误以为它就是一般的 “小于等于”，所以我们选用 “$\preceq$” 这个符号。
+
+\begin{definition}
+假设 $X$ 为非空集合且 $\preceq$ 为 $X$ 上的关系。若 $\preceq$ 符合以下三种性质，我们便称 $\preceq$ 为 $X$ 上的{\bf 偏序（partial order）}：\index{偏序（partial order）}
+\begin{enumerate}
+    \item 对所有 $x \in X$，皆有 $x \preceq x$。
+    \item 若 $x, y \in X$ 满足 $x \preceq y$ 且 $y \preceq x$，则 $x = y$。
+    \item 若 $x, y, z \in X$ 满足 $x \preceq y$ 且 $y \preceq z$，则 $x \preceq z$。
+\end{enumerate}
+\end{definition}
+
+定义 4.3.1 的性质 (1) 我们知道就是自反性，而性质 (3) 就是传递性。不过性质 (2) 和对称性就差很多了。它指的是若 $x \neq y$，则不可能同时会有 $x \preceq y$ 且 $y \preceq x$。若我们仍用 $S \subseteq X \times X$ 来表示这个关系，由于这个性质说的是当 $x \neq y$ 时，$(x, y)$ 和 $(y, x)$ 不可能同时在 $S$ 中，故我们称这个性质为\textbf{反对称性（anti-symmetric）}。\index{反对称性（anti-symmetric）}当 $\preceq$ 为 $X$ 上的一个偏序，一般我们就简称 $(X, \preceq)$ 为一个\textbf{偏序集（partial order set，简写为poset）}。\index{偏序集（poset）}
+
+\begin{example}
+假设 $A$ 为非空集合，令 $X = \mathcal{P}(A)$。考虑 $X$ 上一般集合包含于的关系 $\subseteq$，则 $(X, \subseteq)$ 就是一个偏序集。
+\end{example}
+
+\begin{question}
+假设 $A$ 为非空集合，令 $X = \mathcal{P}(A)$。考虑 $X$ 上一般集合的关系 $\supseteq$，则 $(X, \supseteq)$ 是否是一个偏序集？
+\end{question}
+
+\begin{question}
+考虑实数 $\mathbb{R}$ 一般的小于等于关系 $\leq$，$(\mathbb{R}, \leq)$ 是否为偏序集？又 $(\mathbb{R}, \geq)$ 是否为偏序集？
+\end{question}
+
+在一个偏序集 $(X, \preceq)$ 中，若 $x, y \in X$ 满足 $x \preceq y$ 或 $y \preceq x$，则称 $x, y$ 这两个元素为\textbf{可比较的（comparable）}。\index{可比较的（comparable）}定义 4.3.1 之所以会称为 “偏” 序，就是因为它并没有要求任两个 $X$ 中的元素都是可比较的。例如考虑 $A = \{1, 2\}$ 的情形，我们知 $\subseteq$ 是 $\mathcal{P}(A)$ 上的偏序。然而 $\{1\}, \{2\} \in \mathcal{P}(A)$ 并不是可比较的，因为 $\{1\} \subseteq \{2\}$ 和 $\{2\} \subseteq \{1\}$ 皆不成立。不过实数 $(\mathbb{R}, \leq)$ 这个偏序集就有任两个元素皆为可比较的的性质。因此我们又特别考虑以下的序关系。
+
+\begin{definition}
+假设 $X$ 为非空集合且 $\preceq$ 为 $X$ 上的关系。若 $\preceq$ 符合以下三种性质，我们便称 $\preceq$ 为 $X$ 上的{\bf 全序（total order）}：\index{全序（total order）}
+\begin{enumerate}
+    \item 若 $x, y \in X$ 满足 $x \preceq y$ 且 $y \preceq x$，则 $x = y$。
+    \item 若 $x, y, z \in X$ 满足 $x \preceq y$ 且 $y \preceq z$，则 $x \preceq z$。
+    \item 对所有 $x, y \in X$，皆有 $x \preceq y$ 或 $y \preceq x$。
+\end{enumerate}
+\end{definition}
+
+定义 4.3.3 的性质 (3) 便是要求任两个元素皆要可比较的，这个性质就是“全”的性质。要注意由 (3) 的性质，便可得到自反性，因为这里 $x, y$ 没有要求要相异，所以依定义，我们会有 $x \preceq x$。也因此我们知一个全序一定是偏序（反过来就不一定对）。当 $\preceq$ 为 $X$ 上的全序，一般我们就称 $(X, \preceq)$ 为一个{\bf 全序集（total ordered set）}。另外有的书会称全序为{\bf 线序（linear order）}或是{\bf 单序（simple order）}\index{线序（linear order）|see{全序（total order）}}\index{单序（simple order）|see{全序（total order）}}。
+
+\begin{question}
+考虑实数 $\mathbb{R}$ 一般的小于关系 $<$， $(\mathbb{R}, <)$ 是否为全序集？
+\end{question}
+
+或许大家会好奇前面谈的序 $\preceq$ 都有一个 “等号”，也就是说 $x \preceq x$ 成立的原因是 $x = x$。那么是否可以像实数的 $\leq$ 去掉等号得到 $<$ 这样的序呢？事实上，如果 $(X, \preceq)$ 是一个全序集，我们可以定义 $x \prec y$ 当且仅当 $x \preceq y$ 且 $x \neq y$。在这情况之下，我们便称 $\prec$ 为 $X$ 的一个严格全序。我们有以下的定义。
+
+\begin{definition}
+假设 $X$ 为非空集合且 $\prec$ 为 $X$ 上的关系。若 $\prec$ 符合以下二种性质，我们便称 $\prec$ 为 $X$ 上的{\bf 严格全序（strict total order）}：\index{严格全序（strict total order）}
+\begin{enumerate}
+    \item 若 $x, y, z \in X$ 满足 $x \prec y$ 且 $y \prec z$，则 $x \prec z$。
+    \item 对所有 $x, y \in X$，皆会满足 $x = y, x \prec y$ 或 $y \prec x$ 其中之一，且其中仅有一个会成立。
+\end{enumerate}
+\end{definition}
+
+在定义 4.3.4 中，性质 (2) 称为\textbf{三歧性（trichotomy）}。\index{三歧性（trichotomy）}
+
+\begin{example}
+我们可以对所有复数所成的集合 $\mathbb{C}$ 定义一个严格序。对任意 $a + bi, c + di \in \mathbb{C}$，其中 $a, b, c, d \in \mathbb{R}$ 且 $i^2 = -1$。我们定义 $(a + bi) \prec (c + di)$ 当且仅当 (1) $a < c$ 或 (2) $a = c$ 且 $b < d$。此时 $(\mathbb{C}, \prec)$ 便是严格全序集。首先检查传递性。假设 $a + bi, c + di, e + fi \in \mathbb{C}$ 其中 $a, b, c, d, e, f \in \mathbb{R}$ 满足 $(a + bi) \prec (c + di)$ 且 $(c + di) \prec (e + fi)$。依 $\prec$ 的定义，我们知此时 $a \leq c$ 且 $c \leq e$，因此得 $a \leq e$。我们可以分成两种情况讨论：
+\begin{enumerate}
+    \item 若 $a < e$，则由 $\prec$ 的定义得 $(a + bi) \prec (e + fi)$；
+    \item 若 $a = e$，则可得 $a = c = e$。此时由 $(a + bi) \prec (c + di)$ 知 $b < d$，再由 $(c + di) \prec (e + fi)$ 知 $d < f$。故得 $b < f$，因此依 $\prec$ 的定义得 $(a + bi) \prec (e + fi)$。证明了 $\prec$ 符合传递性。
+\end{enumerate}
+至于三歧性，若 $a + bi \neq c + di$，依复数相等的定义知 $a \neq c$ 或 $b \neq d$。若 $a \neq c$，依实数的三歧性知 $a < c$ 或 $c < a$，也就是说此时 $(a + bi) \prec (c + di)$ 或 $(c + di) \prec (a + bi)$。而若 $a = c$，此时必有 $b \neq d$，故依然由实数的三歧性可得 $(a + bi) \prec (c + di)$ 或 $(c + di) \prec (a + bi)$。我们证明了任两复数在 $\prec$ 之下皆为可比较的，证得了 $\prec$ 有三歧性的性质。
+
+在此定义之下 $(\mathbb{C}, \prec)$ 为严格全序集且它保持了原本实数上 $<$ 这个序。不过为什么常听说复数不能比大小呢？其实这是简略的说法。事实上，实数和复数它们不只是集合，它们的元素之间还有加法及乘法运算。所以我们在谈其上的序时其实还多要求了两个性质。即在实数的情形我们多了和加法与乘法有关的两个性质：
+\begin{description}
+    \item[性质 A:] 若 $a < b$，则对任意 $c$ 皆有 $a + c < b + c$。
+    \item[性质 M:] 若 $a < b$，则对任意 $0 < c$ 皆有 $ac < bc$。
+\end{description}
+很容易验证刚才定义复数上的 $\prec$ 符合性质 A。但是它不符合性质 M。这是因为依定义我们有 $0 \prec i$，但若性质 M 成立，则有 $0 \times i \prec i \times i$，即 $0 \prec -1$。此与 $\prec$ 之定义不符，故知 $\prec$ 不符合性质 M。
+
+事实上，我们可以证明在 $\mathbb{C}$ 上面不可能定义出一个严格全序 $\prec$ 会保持原本实数的大小关系且符合性质 A 和 M。这是因为若 $(\mathbb{C}, \prec)$ 符合这些要求，则依三歧性，我们有 $0 \prec i$ 或 $i \prec 0$ 两种情况会发生。若 $0 \prec i$，则由性质 M 会推得 $0 \prec -1$，不符合原本实数的大小关系。而若 $i \prec 0$，则由性质 A 可推得 $i + (-i) \prec 0 + (-i)$，即 $0 \prec -i$。此时再由性质 M，可推得 $0 \times (-i) \prec (-i) \times (-i)$，即 $0 \prec -1$，同样的不符合原本实数的大小关系。因为在 $\mathbb{C}$ 上不可能存在严格全序符合这些性质，所以我们才简略地说复数是不能比大小的。
+\end{example}
+
+要注意严格全序并不是全序。但如前面所述，每一个全序集 $(X, \preceq)$，都可定义一个严格全序。
+
+\begin{proposition}
+假设 $(X, \preceq)$ 是一个全序集。若定义 $x \prec y$ 当且仅当 $x \preceq y$ 且 $x \neq y$，则在此定义之下， $\prec$ 为 $X$ 的一个严格全序。
+\end{proposition}
+
+\begin{proof}
+首先我们证明传递性，即若 $x, y, z \in X$ 满足 $x \prec y$ 且 $y \prec z$，则要证明 $x \prec z$。由于 $x \prec y$ 表示 $x \preceq y$ 且 $x \neq y$，而 $y \prec z$ 表示 $y \preceq z$ 且 $y \neq z$。故由 $\preceq$ 为全序有传递性，得 $x \preceq z$。我们必须证明 $x \neq z$。利用反证法，假设 $x = z$，由 $x \preceq y$ 得 $z \preceq y$。但又已知 $y \preceq z$，故由 $\preceq$ 为全序有反对称性，得 $y = z$。此与当初假设 $y \prec z$（即 $y \neq z$）相矛盾，故知 $x \neq z$。得证 $x \prec z$。
+
+接着我们证明三歧性。因 $\preceq$ 为全序有全的性质，亦即对任意 $x, y \in X$，我们有 $x \preceq y$ 或 $y \preceq x$。现若 $x = y$，我们得 $x, y$ 满足 $x = y$。而若 $x \neq y$，则由 $x \preceq y$ 或 $y \preceq x$，得 $x \prec y$ 或 $y \prec x$。得证 $x, y$ 满足 $x = y, x \prec y$ 或 $y \prec x$。现要说明 $x, y$ 仅能满足 $x = y, x \prec y$ 或 $y \prec x$ 其中之一。首先若 $x = y$，依 $\prec$ 之定义我们知不可能 $x \prec y$ 或 $y \prec x$ 成立。而若 $x \neq y$ 我们用反证法证明不可能 $x \prec y, y \prec x$ 两者皆成立。假设 $x \prec y, y \prec x$ 两者皆成立，由 $\prec$ 之定义知 $x \preceq y$ 且 $y \preceq x$。再次由反对称性，得 $x = y$。此与 $x \neq y$ 之假设相矛盾。得证不可能 $x \prec y, y \prec x$ 两者皆成立。
+\end{proof}
+
+同样地，若已知 $\prec$ 为 $X$ 上的严格全序，对于任意 $x, y \in X$，我们定义 $x \preceq y$ 当且仅当 $x = y$ 或 $x \prec y$，则 $\preceq$ 会是 $X$ 上的全序。
+
+\begin{question}
+假设 $X$ 为非空集合且 $\prec$ 为 $X$ 上的严格全序。若对任意 $x, y \in X$，我们定义 $x \preceq y$ 当且仅当 $x = y$ 或 $x \prec y$，试证明 $\preceq$ 会是 $X$ 上的全序。
+\end{question}
+
+从这里，我们知道给了 $X$ 上一个全序就等同于给了一个严格全序，反之亦然。所以当谈论到全序的性质，我们都可以转换成严格全序的性质。为了方便起见，当我们用 $\preceq$ 表示一个全序，则会用 $\prec$ 表示其对应的严格全序，反之亦然。
+
+有了序的关系后，我们就可以定义所谓的上下界，最大最小元素。假设 $(X, \preceq)$ 为偏序集。对于 $X$ 中的非空子集 $T$，我们说 $u \in X$ 是 $T$ 的一个\textbf{上界（upper bound）}，\index{上界（upper bound）}表示对于任意 $T$ 中的元素 $t$ 皆满足 $t \preceq u$。假设 $u \in X$ 是 $T$ 的上界且对任意 $T$ 的上界 $u'$，皆满足 $u \preceq u'$，则称 $u$ 为 $T$ 的\textbf{最小上界（least upper bound）}或\textbf{上确界（supremum）}。\index{最小上界（least upper bound）}\index{上确界（supremum）|see{最小上界（least upper bound）}}相对地，我们称 $l \in X$ 为 $T$ 的一个\textbf{下界（lower bound）}，表示对于任意 $T$ 中的元素 $t$ 皆满足 $l \preceq t$。假设 $l \in X$ 是 $T$ 的下界且对任意 $T$ 的下界 $l'$，皆满足 $l' \preceq l$，则称 $l$ 为 $T$ 的\textbf{最大下界（greatest lower bound）}或\textbf{下确界（infimum）}。\index{最大下界（greatest lower bound）}\index{下确界（infimum）|see{最大下界（greatest lower bound）}}
+
+要注意，一般来说偏序集 $(X, \preceq)$ 的非空子集未必会有上界或下界。而即使有上界或下界，仍有可能最小上界或最大下界会不存在。我们看以下的例子：
+
+\begin{example}
+\begin{enumerate}
+    \item 考虑 $(\mathbb{R}, \leq)$ 这个全序集。令 $T = \{x \in \mathbb{R} : 0 < x < 1\}$。所有大于等于 1 的实数都是 $T$ 的上界，而 1 是 $T$ 的最小上界。所有小于等于 0 的实数都是 $T$ 的下界，而 0 是 $T$ 的最大下界。至于 $\{x \in \mathbb{R} : x \geq 0\}$，则无上界。而 $\{x \in \mathbb{R} : x < 1\}$，则无下界。
+    \item 考虑 $(\mathbb{Q}, \leq)$ 这个全序集。令 $T = \{x \in \mathbb{Q} : \sqrt{2} < x < \sqrt{3}\}$。所有大于 $\sqrt{3}$ 的有理数都是 $T$ 的上界，而所有小于 $\sqrt{2}$ 的有理数都是 $T$ 的下界。但是 $T$ 没有最小上界。这是因为若 $u \in \mathbb{Q}$ 为 $T$ 的最小上界，表示 $\sqrt{3} < u$，但 $\sqrt{3}$ 和 $u$ 之间仍存在着有理数（这是有理数的稠密性），也就是说存在 $u_0 \in \mathbb{Q}$ 满足 $\sqrt{3} < u_0 < u$。既然 $u_0$ 为 $T$ 的上界但又小于 $u$，此与 $u$ 为 $T$ 的最小上界相矛盾，故知 $T$ 没有最小上界。同理我们知 $T$ 没有最大下界。
+    \item 给定非空集合 $A$，考虑 $(\mathcal{P}(A), \subseteq)$ 这个偏序集。对于任意 $\mathcal{P}(A)$ 的非空子集 $\mathcal{T}$, $A$ 是 $\mathcal{T}$ 的上界，因为对任何 $B \in \mathcal{T}$，皆有 $B \subseteq A$。同理 $\emptyset$ 为 $\mathcal{T}$ 的下界。此时 $\mathcal{T}$ 的最小上界一定存在，事实上 $U = \bigcup_{B \in \mathcal{T}} B$ 会是 $\mathcal{T}$ 的最小上界。这是因为对任意 $B \in \mathcal{T}$，皆有 $B \subseteq U$，所以 $U$ 是 $\mathcal{T}$ 的上界。而若 $U' \in \mathcal{P}(A)$ 是 $\mathcal{T}$ 的上界，表示对任意 $B \in \mathcal{T}$，皆有 $B \subseteq U'$，故由推论 3.3.4，知 $U = \bigcup_{B \in \mathcal{T}} B \subseteq U'$。得证 $U = \bigcup_{B \in \mathcal{T}} B$ 会是 $\mathcal{T}$ 的最小上界。例如 $A = \{1, 2, 3, 4\}$ 的情形，考虑 $\mathcal{T} = \{\{1, 2\}, \{1, 3\}\}$。则 $\{1, 2\} \cup \{1, 3\} = \{1, 2, 3\}$ 就是 $\mathcal{T}$ 的最小上界。
+\end{enumerate}
+\end{example}
+
+\begin{question}
+给定非空集合 $A$，考虑 $(\mathcal{P}(A), \subseteq)$ 这个偏序集。对于任意 $\mathcal{P}(A)$ 的非空子集 $\mathcal{T}$，试证明 $\mathcal{T}$ 的最大下界存在。
+\end{question}
+
+要注意，一般来说对于偏序集 $(X, \preceq)$ 的非空子集 $T$，虽然其最小上界可能不存在，不过若存在的话它会是唯一的。这是因为如果 $u, u' \in X$ 皆为 $T$ 的最小上界，则由 $u$ 为最小上界且 $u'$ 为上界，得 $u \preceq u'$。同理可得 $u' \preceq u$，故由偏序的反对称性得 $u = u'$。同样的 $T$ 的最大下界若存在的话，也会是唯一的。所以我们有以下性质。
+
+\begin{proposition}
+假设 $(X, \preceq)$ 是偏序集且 $T$ 是 $X$ 的非空子集。若 $T$ 的最小上界存在，则唯一。而若 $T$ 的最大下界存在，也会是唯一的。
+\end{proposition}
+
+当 $T$ 的最小上界存在时，由于是唯一的，我们就用 $\sup(T)$ 表示之。同理，我们会用 $\inf(T)$ 表示 $T$ 的最大下界。
+
+当 $(X, \preceq)$ 是全序集时，最小上界和最大下界除了唯一性外还有一个重要的性质。依定义若 $u \in X$ 是 $T$ 的最小上界，表示如果 $x \prec u$，则 $x$ 不可能是 $T$ 的上界。这是因为若 $x$ 是 $T$ 的上界则会得到 $u \preceq x$ 之矛盾（注意 $\prec$ 是严格全序，所以依三歧性，$x \prec u$ 和 $u \preceq x$ 不可能同时成立）。我们有以下之结论。
+
+\begin{proposition}
+假设 $(X, \preceq)$ 是全序集，$T$ 是 $X$ 的非空子集且 $u \in X$ 是 $T$ 的最小上界。若 $x \in X$ 满足 $x \prec u$，则存在 $t \in T$ 满足 $x \prec t$。
+\end{proposition}
+
+\begin{proof}
+利用反证法，假设存在 $t \in T$ 满足 $x \prec t$ 是错的，表示所有的 $t \in T$ 都不满足 $x \prec t$。然而 $\prec$ 是 $X$ 的严格全序，依三歧性知，$x \prec t, t \prec x$ 和 $x = t$ 必有一项是对的。因此对所有 $t \in T$ 都不满足 $x \prec t$ 表示对所有 $t \in T$ 都满足 $t \preceq x$。也就是说 $x$ 会是 $T$ 的上界。但依假设 $u$ 是 $T$ 的最小上界，我们得 $u \preceq x$。由三歧性知此与 $x \prec u$ 之前提相矛盾。故得证存在 $t \in T$ 满足 $x \prec t$。
+\end{proof}
+
+\begin{question}
+假设 $(X, \preceq)$ 是全序集，$T$ 是 $X$ 的非空子集且 $l \in X$ 是 $T$ 的最大下界。试证明若 $x \in X$ 满足 $l \prec x$，则存在 $t \in T$ 满足 $t \prec x$。
+\end{question}
+
+接下来我们介绍偏序集 $(X, \preceq)$ 中的非空子集 $T$ 的最大最小元素。要注意，在偏序集中的最大最小元素其实有分两种。由于偏序集中未必任两个元素是可比较的，所以一种 $T$ 的最大元素，称为 $T$ 的极大元（maximal element），指的是在 $T$ 中没有其他元素比它大的元素。也就是说若 $\mu \in T$ 且不存在 $t \in T$ 满足 $\mu \prec t$，则称 $\mu$ 为 $T$ 的极大元。这也等同于说如果 $t \in T$ 满足 $\mu \preceq t$，则 $\mu = t$。另一种最大元素，称为 $T$ 的最大元（greatest element 或 maximum element），指的是所有 $T$ 中的元素都比它小。也就是说若 $g \in T$ 且对所有 $t \in T$ 皆满足 $t \preceq g$，则称 $g$ 为 $T$ 的最大元。至于最小元素也有相对的定义。若 $m \in T$ 且不存在 $t \in T$ 满足 $t \prec m$，则称 $m$ 为 $T$ 的极小元（minimal element）。而若 $l \in T$ 且对所有 $t \in T$ 皆满足 $l \preceq t$，则称 $l$ 为 $T$ 的最小元（least element 或 minimum element）。要特别注意的是，$T$ 的上界和下界不需要是 $T$ 的元素，但 $T$ 的极大元、最大元以及极小元、最小元皆要求是 $T$ 的元素。如同上界和下界，上述这几种最大最小元素，并不一定会存在。我们看以下的例子。
+
+\begin{example}
+\begin{enumerate}
+    \item 考虑 $(\mathbb{R}, \leq)$ 这个全序集。令 $T = \{x \in \mathbb{R} : 0 < x < 1\}$。很容易看出 $T$ 没有极大元。这是因为对任意 $\mu \in T$ 皆有 $0 < \mu < 1$，所以若令 $t = (\mu + 1)/2$，则有 $0 < t < 1$，亦即 $t \in T$ 且 $\mu < t$。得证 $T$ 没有极大元。同理 $T$ 也没有极小元。另一方面若考虑 $T' = \{x \in \mathbb{R} : 0 \leq x \leq 1\}$。很容易看出 1 是 $T'$ 的极大元也是最大元，而 0 是 $T'$ 的极小元也是最小元。
+    \item 考虑 $A = \{1, 2, 3\}$ 以及 $(\mathcal{P}(A), \subseteq)$ 这个偏序集。考虑 $T = \{\{1\},$ $ \{1, 2\}, \{2, 3\}, \{1, 2, 3\}\}$。则 $\{1, 2, 3\}$ 是 $T$ 的极大元也是最大元。而 $\{1\}$ 是 $T$ 的极小元因为找不到 $B \in T$ 会满足 $B \subsetneq \{1\}$。不过 $\{1\}$ 不是 $T$ 的最小元，因为 $\{2, 3\} \in T$ 但是 $\{1\}$ 不满足 $\{1\} \subseteq \{2, 3\}$。另外 $\{2, 3\}$ 也是 $T$ 的极小元，因为我们也找不到 $B \in T$ 会满足 $B \subsetneq \{2, 3\}$。另外若考虑 $T' = \{\{1\}, \{1, 2\}, \{2, 3\}\}$。则 $T'$ 就没有最大元，而 $\{1, 2\}$ 和 $\{2, 3\}$ 都是 $T'$ 的极大元。要注意的是在这情况之下 $\{2, 3\}$ 同时是 $T'$ 的极大元以及极小元。
+\end{enumerate}
+\end{example}
+
+从例 4.3.10 我们知道极大元和极小元有可能不唯一。不过最大元和最小元若存在的话，会是唯一的。事实上我们有以下之结果。
+
+\begin{proposition}
+假设 $(X, \preceq)$ 为偏序集，$T$ 为其非空子集且假设 $T$ 的最大元存在。则 $T$ 的最大元为唯一。又此时 $T$ 的极大元会存在且唯一，事实上 $T$ 的极大元就是 $T$ 的最大元，也是 $T$ 的最小上界。
+\end{proposition}
+
+\begin{proof}
+首先利用反证法，证明最大元的唯一性。假设 $g, g' \in T$ 皆为 $T$ 的最大元且 $g \neq g'$。由于 $g' \in T$ 且 $g$ 为 $T$ 的最大元，依定义我们有 $g' \preceq g$。同理知 $g \preceq g'$。由于 $\preceq$ 为偏序具有反对称性，由 $g' \preceq g$ 以及 $g \preceq g'$ 得 $g = g'$ 之矛盾。得证唯一性。
+
+现假设 $g \in T$ 为 $T$ 的最大元。若 $t \in T$ 满足 $g \preceq t$，则由自反性性质得 $g = t$。换言之，不可能存在 $t \in T$ 满足 $g \prec t$。得知 $g$ 为 $T$ 的极大元。证得 $T$ 的极大元是存在的。现若 $\mu \in T$ 为 $T$ 的极大元。由 $\mu \in T$, 知 $\mu \preceq g$。然而依极大元的定义以及 $g \in T$ 知不可能有 $\mu \prec g$ 的情形发生，故得 $\mu = g$。我们证明了 $T$ 的极大元一定就是 $T$ 的最大元 $g$，也同时证得了 $T$ 的极大元的唯一性。
+
+依最大元的定义，对所有 $t \in T$ 皆有 $t \preceq g$，因此 $g$ 是 $T$ 的上界。现对任意 $T$ 的上界 $u$，由于 $g \in T$，依上界的定义，我们有 $g \preceq u$，得证 $g$ 是 $T$ 的最小上界。
+\end{proof}
+
+\begin{question}
+假设 $(X, \preceq)$ 为偏序集，$T$ 为其非空子集且假设 $T$ 的最小元存在。试证明 $T$ 的最小元为唯一，且此时 $T$ 的极小元会存在且唯一。并证明 $T$ 的极小元就是 $T$ 的最小元，也是 $T$ 的最大下界。
+\end{question}
+
+\begin{question}
+假设 $(X, \preceq)$ 为偏序集且 $T$ 为其非空子集。试证明 $T$ 的最小上界 $u$ 存在且 $u \in T$ 当且仅当 $T$ 的最大元存在。同样的，试证明 $T$ 的最大下界 $l$ 存在且 $l \in T$ 当且仅当 $T$ 的最小元存在。
+\end{question}
+
+假设 $(X, \preceq)$ 为偏序集，$T$ 为其非空子集，从命题 4.3.11 以及问题 4.12 我们知道当 $T$ 有最大元时 $T$ 的极大元就是最大元，而当 $T$ 有最小元时 $T$ 的极小元就是最小元。其实只有当 $(X, \preceq)$ 是偏序集不是全序集时，因为并不是任两元素是可比较的才需区分极大元和最大元以及区分极小元和最小元。事实上当 $(X, \preceq)$ 是全序集时极大元和最大元是一致的，同样的极小元和最小元也是一致的。
+
+\begin{proposition}
+假设 $(X, \preceq)$ 为全序集，$T$ 为其非空子集。若 $T$ 的极大元存在，则 $T$ 的极大元就是 $T$ 的最大元。
+\end{proposition}
+
+\begin{proof}
+假设 $\mu \in T$ 为 $T$ 的极大元。由于对任意 $t \in T$, $\mu \prec t$ 皆不成立，故由三歧性知 $t \preceq \mu$。得证 $\mu$ 为 $T$ 的最大元。
+\end{proof}
+
+\begin{question}
+假设 $(X, \preceq)$ 为全序集，$T$ 为其非空子集。试证明若 $T$ 的极小元存在，则 $T$ 的极小元就是 $T$ 的最小元。
+\end{question}
+
+我们利用下表让大家更清楚这些定义：
+
+\begin{center}
+\small
+\begin{tabular}{lccc}
+\hline
+名称 & 需属于 $T$ & 性质 & 附注 \\
+\hline
+$g = $ 最大元 & 是 & $\forall t \in T, t \preceq g$ & $g$ 存在则 $g = \mu$ \\
+$\mu = $ 极大元 & 是 & $(\lambda \in T) \wedge (\mu \preceq \lambda) \Rightarrow \lambda = \mu$ & $\mu$ 存在且为全序则 $\mu = g$ \\
+$u = $ 上界 & 否 & $\forall t \in T, t \preceq u$ & $g$ 存在则 $g = \sup(T)$ \\
+$\ell = $ 最小元 & 是 & $\forall t \in T, \ell \preceq t$ & $\ell$ 存在则 $\ell = m$ \\
+$m = $ 极小元 & 是 & $(\lambda \in T) \wedge (\lambda \preceq m) \Rightarrow \lambda = m$ & $m$ 存在且为全序则 $m = \ell$ \\
+$l = $ 下界 & 否 & $\forall t \in T, l \preceq t$ & $\ell$ 存在则 $\ell = \inf(T)$ \\
+\hline
+\end{tabular}
+\end{center}
+
+最后我们再定义一个重要的名词，就是所谓的良序（well order），其定义如下。
+
+\begin{definition}
+假设 $(X, \preceq)$ 为全序集。若对任意 $X$ 的非空子集 $T$ 其最小元皆存在，则称 $(X, \preceq)$ 为良序集（well-ordered set）。
+\end{definition}
+
+例如对于所有正整数所成的集合，在一般的大小关系之下就是良序集。但所有整数所成的集合，在一般的大小关系之下就不是良序集。因为例如所有的负整数所成的集合就没有最小元。
+
+在数学上当我们要处理有无穷多元素的集合时，我们常会用所谓的良序定理（well-ordering theorem）来处理。这个定理是说对每一个非空集合 $X$，我们都可以找到一个全序 $\preceq$ 使得 $(X, \preceq)$ 为良序集。
+
+\begin{example}
+对于所有整数所成的集合 $\mathbb{Z}$，虽然在一般的大小关系之下不是良序集。我们可以找到一个全序 $\preceq$ 使得 $(\mathbb{Z}, \preceq)$ 为良序集。考虑以下的规则：当 $a, b \in \mathbb{Z}$，定义 $a \preceq b$ 当且仅当 (1) $|a| < |b|$ 或 (2) $|a| = |b|$ 且 $a \leq b$。在此定义之下 $(\mathbb{Z}, \preceq)$ 为全序集。因为若 $a \preceq b$ 且 $b \preceq a$，表示 $|a| = |b|$（因 $|a| < |b|$ 和 $|b| < |a|$ 不可能同时成立）以及 $a \leq b$ 且 $b \leq a$，得证 $a = b$，即 $\preceq$ 具有反对称性。又若 $a \preceq b$ 且 $b \preceq c$，表示 $|a| \leq |b|$ 且 $|b| \leq |c|$，故得 $|a| \leq |c|$。现若 $|a| < |c|$ 可得 $a \preceq c$。而若 $|a| = |c|$，我们当然有 $|a| = |b|$，故由 $a \preceq b$ 之假设得 $a \leq b$。又因 $|b| = |c|$，故由 $b \preceq c$ 之假设得 $b \leq c$。依此得证当 $|a| = |c|$ 时可得 $a \leq c$，也就是说 $a \preceq c$。证得了 $\preceq$ 具有传递性。至于全的性质，任意 $a, b \in \mathbb{Z}$ 我们可以比较 $|a|, |b|$ 的大小，而若 $|a| = |b|$，我们都可比较 $a, b$ 的大小，所以任意 $a, b \in \mathbb{Z}$ 皆为可比较的，故 $\preceq$ 具有全的性质。事实上依此定义，我们所得的整数排序方法为
+$$ 0 \prec -1 \prec 1 \prec -2 \prec 2 \dots $$
+我们要说明 $(\mathbb{Z}, \preceq)$ 此全序集为良序集。对于任意 $\mathbb{Z}$ 的非空子集 $T$，我们先选取 $T$ 中绝对值最小的元素。若绝对值最小的元素仅有一个，则依 $\preceq$ 的定义此为 $T$ 的最小元。而若绝对值最小的元素有两个，则取原本为负的那一个便是 $T$ 的最小元。即在 $\preceq$ 这个序之下，$T$ 有最小元。得证 $(\mathbb{Z}, \preceq)$ 为良序集。
+\end{example}
+
+\begin{question}
+考虑 $\mathbb{Z}$ 中以下的规则：对于任意 $a, b \in \mathbb{Z}$ 定义 $a \preceq b$ 当且仅当 (1) $ab \geq 0$ 且 $|a| \leq |b|$ 或 (2) $ab < 0$ 且 $a \leq b$。也就是说依此定义所得的整数排序方法为
+$$ 0 \prec -1 \prec -2 \prec -3 \dots \prec 1 \prec 2 \prec 3 \dots $$
+试证明在此定义之下 $(\mathbb{Z}, \preceq)$ 为全序集。是否此时 $(\mathbb{Z}, \preceq)$ 为良序集？
+\end{question}
+
+良序定理和所谓佐恩引理（Zorn's lemma）以及选择公理（axiom of choice）是等价的，等以后我们介绍完函数的概念后会详细讨论。
+
+\begin{problemset}
+    \item 在 $\mathbb{R}$ 上定义一个关系：$x \sim y$ 当且仅当 $|x - y| < 1$。这个关系是等价关系吗？请解释你的答案。
+
+    \item 令 $X = \{1, 2, 3\}$ 且假设 $S \subseteq X \times X$ 是 $X$ 上的等价关系。进一步假设 $(1, 2) \in S$ 且 $(2, 3) \notin S$。找出 $S$ 的所有元素。在 $X = \{1, 2, 3\}$ 中可以定义多少种不同的等价关系？（提示：$X$ 的划分和 $X$ 的等价关系有着一一对应的关系。）
+
+    \item 令 $(C, \prec)$ 为一个严格全序集，并具有以下额外性质：
+    \begin{itemize}
+        \item A: 如果 $a \prec b$，那么对于每个 $c \in C$，$a + c \prec b + c$。
+        \item M: 如果 $a \prec b$ 且 $0 \prec c$，那么 $ac \prec bc$。
+    \end{itemize}
+    \begin{probenumerate}
+        \item 证明如果 $a \prec 0$，那么 $0 \prec -a$。
+        \item 证明 $0 \prec c^2, \forall c \in C$。
+    \end{probenumerate}
+
+    \item 令 $A, B$ 是偏序集 $(X, \preceq)$ 的非空子集。假设 $A \subseteq B$。
+    \begin{probenumerate}
+        \item 证明如果 $B$ 存在上界，那么 $A$ 也存在上界。
+        \item 假设 $a$ 和 $b$ 分别是 $A$ 和 $B$ 的最小上界。证明 $a \preceq b$。
+    \end{probenumerate}
+
+    \item 在 $\mathbb{Z}$ 上定义一个关系 $\prec$：$a \prec b$ 当且仅当 $(ab < 0) \wedge (a < b)$ 或 $(ab \geq 0) \wedge (|a| < |b|)$。
+    \begin{probenumerate}
+        \item 证明 $(\mathbb{Z}, \prec)$ 是一个严格全序集。
+        \item 令 $-\mathbb{N}$ 是负整数集合。证明 1 是 $-\mathbb{N}$ 的最小上界。
+        \item 证明 $(\mathbb{Z}, \prec)$ 是一个良序集（即对于任何非空 $S \subseteq \mathbb{Z}$，$S$ 的最小元素存在）。
+    \end{probenumerate}
+\end{problemset}

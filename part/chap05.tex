@@ -1,0 +1,734 @@
+%%%%%%%%%%%%%%%%%% 函数 %%%%%%%%%%%%%%%%%%%
+
+\chapter{函数}
+
+在这一章我们将介绍函数。函数可以说是进入高等数学一定要学习的数学工具。简单地说，函数可以帮助我们了解两集合之间的关系。更进一步地，当我们要探讨的集合有更丰富的结构时，我们有兴趣的函数就要求有更多的性质。比方说在实数上，由于实数有距离的概念，我们可以谈论所谓的连续函数、可导函数。而对于向量空间，由于有线性组合的性质，所以我们可以谈论所谓的线性映射。不过在这里，我们仅由集合的概念来探讨最基本的函数性质，也就是说不牵涉任何结构上的问题，在这里所谈论的函数性质是适用于以后大家会学习的各式各样的函数。本章中，我们从最基本的函数定义出发，介绍一些基本性质。接着探讨一些有特殊性质的函数，即单射以及满射函数。最后我们会将这些概念运用在处理集合的计数问题上。
+
+\section{基本定义}
+
+给定两个非空集合 $X, Y$。它们之间的函数其实是 $X, Y$ 之间的一种特殊的关系。这一种关系，给我们一个从 $X$ 到 $Y$ 的对应关系，由于这种对应关系就如同一个机器经过某一程度的运作将 $X$ 中的元素转化为 $Y$ 的元素，所以英文称之为 “function”（运作）。从机器的观点来看，若 $f \subseteq X \times Y$ 是一个从 $X$ 到 $Y$ 的关系，怎样才是一个好机器呢？首先当然是每个要放入机器的元素都能产生出东西来，所以我们要求对所有 $x \in X$，皆存在 $y \in Y$ 使得 $(x, y) \in f$。另外，我们当然希望放入机器的元素都能产生固定的东西，否则每次产生的东西都不相同，那要这机器何用？也就是说，我们要求对所有 $x \in X$，存在唯一的 $y \in Y$ 使得 $(x, y) \in f$。这个唯一性用比较好处理的数学写法就是若 $(x, y) \in f$ 且 $(x, y') \in f$，则 $y = y'$。因此函数的定义如下：
+
+\begin{definition}
+假设 $X, Y$ 为非空集合且 $f \subseteq X \times Y$ 为一个从 $X$ 到 $Y$ 的关系。若 $f$ 满足以下性质，则称 $f$ 为一个从 $X$ 到 $Y$ 的函数（function）。有时我们也称函数为映射（mapping）或映照（map）。\index{函数（function）}\index{映射（mapping）|see{函数（function）}}\index{映照（map）|see{函数（function）}}
+\begin{enumerate}
+    \item 对所有 $x \in X$，皆存在 $y \in Y$ 使得 $(x, y) \in f$。
+    \item 若 $x \in X, y, y' \in Y$ 满足 $(x, y) \in f$ 且 $(x, y') \in f$，则 $y = y'$。
+\end{enumerate}
+\end{definition}
+
+由于用关系的方法来表示函数不容易感受它是一个有如 “机器” 的作用，一般来说我们会用 $f : X \to Y$ 来表示 $f$ 是一个从 $X$ 到 $Y$ 的函数。而对于任意 $x \in X$，我们用 $f(x) = y$ 来表示 $x$ 这个元素放入 $f$ 这是一个 “机器” 后产生出 $y$ 来。也就是说 $f(x) = y$ 就表示 $(x, y) \in f$。要注意当我们就说 $f$ 是一个函数时必须清楚表达 $f$ 是从哪个集合到哪个集合的函数，否则无法确定是否会符合 (1)、(2) 的性质（请参考以下例 5.1.2）。所以用 $f : X \to Y$ 这样的符号表示是必要的。从机器的观点来说 $f : X \to Y$ 清楚地表达了 $f$ 这个机器是要放那些元素进去且会产生出哪一类的东西，这样的机器我们才会觉得是好机器。因此这里的 $X, Y$ 特别重要。这里 $X$ 就称为 $f$ 的定义域（domain），指的是所有可以放入这个机器的元素所成的集合。而 $Y$ 称为 $f$ 的陪域（codomain），就是说这个机器 “可能” 产生的元素所成的集合。注意这里我们用 “可能” 这个字眼，是因为在函数的定义中并没有要求每个 $Y$ 中的元素都可以找到 $X$ 中的元素代入得到。当我们拿到或自己设定了一个函数后就必须说明它是一个良定义的（well-defined）函数，也就是说要检查它真的符合成为函数的条件（用比喻的说法就是说明它是一个好机器）。当然了，这里用 “良定义” 这个字眼只是一种强调的语气，所有的函数都应该是良定义的。
+
+\begin{example}
+我们考虑以下几种关系，看看哪一个是良定义的函数。
+\begin{enumerate}
+    \item 考虑 $X = \{x \in \mathbb{R} : x \geq 0\}, Y = \mathbb{R}$ 以及关系 $f \subseteq X \times Y$ 定义为 $f = \{(x, y) \in X \times Y : y^2 = x\}$。这个关系 $f$ 符合函数定义中的性质 (1)，因为对于任意 $x \in X$，表示 $x \geq 0$，故只要令 $y = \sqrt{x}$，我们有 $y \in Y = \mathbb{R}$ 且 $y^2 = x$。得证对于任意 $x \in X$，存在 $y \in Y$ 使得 $(x, y) \in f$。不过 $f$ 并不满足性质 (2)。例如我们有 $1^2 = (-1)^2 = 1$，故 $(1, 1) \in f$ 且 $(1, -1) \in f$。也因此知 $f$ 不是函数。
+    \item 考虑 $X = \{x \in \mathbb{R} : x \geq 0\}, Y = \{y \in \mathbb{R} : y \leq 0\}$ 以及关系 $f \subseteq X \times Y$ 定义为 $f = \{(x, y) \in X \times Y : y^2 = x\}$。这个关系 $f$ 符合函数定义 (1) 的性质，因为对于任意 $x \in X$，表示 $x \geq 0$，故只要令 $y = -\sqrt{x}$，我们有 $y \in \mathbb{R}$ 且 $y \leq 0$，即 $y \in Y$。又 $y^2 = x$，故知对于任意 $x \in X$，存在 $y \in Y$ 使得 $(x, y) \in f$。另外 $f$ 也满足性质 (2)。因为若 $x \in X, y, y' \in Y$ 满足 $(x, y) \in f$ 且 $(x, y') \in f$，表示 $y^2 = x = y'^2$。因此得 $(y - y')(y + y') = 0$，亦即 $y = y'$ 或 $y = -y'$。现若 $x = 0$，我们有 $y = y' = 0$。而若 $x \neq 0$，得 $y \neq 0$ 且 $y' \neq 0$，此时因 $y, y' \in Y$，我们有 $y < 0$ 且 $y' < 0$。故知 $y = -y'$ 不可能成立，得证 $y = y'$。依此得证 $f : X \to Y$ 是函数。
+    \item 若将 (2) 中的 $X$ 改为 $X = \mathbb{R}$，则 $f = \{(x, y) \in X \times Y : y^2 = x\}$ 就不是函数。这是因为 $-1 \in X$，但我们找不到 $y \in Y \subseteq \mathbb{R}$ 满足 $y^2 = -1$。也就是说不存在 $y \in Y$ 满足 $(-1, y) \in f$。因此 $f$ 不满足性质 (1)，所以 $f$ 不是函数。另一方面，若我们将 (2) 中的 $Y$ 改为 $Y = \{y \in \mathbb{R} : y < 0\}$，则 $f = \{(x, y) \in X \times Y : y^2 = x\}$ 也不是函数。这是因为 $0 \in X$，但我们找不到 $y \in Y$ 满足 $y^2 = 0$，也就是说不存在 $y \in Y$ 满足 $(0, y) \in f$。因此 $f$ 不是函数。
+    \item 考虑 $X = \mathbb{R}, Y = \mathcal{P}(\mathbb{R})$ 以及函数 $f : X \to Y$ 其定义为对任意 $x \in X$，令 $f(x) = \{y \in \mathbb{R} : y^2 = x\}$。我们说明 $f$ 是良定义的函数。这是因为对任意 $x \in X = \mathbb{R}$，我们可以将 $x$ 区分为 $x > 0, x = 0, x < 0$ 三种情况。当 $x > 0$ 时，我们有 $f(x) = \{\sqrt{x}, -\sqrt{x}\}$ 为 $\mathbb{R}$ 的子集，因此确实为 $Y = \mathcal{P}(\mathbb{R})$ 中的元素。又当 $x = 0$ 时，我们有 $f(0) = \{0\}$，仍为 $Y = \mathcal{P}(\mathbb{R})$ 中的元素。而当 $x < 0$ 时，我们有 $f(x) = \emptyset$，亦为 $Y = \mathcal{P}(\mathbb{R})$ 的元素。因此知对于任意 $x \in X$，我们确实可找到 $\mathbb{R}$ 的子集 $A \in Y$ 使得 $(x, A) \in f$。要注意，在 $x < 0$ 的情形，我们有 $f(x) = \emptyset$，也就是说在这情况之下，存在 $\emptyset \in Y$ 使得 $(x, \emptyset) \in f$。并不是说找不到 $y \in Y$ 使得 $(x, y) \in f$，所以 $f$ 事实上是符合性质 (1)。另外 $f$ 也符合性质 (2)。这是因为如上面所述，对任意 $x \in X$，我们确实找到唯一的 $\mathbb{R}$ 的子集 $A$ 满足 $f(x) = A$。要注意，这里当 $x > 0$ 时，$f(x)$ 是 $\{\sqrt{x}, -\sqrt{x}\}$ 这一个 $Y$ 中的元素。亦即我们有 $(x, \{\sqrt{x}, -\sqrt{x}\}) \in f$；而不是 $(x, \sqrt{x}) \in f$ 且 $(x, -\sqrt{x}) \in f$。因此 $f$ 确实符合 (2) 的性质。
+\end{enumerate}
+\end{example}
+
+从例 5.1.2 的各个例子，我们知道即使一样的映射规则，会由于定义域或陪域的不同，影响其是否为一个函数。也因此，对于两个函数 $f : X \to Y$ 和 $f' : X' \to Y'$ 只有在 $X = X', Y = Y'$ 且对于所有 $x \in X$，皆有 $f(x) = f'(x)$ 的情形，我们才称 $f$ 和 $f'$ 为同样的函数。另外在例 5.1.2 (4) 的例子，其实陪域比实际 $f$ 会产生的元素所成的集合大了许多。不过这并不影响它是一个函数的事实。由于一般当我们定义一个函数时，在实际的情况往往不容易描绘那些元素可以被该函数产生。所以陪域的用意主要是大致上知道该函数会产生哪一类的东西即可。以后当我们谈论到满射函数时，会再进一步讨论这个问题。
+
+在所有函数中，有一个简单但很重要的函数，称为恒等函数。简单来说，它是一个将定义域中每个元素自己映射到自己的函数。其正式定义如下：
+
+\begin{definition}
+假设 $X$ 为非空集合。定义 $\mathrm{id}_X : X \to X$ 为 $\mathrm{id}_X(x) = x, \forall x \in X$。$\mathrm{id}_X$ 是一个函数，\index{恒等函数（identity function）}我们称之为在 $X$ 上的{\bf 恒等函数（identity function）}。
+\end{definition}
+
+\begin{question}
+假设 $f : X \to X$ 是一个函数。将 $f$ 视为在 $X$ 上的关系。下面哪一个性质可以确保 $f : X \to X$ 是一个恒等函数？若有一项性质无法推得 $f$ 为恒等函数，试用 $X = \{1, 2\}$ 的情况找到例子，说明该性质无法推得 $f$ 为恒等函数。
+\begin{enumerate}
+    \item $f$ 是自反的。
+    \item $f$ 是对称的。
+    \item $f$ 是传递的。
+\end{enumerate}
+\end{question}
+
+最后我们介绍几个由给定的函数，造出新的函数的方法。其实给定一个函数 $f : X \to Y$，我们只要改变定义域 $X$ 或陪域 $Y$，就可以得到 “新” 的函数。不过在做这些改变时，要注意仍需遵守函数的规则。因此最简单的情形就是，对任意 $X$ 的非空子集 $X'$，我们考虑 $f|_{X'} : X' \to Y$ 这样的函数。$f|_{X'}$ 的定义为：对所有 $x \in X', f|_{X'}(x) = f(x)$。也就是说 $f|_{X'}$ 只是将 $f$ 的定义域限制缩小在 $X'$ 这是一个子集，而它的映射规则和 $f$ 是一致的。因此很容易从 $f$ 为 $X$ 到 $Y$ 的函数得到 $f|_{X'}$ 为 $X'$ 到 $Y$ 的函数。我们称 $f|_{X'}$ 为 $f$ 到 $X'$ 的限制（restriction）。例如在例 5.1.2 (2) 中，我们可以考虑 $X' = \{x \in \mathbb{R} : x > 1\}$，则 $f|_{X'} : X' \to Y$ 仍为一个函数。我们也可以改变一个函数的陪域。当然了，将陪域扩大没有甚么意义。比较有意思的还是缩小陪域，让大家更精确地知道这个函数能产生那些元素。但要注意不能将陪域缩得太小，以至于定义域中有元素找不到陪域的元素对应（例如例 5.1.2 (3) 的情况）。例如在例 5.1.2 (4) 中，我们可以将陪域缩小为 $Y' = \{A \in \mathcal{P}(\mathbb{R}) : \#(A) \leq 2\}$，仍会使得 $f : X \to Y'$ 为一个函数。
+
+当 $f : X \to Y$ 且 $g : Y \to Z$ 为函数时，我们可以利用 $f, g$ 造出一个从 $X$ 到 $Z$ 的函数，$g \circ f : X \to Z$。$g \circ f$ 的定义为：对于任意 $x \in X, g \circ f(x) = g(f(x))$。也就是说 $g \circ f(x)$ 这个 $Z$ 中的元素就是先将 $x$ 代入 $f$ 得到 $f(x)$ 这个 $Y$ 中的元素，再将 $f(x)$ 代入 $g$ 得到的 $Z$ 中元素 $g(f(x))$。用图示就是 $x \xrightarrow{f} f(x) \xrightarrow{g} g(f(x))$。我们说明 $g \circ f : X \to Z$ 确实为函数。首先检查性质 (1)：对于任意 $x \in X$，由于 $f : X \to Y$ 为函数故存在 $y \in Y$ 使得 $f(x) = y$。此时对此 $y$，因 $g : Y \to Z$ 为函数，故存在 $z \in Z$，使得 $g(y) = z$。因此取此 $z \in Z$，我们有 $g \circ f(x) = g(f(x)) = g(y) = z$。接着检查性质 (2)，也就是说若 $x \in X$ 则存在唯一的 $z \in Z$ 满足 $g \circ f(x) = z$。然而因 $f : X \to Y$ 为函数，对于任意 $x \in X$，存在唯一的 $y \in Y$ 使得 $f(x) = y$。现若有不同的 $z, z' \in Z$ 皆满足 $g \circ f(x) = z$ 以及 $g \circ f(x) = z'$，由于 $g \circ f(x) = g(f(x)) = g(y)$，此即表示 $z, z' \in Z$ 皆满足 $g(y) = z$ 以及 $g(y) = z'$。此与 $g : Y \to Z$ 为函数之假设相矛盾，故知 $z = z'$。由于 $g \circ f : X \to Z$ 确实为函数，我们称此函数为 $f$ 和 $g$ 的复合函数（composite function）。而形成复合函数的这个动作称为复合（composition）。
+
+要注意，复合函数在复合时，必需开始第一个函数所产生的元素要落在第二个函数的定义域中才能复合。也就是说若第一个函数的陪域包含于第二个函数的定义域，我们就可以将它们复合。不过由于扩大陪域，并不影响函数的取值，所以在这里为了方便起见，我们设定第一个函数的陪域等于第二个函数的定义域。另外要注意的是复合函数的写法。虽然我们写字是从左至右，但是写函数代入的过程是从右到左。例如将 $x$ 代入 $f$ 得 $f(x)$，而将 $f(x)$ 代入 $g$ 得 $g(f(x))$。因此在书写复合函数时是先动作的函数写在右边，而后动作的写在左边，不要弄错了。
+
+\begin{example}
+假设 $X = \{1, 2, 3\}, Y = \{a, b, c, d\}, Z = \{\alpha, \beta, \gamma\}$。若 $f : X \to Y$ 的定义为：$f(1) = a, f(2) = a, f(3) = c$ 且 $g : Y \to Z$ 的定义为：$g(a) = \gamma, g(b) = \beta, g(c) = \gamma, g(d) = \alpha$，则 $g \circ f : X \to Z$ 的定义为：$g \circ f(1) = g(f(1)) = g(a) = \gamma, g \circ f(2) = g(f(2)) = g(a) = \gamma, g \circ f(3) = g(f(3)) = g(c) = \gamma$。
+\end{example}
+
+回顾一下恒等函数就是将每个元素固定不变的函数，所以它和其他的函数复合，有个 “特殊的效果”，就是保持原函数不变。我们有以下的性质。
+
+\begin{lemma}
+假设 $f : X \to Y$ 是一个函数。对于 $X$ 上的恒等函数 $\mathrm{id}_X : X \to X$ 以及 $Y$ 上的恒等函数 $\mathrm{id}_Y : Y \to Y$，我们有以下性质：
+$$ f \circ \mathrm{id}_X = f, \quad \mathrm{id}_Y \circ f = f. $$
+\end{lemma}
+
+\begin{proof}
+首先检查 $f \circ \mathrm{id}_X$ 和 $f$ 有相同的定义域以及相同的陪域。由于 $\mathrm{id}_X : X \to X$ 而 $f : X \to Y$，所以依复合函数的定义，我们有 $f \circ \mathrm{id}_X : X \to Y$。现对任意 $x \in X$，我们有 $f \circ \mathrm{id}_X(x) = f(\mathrm{id}_X(x)) = f(x)$。得证 $f \circ \mathrm{id}_X = f$。
+
+$\mathrm{id}_Y \circ f$ 和 $f$ 也有相同的定义域以及相同的陪域。这是因为 $f : X \to Y$ 而 $\mathrm{id}_Y : Y \to Y$，所以依复合函数的定义，我们有 $\mathrm{id}_Y \circ f : X \to Y$。现对任意 $x \in X$，我们有 $\mathrm{id}_Y \circ f(x) = \mathrm{id}_Y(f(x))$。因为 $f(x) \in Y$，故有 $\mathrm{id}_Y(f(x)) = f(x)$。得证 $\mathrm{id}_Y \circ f = f$。
+\end{proof}
+
+要注意复合并没有交换性。也就是说若 $f : X \to Y$ 且 $g : Y \to Z$ 为函数，则 $g \circ f$ 并不一定会等于 $f \circ g$。当然了，当 $Z \neq X$ 时，$f \circ g$ 根本就没有定义（不能复合），所以它们不相等。不过即使在 $Z = X$ 情形 $g \circ f$ 和 $f \circ g$ 仍有可能不相等。
+
+\begin{question}
+考虑 $X = \{1, 2\}$，试举例 $f : X \to X, g : X \to X$ 会使得 $g \circ f \neq f \circ g$。
+\end{question}
+
+虽然复合没有交换律，不过重要的是复合有所谓的结合律。我们有以下的性质。
+
+\begin{proposition}
+假设 $X, Y, Z, W$ 皆为非空集合。若 $f : X \to Y, g : Y \to Z$ 以及 $h : Z \to W$ 为函数，则
+$$ h \circ (g \circ f) = (h \circ g) \circ f. $$
+\end{proposition}
+
+\begin{proof}
+首先检查 $h \circ (g \circ f)$ 和 $(h \circ g) \circ f$ 是否有相同的定义域和相同的陪域。依定义 $g \circ f : X \to Z$，所以 $h \circ (g \circ f) : X \to W$。得知 $h \circ (g \circ f)$ 的定义域为 $X$，陪域为 $W$。而 $h \circ g : Y \to W$，所以 $(h \circ g) \circ f : X \to W$。得知 $(h \circ g) \circ f$ 的定义域为 $X$，陪域为 $W$。
+
+接着就是说明，对所有 $x \in X$ 皆有 $h \circ (g \circ f)(x) = (h \circ g) \circ f(x)$。依定义 $h \circ (g \circ f)(x)$ 为将 $g \circ f(x)$ 代入 $h$ 所得的元素 $h((g \circ f)(x))$。然而 $g \circ f(x) = g(f(x))$，故有
+$$ h \circ (g \circ f)(x) = h((g \circ f)(x)) = h(g(f(x))). $$
+也就是说 $h \circ (g \circ f)(x)$ 就是将 $x$ 代入 $f$ 所得的元素 $f(x)$，再代入 $g$ 后所得的元素 $g(f(x))$，最后再代入 $h$ 得 $h(g(f(x)))$。同理 $(h \circ g) \circ f(x)$ 为将 $f(x)$ 代入 $h \circ g$ 所得的元素 $(h \circ g)(f(x))$。然而 $(h \circ g)(f(x))$ 为将 $f(x)$ 代入 $g$ 后所得的元素 $g(f(x))$ 再代入 $h$，故有
+$$ (h \circ g) \circ f(x) = (h \circ g)(f(x)) = h(g(f(x))). $$
+得证 $h \circ (g \circ f)$ 和 $(h \circ g) \circ f$ 为相同的函数。
+\end{proof}
+
+复合函数有结合律，这在我们以后处理函数的复合问题时相当重要，大家千万要记住。
+
+\section{像与原像}
+
+前面提过一个函数的陪域并没有明确地指出该函数所能产生的元素有哪些，所以我们有兴趣知道该函数所产生的元素有哪些。同样地我们也对于知道函数限制在某个非空子集所能产生的元素有兴趣，所以引进了像的概念。反过来说，对于陪域的非空子集，我们也对于定义域里有哪些元素可以产生此子集的元素有兴趣，因此引进了原像的概念。在以后的数学课程里，像与原像都是用来了解一个函数经常讨论的课题。
+
+简单来说，给定一个函数 $f : X \to Y$ 以及 $X$ 的子集 $A$，所谓 $A$ 在 $f$ 的作用之下所得的像就是收集 $A$ 中的元素代入 $f$ 后所得元素的集合。我们有以下的定义。
+
+\begin{definition}
+假设 $f : X \to Y$ 为函数且 $A \subseteq X$。定义 $f(A) = \{f(a) : a \in A\}$，且称 $f(A)$ 为 $A$ 在 $f$ 下的{\bf 像（image）}。\index{像（image）}特别地， $X$ 在 $f$ 下的像，即 $f(X)$ 称为 $f$ 的{\bf 值域（range）}。\index{值域（range）}
+\end{definition}
+
+从 $f(A)$ 的定义，我们知道 $f(A)$ 是陪域 $Y$ 的子集。这个定义很直接，很容易让人理解这个集合的组成元素。不过它却不容易掌握，主要是很难描绘其元素（请参阅以下例 5.2.2）。另外要注意的是，有的同学可能会误解 $f(a) \in f(A)$ 表示 $a \in A$。其实这在逻辑上是错误的，因为有可能有元素 $b \notin A$ 但是 $f(b) \in f(A)$。一个比较好的写法是，直接将 $f(A)$ 里的元素看成是 $Y$ 中的元素。也就是说考虑 $y \in f(A)$，表示存在 $a \in A$ 使得 $y = f(a)$。反之，若 $y \in Y$ 且存在 $a \in A$ 使得 $y = f(a)$ 依定义就表示 $y \in f(A)$。所以 $f(A)$ 有另一个等价的定义是
+$$ f(A) = \{y \in Y : \exists a \in A, y = f(a)\}. $$
+这个定义感觉较不自然，不过反而比较容易让我们掌握 $f(A)$ 的元素。我们看以下的例子。
+
+\begin{example}
+令 $X = \mathbb{R} \setminus \{3\}$，且 $f : X \to \mathbb{R}$ 定义为 $f(x) = (x + 1)/(x - 3), \forall x \in X$。很容易检查，$f$ 为良定义的函数。我们要找出 $f$ 的值域，即 $f(X)$。若直接用定义，我们有 $f(X) = \{(x + 1)/(x - 3) : x \in X\}$，很难让我们知道 $f(X)$ 中到底有哪些元素。不过若用另一个等价定义，对于任意 $y \in f(X)$，表示 $y \in \mathbb{R}$ 且存在 $x \in X$ 使得 $y = f(x) = (x + 1)/(x - 3)$。也就是说 $y$ 这个实数，会使得方程 $y = (x + 1)/(x - 3)$ 在 $X$ 中有解。注意此时 $y$ 是实数，$x$ 是未知数，所以利用 $y(x - 3) = x + 1$ 可得 $(y - 1)x = 3y + 1$，解得 $x = (3y + 1)/(y - 1)$。要注意，这个推演过程告诉我们的是，若 $y \in \mathbb{R}$ 且存在 $x \in X$ 使得 $y = (x + 1)/(x - 3)$，则 $x = (3y + 1)/(y - 1)$。所以它仅告诉我们 $x$ 可能的值，并不保证 $x$ 必定存在。因此我们须代回验证这样的 $x$ 确实可得 $f(x) = y$。
+
+首先由 $x = (3y + 1)/(y - 1)$，我们可知 $y \neq 1$。事实上如果 $y = 1$，则由假设存在 $x \in X$ 满足 $1 = (x + 1)/(x - 3)$，会得到 $x + 1 = x - 3$，即 $1 = -3$ 之矛盾。现假设 $y \neq 1$，则当 $x = (3y + 1)/(y - 1)$，我们有
+$$ \frac{x + 1}{x - 3} = \frac{\frac{3y+1}{y-1} + 1}{\frac{3y+1}{y-1} - 3} = \frac{\frac{4y}{y-1}}{\frac{4}{y-1}} = \frac{4y}{4} = y. $$
+也就是说，当 $y \neq 1$ 时，确实存在 $x = (3y + 1)/(y - 1) \in \mathbb{R}$ 使得 $(x + 1)/(x - 3) = y$。我们要确认此时 $x \neq 3$，才能确定 $x \in X$。然而若 $x = (3y + 1)/(y - 1) = 3$，表示 $3y + 1 = 3y - 3$，即得 $1 = -3$ 之矛盾，故知 $x \in X$。我们证得了，当 $y \neq 1$ 时，存在 $x \in X$ 使得 $y = f(x)$。又知当 $y = 1$ 时不可能找到 $x \in X$ 使得 $y = f(x)$。因此得 $f(X) = \mathbb{R} \setminus \{1\}$。
+\end{example}
+
+接下来，我们探讨有关像的性质。
+
+\begin{lemma}
+假设 $f : X \to Y$ 为函数且 $A, B$ 为 $X$ 的子集。若 $A \subseteq B$，则 $f(A) \subseteq f(B)$。
+\end{lemma}
+
+\begin{proof}
+依定义，若 $y \in f(A)$，表示存在 $a \in A$，使得 $y = f(a)$。此时因 $A \subseteq B$，我们有 $a \in B$。也就是说此时考虑 $a \in B$ 会使得 $y = f(a)$，故 $y \in f(B)$。得证 $f(A) \subseteq f(B)$。
+\end{proof}
+
+现若考虑 $X$ 任意两个子集 $A, B$，我们有 $A \subseteq A \cup B$ 且 $B \subseteq A \cup B$。故利用引理 5.2.3，可得 $f(A) \subseteq f(A \cup B)$ 且 $f(B) \subseteq f(A \cup B)$。因此由推论 3.2.4，得 $f(A) \cup f(B) \subseteq f(A \cup B)$。反之，若 $y \in f(A \cup B)$，表示存在 $x \in A \cup B$，使得 $y = f(x)$。此时，若 $x \in A$，则得 $y = f(x) \in f(A)$，而若 $x \in B$，则得 $y = f(x) \in f(B)$。因此得 $y \in f(A)$ 或 $y \in f(B)$。此即表示 $y \in f(A) \cup f(B)$，得证 $f(A \cup B) \subseteq f(A) \cup f(B)$。因此我们推得了以下性质。
+
+\begin{proposition}
+假设 $f : X \to Y$ 为函数且 $A, B$ 为 $X$ 的子集。则
+$$ f(A) \cup f(B) = f(A \cup B). $$
+\end{proposition}
+
+至于交集，由于 $A \cap B \subseteq A$ 以及 $A \cap B \subseteq B$，因此由引理 5.2.3，可得 $f(A \cap B) \subseteq f(A)$ 以及 $f(A \cap B) \subseteq f(B)$。故由推论 3.2.4，得 $f(A \cap B) \subseteq f(A) \cap f(B)$。不过要注意 $f(A) \cap f(B)$ 并不一定包含于 $f(A \cap B)$。因为若 $y \in f(A) \cap f(B)$，表示 $y \in f(A)$ 且 $y \in f(B)$，亦即存在 $a \in A$ 以及 $b \in B$ 满足 $y = f(a)$ 及 $y = f(b)$。但这并不表示 $a = b$，因此我们无法推得 $a \in A \cap B$。例如考虑函数 $f : \{1, 2\} \to \{0\}$ 定义为 $f(1) = f(2) = 0$。若令 $A = \{1\}, B = \{2\}$，我们有 $A \cap B = \emptyset$，故 $f(A \cap B) = \emptyset$。但 $f(A) = f(B) = \{0\}$ 因此 $f(A) \cap f(B) = \{0\}$。由此例知 $f(A) \cap f(B)$ 有可能不包含于 $f(A \cap B)$。不过 $f(A \cap B) \subseteq f(A) \cap f(B)$ 永远是对的。
+
+对于差集，我们要考虑的是 $f(A \setminus B)$ 和 $f(A) \setminus f(B)$ 的关系。首先若 $y \in f(A) \setminus f(B)$，表示存在 $a \in A$ 使得 $y = f(a)$ 但 $y \notin f(B)$。现若 $a \in B$，会造成 $y = f(a) \in f(B)$ 之矛盾。故知 $a \in A \setminus B$，即 $y = f(a) \in f(A \setminus B)$。得证 $f(A) \setminus f(B) \subseteq f(A \setminus B)$。不过反过来并不成立，因为若 $y \in f(A \setminus B)$，表示存在 $a \in A \setminus B$。因为 $(A \setminus B) \subseteq A$，我们当然有 $f(a) \in f(A)$。但 $a \notin B$，并不表示 $y = f(a) \notin f(B)$，因为很有可能存在 $b \in B$ 满足 $f(a) = f(b)$。例如前面 $f : \{1, 2\} \to \{0\}$ 定义为 $f(1) = f(2) = 0$ 的例子。若令 $A = \{1\}, B = \{2\}$，我们有 $A \setminus B = A$，因此有 $f(A \setminus B) = f(A) = \{0\}$。但 $f(A) = f(B) = \{0\}$，所以 $f(A) \setminus f(B) = \emptyset$。由此例知 $f(A \setminus B)$ 有可能不包含于 $f(A) \setminus f(B)$。不过 $f(A) \setminus f(B) \subseteq f(A \setminus B)$ 永远是对的。
+
+\begin{question}
+假设 $X$ 为宇集，$A \subseteq X$ 且 $f : X \to X$ 为函数。试问 $f(A^c) \subseteq f(A)^c$ 是否成立？又 $f(A)^c \subseteq f(A^c)$ 是否成立？
+\end{question}
+
+接下来，我们来探讨所谓的原像（inverse image）。简单来说，给定一个函数 $f : X \to Y$ 以及 $Y$ 的子集 $C$，所谓 $C$ 在 $f$ 的作用之下所得的原像就是收集那些经由 $f$ 会落在 $C$ 中的元素所成的集合。我们有以下的定义。
+
+\begin{definition}
+假设 $f : X \to Y$ 为函数且 $C \subseteq Y$。定义 $f^{-1}(C) = \{x \in X : f(x) \in C\}$，且称 $f^{-1}(C)$ 为 $C$ 在 $f$ 下的原像（inverse image）。
+\end{definition}
+
+从 $f^{-1}(C)$ 的定义，我们知道 $f^{-1}(C)$ 是定义域 $X$ 的子集。这个原像的定义已充分描绘其元素，所以我们可以直接利用这个定义处理原像的性质。以下的定理，我们会发现，原像比起像更能保持集合之间的运算关系。
+
+\begin{proposition}
+假设 $f : X \to Y$ 为函数且 $C, D$ 为 $Y$ 的子集。
+\begin{enumerate}
+    \item 若 $C \subseteq D$，则 $f^{-1}(C) \subseteq f^{-1}(D)$。
+    \item $f^{-1}(C \cup D) = f^{-1}(C) \cup f^{-1}(D)$。
+    \item $f^{-1}(C \cap D) = f^{-1}(C) \cap f^{-1}(D)$。
+    \item $f^{-1}(C \setminus D) = f^{-1}(C) \setminus f^{-1}(D)$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+    \item 假设 $x \in f^{-1}(C)$，表示 $f(x) \in C$。故由 $C \subseteq D$，得 $f(x) \in D$，亦即 $x \in f^{-1}(D)$。得证 $f^{-1}(C) \subseteq f^{-1}(D)$。
+    \item 由于 $C \subseteq C \cup D$ 且 $D \subseteq C \cup D$，故由 (1) 知 $f^{-1}(C) \subseteq f^{-1}(C \cup D)$ 且 $f^{-1}(D) \subseteq f^{-1}(C \cup D)$。因此由推论 3.2.4 可得 $f^{-1}(C) \cup f^{-1}(D) \subseteq f^{-1}(C \cup D)$。反之，假设 $x \in f^{-1}(C \cup D)$，表示 $f(x) \in C \cup D$，亦即 $f(x) \in C$ 或 $f(x) \in D$。依定义得 $x \in f^{-1}(C)$ 或 $x \in f^{-1}(D)$，也就是说 $x \in f^{-1}(C) \cup f^{-1}(D)$。证明了 $f^{-1}(C \cup D) \subseteq f^{-1}(C) \cup f^{-1}(D)$，也因此证得 $f^{-1}(C \cup D) = f^{-1}(C) \cup f^{-1}(D)$。
+    \item 由于 $C \cap D \subseteq C$ 且 $C \cap D \subseteq D$，故由 (1) 知 $f^{-1}(C \cap D) \subseteq f^{-1}(C)$ 且 $f^{-1}(C \cap D) \subseteq f^{-1}(D)$。因此由推论 3.2.4 可得 $f^{-1}(C \cap D) \subseteq f^{-1}(C) \cap f^{-1}(D)$。反之，假设 $x \in f^{-1}(C) \cap f^{-1}(D)$，表示 $x \in f^{-1}(C)$ 且 $x \in f^{-1}(D)$，亦即 $f(x) \in C$ 且 $f(x) \in D$。因此得 $f(x) \in C \cap D$，依定义即为 $x \in f^{-1}(C \cap D)$。证明了 $f^{-1}(C) \cap f^{-1}(D) \subseteq f^{-1}(C \cap D)$，也因此证得 $f^{-1}(C \cap D) = f^{-1}(C) \cap f^{-1}(D)$。
+    \item 假设 $x \in f^{-1}(C \setminus D)$，表示 $f(x) \in C \setminus D$，亦即 $f(x) \in C$ 且 $f(x) \notin D$。得知 $x \in f^{-1}(C)$。现若又 $x \in f^{-1}(D)$，表示 $f(x) \in D$，此与前面 $f(x) \notin D$ 相矛盾，故知 $x \notin f^{-1}(D)$。由 $x \in f^{-1}(C)$ 且 $x \notin f^{-1}(D)$，我们得 $x \in f^{-1}(C) \setminus f^{-1}(D)$。得证 $f^{-1}(C \setminus D) \subseteq f^{-1}(C) \setminus f^{-1}(D)$。反之，假设 $x \in f^{-1}(C) \setminus f^{-1}(D)$，表示 $x \in f^{-1}(C)$ 且 $x \notin f^{-1}(D)$。得知 $f(x) \in C$。现若又 $f(x) \in D$，表示 $x \in f^{-1}(D)$，此与前面 $x \notin f^{-1}(D)$ 相矛盾，故知 $f(x) \notin D$。由 $f(x) \in C$ 且 $f(x) \notin D$，我们得 $f(x) \in C \setminus D$，即 $x \in f^{-1}(C \setminus D)$。得证 $f^{-1}(C) \setminus f^{-1}(D) \subseteq f^{-1}(C \setminus D)$，也因此证明了 $f^{-1}(C \setminus D) = f^{-1}(C) \setminus f^{-1}(D)$。
+\end{enumerate}
+\end{proof}
+
+\begin{question}
+假设 $X$ 为宇集，$A \subseteq X$ 且 $f : X \to X$ 为函数。试问 $f^{-1}(A^c) \subseteq (f^{-1}(A))^c$ 是否成立？又 $(f^{-1}(A))^c \subseteq f^{-1}(A^c)$ 是否成立？
+\end{question}
+
+当 $f : X \to Y$ 为函数且 $A$ 为 $X$ 的子集时，既然 $f(A)$ 为 $Y$ 的子集，我们当然可以考虑 $f^{-1}(f(A))$。现假设 $a \in A$，我们有 $f(a) \in f(A)$，故依原像的定义得 $a \in f^{-1}(f(A))$，得证 $A \subseteq f^{-1}(f(A))$。反之，若 $x \in f^{-1}(f(A))$，表示 $f(x) \in f(A)$，但这并不表示 $x \in A$。例如前面 $f : \{1, 2\} \to \{0\}$ 定义为 $f(1) = f(2) = 0$ 的例子。若令 $A = \{1\}$，我们有 $f(A) = \{0\}$，但 $f^{-1}(f(A)) = f^{-1}(\{0\}) = \{1, 2\} \neq A$。由此例知 $f^{-1}(f(A))$ 有可能不包含于 $A$。不过 $A \subseteq f^{-1}(f(A))$ 永远是对的。
+
+\begin{question}
+假设 $f : X \to Y$ 为函数。试证明 $f^{-1}(f(X)) = X$。
+\end{question}
+
+同样地当 $C$ 为 $Y$ 的子集时，既然 $f^{-1}(C)$ 为 $X$ 的子集，我们当然可以考虑 $f(f^{-1}(C))$。现假设 $y \in f(f^{-1}(C))$，表示存在 $x \in f^{-1}(C)$ 使得 $y = f(x)$。然而依原像的定义 $x \in f^{-1}(C)$ 表示 $f(x) \in C$，故得 $y = f(x) \in C$。得证 $f(f^{-1}(C)) \subseteq C$。反之，若 $y \in C$，不见得会有 $y \in f(f^{-1}(C))$，这是因为不一定存在 $x \in X$ 使得 $y = f(x)$。例如考虑函数 $f : \{1, 2\} \to \{3, 4\}$ 定义为 $f(1) = f(2) = 3$。若令 $C = \{3, 4\}$，我们有 $f^{-1}(C) = \{1, 2\}$，但 $f(f^{-1}(C)) = f(\{1, 2\}) = \{3\} \neq C$。由此例知 $C$ 有可能不包含于 $f(f^{-1}(C))$。不过若 $y \in C$ 且存在 $x \in X$ 使得 $y = f(x)$，则情况就不一样了。我们有下面的结果。
+
+\begin{proposition}
+假设 $f : X \to Y$ 为函数且 $C$ 为 $Y$ 的子集，则
+$$ f(f^{-1}(C)) = C \cap f(X). $$
+\end{proposition}
+
+\begin{proof}
+前面已证得 $f(f^{-1}(C)) \subseteq C$，又因 $f^{-1}(C) \subseteq X$，故有 $f(f^{-1}(C)) \subseteq f(X)$，因此得 $f(f^{-1}(C)) \subseteq C \cap f(X)$。另一方面若 $y \in C \cap f(X)$，表示 $y \in C$ 且存在 $x \in X$ 使得 $y = f(x)$。因此知，此 $x$ 满足 $f(x) = y \in C$，亦即 $x \in f^{-1}(C)$。所以 $y = f(x) \in f(f^{-1}(C))$，得证 $C \cap f(X) \subseteq f(f^{-1}(C))$。因此证明了 $f(f^{-1}(C)) = C \cap f(X)$。
+\end{proof}
+
+命题 5.2.7，有许多应用。例如给定函数 $f : X \to Y$ 以及 $X$ 的子集 $A$。我们有 $f(A)$ 为 $Y$ 的子集，且 $f(A) \subseteq f(X)$。故套用命题 5.2.7 ($C = f(A)$ 的情况)，可得
+$$ f(f^{-1}(f(A))) = f(A) \cap f(X) = f(A). $$
+
+\begin{question}
+假设 $f : X \to Y$ 为函数且 $C$ 为 $Y$ 的子集。试利用命题 5.2.7, 命题 5.2.6 以及问题 5.5 证明
+$$ f^{-1}(f(f^{-1}(C))) = f^{-1}(C). $$
+\end{question}
+
+\section{满射、单射与逆}
+
+满射和单射是函数中两种特殊的性质。有这两种特殊性质的函数就会有所谓的逆函数。这些都是将来在进阶数学课程中会遇到的性质。我们将学习如何辨认满射及单射的函数，以及它们基本的性质。
+
+所谓满射（onto）的函数，简单来说就是陪域里每个元素，都可由定义域里的元素映射而得。也就是说一个函数的值域（range）恰为陪域（codomain）就是满射的函数。其正式定义如下：
+
+\begin{definition}
+假设 $f : X \to Y$ 为函数。若 $f(X) = Y$，则我们称 $f$ 为满射的（onto）。也就是说对任意 $y \in Y$ 皆存在 $x \in X$ 使得 $f(x) = y$。有时也称满射的函数为满射函数（surjective function）。
+\end{definition}
+
+用原像的观点来看 $f : X \to Y$ 为满射也等同于对于任意 $y \in Y, f^{-1}(\{y\}) \neq \emptyset$。不过当要证明一个函数为满射，一般常用的方法还是如前一节找像的方法处理。我们看以下的例子。
+
+\begin{example}
+\begin{enumerate}
+    \item 在例 5.2.2 中我们考虑函数 $f : \mathbb{R} \setminus \{3\} \to \mathbb{R}$ 定义为 $f(x) = (x + 1)/(x - 3), \forall x \in X$。我们找出 $f$ 的值域为 $\mathbb{R} \setminus \{1\}$。因此 $f$ 不是满射的。但若考虑 “新” 的函数 $g : \mathbb{R} \setminus \{3\} \to \mathbb{R} \setminus \{1\}$ 定义为 $g(x) = (x + 1)/(x - 3), \forall x \in X$，则 $g(x)$ 为满射的。
+    \item 考虑函数 $f : \mathbb{Z} \to \mathbb{N} \cup \{0\}$ 定义为
+    $$ f(n) = \begin{cases} 2n, & \text{if } n \geq 0; \\ -2n - 1, & \text{if } n < 0. \end{cases} $$
+    我们说明 $f$ 为满射的。首先由 $f$ 的映射规则我们大致知道可以将 $f$ 的陪域元素分成偶数与奇数。现若 $k \in \mathbb{N} \cup \{0\}$ 为偶数，表示 $k/2 \in \mathbb{Z}$ 且 $k/2 \geq 0$。故此时取 $n = k/2$，我们有 $f(n) = 2n = k$。而若 $k \in \mathbb{N} \cup \{0\}$ 为奇数，表示 $k + 1 \in \mathbb{Z}$ 为偶数且 $k + 1 > 0$。此时取 $n = -(k + 1)/2$，我们有 $n \in \mathbb{Z}$ 且 $n < 0$，故依定义有 $f(n) = -2n - 1 = (-2(-(k + 1)/2)) - 1 = k$。得证 $f$ 为满射的。
+\end{enumerate}
+\end{example}
+
+当遇到抽象的函数（即函数没有具体的形式）时，有时用定义证明它是满射的有点麻烦。接下来我们介绍一个很好用来证明一个抽象函数为满射的方法。
+
+\begin{proposition}
+假设 $f : X \to Y$ 为函数。则 $f$ 为满射的当且仅当存在 $g : Y \to X$ 为函数满足 $f \circ g = \mathrm{id}_Y$。
+\end{proposition}
+
+\begin{proof}
+($\Rightarrow$) 当 $f : X \to Y$ 为满射时，我们要利用 $f$ 找到一个函数 $g : Y \to X$ 满足 $f \circ g = \mathrm{id}_Y$。这一个证明其实严格来说是要用选择公理来处理，不过由于我们尚未介绍过它，所以这里的证明严格来说并不是很完善。希望大家知道它的证明大致上的意思即可。首先由 $f$ 为满射，我们知道对任意 $y \in Y, f^{-1}(\{y\}) \neq \emptyset$。因此对于任意 $y \in Y$，我们定义 $g(y)$ 为非空集合 $f^{-1}(\{y\})$ 中的某一个特定元素。由此我们定义了一个从 $Y$ 到 $X$ 的函数 $g$。依此定义我们有 $f \circ g : Y \to Y$ 且对于任意 $y \in Y$，若 $g(y) = x$，则因 $x \in f^{-1}(\{y\})$，知 $f(x) = y$。也就是说 $f \circ g(y) = f(g(y)) = f(x) = y$。得证 $f \circ g = \mathrm{id}_Y$。
+
+($\Leftarrow$) 现假设 $g : Y \to X$ 为函数且满足 $f \circ g = \mathrm{id}_Y$，我们要证明 $f : X \to Y$ 为满射的，也就是说对任意 $y \in Y$，要找到 $x \in X$ 使得 $y = f(x)$。然而因 $y \in Y$，我们有 $g(y) \in X$。因此若考虑 $x = g(y) \in X$，则 $f(x) = f(g(y)) = f \circ g(y) = \mathrm{id}_Y(y) = y$。得证确实存在 $x \in X$ 使得 $y = f(x)$，故知 $f : X \to Y$ 为满射的。
+\end{proof}
+
+\begin{example}
+考虑 $X = \{1, 2, 3\}, Y = \{a, b\}$ 以及 $f : X \to Y$，定义为 $f(1) = f(2) = a, f(3) = b$。依此定义 $f : X \to Y$ 为满射的。我们要找到 $g : Y \to X$ 使得 $f \circ g = \mathrm{id}_Y$。由于要定义从 $Y$ 到 $X$ 的函数，所以每个 $Y$ 中的元素都要定义其如何映射。现由于 $f^{-1}(\{a\}) = \{1, 2\}$，我们任取 $f^{-1}(\{a\})$ 中的一个元素，比方说取 2，因此定义 $g(a) = 2$。又由于 $f^{-1}(\{b\}) = \{3\}$ 仅有一个元素，所以我们定义 $g(b) = 3$。依此定义我们有 $g : Y \to X$ 为一个函数且满足 $f \circ g(a) = f(g(a)) = f(2) = a$ 以及 $f \circ g(b) = f(g(b)) = f(3) = b$。故得 $f \circ g = \mathrm{id}_Y$。
+\end{example}
+
+命题 5.3.3 可以帮我们不必用满射的定义处理有关满射的证明。例如我们有以下的性质。
+
+\begin{proposition}
+若 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为满射函数，则 $f_2 \circ f_1 : X \to Z$ 亦为满射的。
+\end{proposition}
+
+\begin{proof}
+（方法一） 我们可以用满射的定义处理，对于任意 $z \in Z$，要找到 $x \in X$ 使得 $f_2 \circ f_1(x) = z$。然而 $f_2 : Y \to Z$ 为满射的，故对此 $z \in Z$，存在 $y \in Y$ 使得 $f_2(y) = z$。又因 $f_1 : X \to Y$ 为满射的，所以对于此 $y \in Y$，存在 $x \in X$ 使得 $f_1(x) = y$。现利用此 $x$，我们有 $f_2 \circ f_1(x) = f_2(f_1(x)) = f_2(y) = z$。因此得证 $f_2 \circ f_1 : X \to Z$ 为满射的。
+
+（方法二） 利用命题 5.3.3，要证明 $f_2 \circ f_1 : X \to Z$ 为满射的，我们仅要找到 $g : Z \to X$ 使得 $(f_2 \circ f_1) \circ g = \mathrm{id}_Z$ 即可。然而已知 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为满射的，故由命题 5.3.3 知存在 $g_1 : Y \to X, g_2 : Z \to Y$ 满足 $f_1 \circ g_1 = \mathrm{id}_Y$ 以及 $f_2 \circ g_2 = \mathrm{id}_Z$。现令 $g = g_1 \circ g_2 : Z \to X$，我们有 $(f_2 \circ f_1) \circ g = (f_2 \circ f_1) \circ (g_1 \circ g_2)$。利用复合函数的结合律（命题 5.1.6）以及引理 5.1.5，我们有 $(f_2 \circ f_1) \circ (g_1 \circ g_2) = f_2 \circ (f_1 \circ g_1) \circ g_2 = f_2 \circ (\mathrm{id}_Y \circ g_2) = f_2 \circ g_2 = \mathrm{id}_Z$。得证 $(f_2 \circ f_1) \circ g = \mathrm{id}_Z$。
+\end{proof}
+
+要注意命题 5.3.5 的反向不一定成立，也就是说 $f_2 \circ f_1$ 为满射并不表示 $f_1, f_2$ 皆为满射。例如在例 5.3.4 中 $g : \{a, b\} \to \{1, 2, 3\}$ 定义为 $g(a) = 2, g(b) = 3$，不是满射。但 $f \circ g = \mathrm{id}_{\{a,b\}}$ 为满射。不过我们有以下之结果。
+
+\begin{corollary}
+若 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为函数且 $f_2 \circ f_1 : X \to Z$ 为满射的，则 $f_2$ 为满射的。
+\end{corollary}
+
+\begin{proof}
+由 $f_2 \circ f_1 : X \to Z$ 为满射的，利用命题 5.3.3 知存在 $g : Z \to X$ 满足 $(f_2 \circ f_1) \circ g = \mathrm{id}_Z$。因此利用复合函数结合律得 $f_2 \circ (f_1 \circ g) = \mathrm{id}_Z$。现令 $g_2 = f_1 \circ g$，我们有 $g_2 : Z \to Y$ 且满足 $f_2 \circ g_2 = f_2 \circ (f_1 \circ g) = \mathrm{id}_Z$。所以再次利用命题 5.3.3 得证 $f_2 : Y \to Z$ 为满射的。
+\end{proof}
+
+\begin{question}
+试利用满射的定义证明推论 5.3.6。
+\end{question}
+
+要注意推论 5.3.6 的反向也不一定成立，也就是说单仅假设 $f_2$ 为满射并不能保证 $f_2 \circ f_1$ 为满射。
+
+\begin{question}
+考虑 $X = \{a, b\}, Y = \{1, 2, 3\}$，试找到例子 $f_1 : X \to Y, f_2 : Y \to X$ 为函数其中 $f_2$ 为满射，但是 $f_2 \circ f_1$ 不是满射。
+\end{question}
+
+接下来我们探讨所谓单射函数，简单来说就是定义域里相异的元素都会被映射到陪域里相异的元素。其正式定义如下：
+
+\begin{definition}
+假设 $f : X \to Y$ 为函数。若对于 $X$ 中任两相异元素 $x_1 \neq x_2$，皆有 $f(x_1) \neq f(x_2)$，则我们称 $f$ 为一对一的（one-to-one）。有时也称一对一的函数为单射函数（injective function）。
+\end{definition}
+
+用原像的观点来看 $f : X \to Y$ 为单射也等同于对于任意 $y \in Y, \#(f^{-1}(\{y\})) \leq 1$（有可能 $f^{-1}(\{y\}) = \emptyset$）。另外一般来说要处理不等号较为困难，所以当要证明单射时，我们大都用定义 5.3.7 的逆否命题处理。也就是说证明对任意 $x_1, x_2 \in X$ 满足 $f(x_1) = f(x_2)$，则 $x_1 = x_2$。我们看以下的例子。
+
+\begin{example}
+我们探讨例 5.3.2 中的函数是否为单射的。
+\begin{enumerate}
+    \item 考虑函数 $f : \mathbb{R} \setminus \{3\} \to \mathbb{R}$ 定义为 $f(x) = (x + 1)/(x - 3), \forall x \in X$。现若 $x_1, x_2 \in \mathbb{R} \setminus \{3\}$ 满足 $f(x_1) = f(x_2)$，表示 $(x_1 + 1)/(x_1 - 3) = (x_2 + 1)/(x_2 - 3)$，即 $(x_1 + 1)(x_2 - 3) = (x_2 + 1)(x_1 - 3)$。化简得 $x_2 - 3x_1 = x_1 - 3x_2$，即 $x_1 = x_2$。因此得证 $f$ 为单射的。
+    \item 考虑函数 $f : \mathbb{Z} \to \mathbb{N} \cup \{0\}$ 定义为
+    $$ f(n) = \begin{cases} 2n, & \text{if } n \geq 0; \\ -2n - 1, & \text{if } n < 0. \end{cases} $$
+    现假设 $n_1, n_2 \in \mathbb{Z}$ 满足 $f(n_1) = f(n_2)$。由于若 $n_1, n_2$ 其中有一个为大于等于 0 另一个为小于 0，则依 $f$ 的定义 $f(n_1)$ 和 $f(n_2)$ 必为一奇一偶，此与 $f(n_1) = f(n_2)$ 相矛盾。因此我们有 $n_1 \geq 0, n_2 \geq 0$ 或 $n_1 < 0, n_2 < 0$。当 $n_1 \geq 0, n_2 \geq 0$，我们有 $f(n_1) = 2n_1, f(n_2) = 2n_2$，故由 $f(n_1) = f(n_2)$ 之假设得 $n_1 = n_2$。同理，当 $n_1 < 0, n_2 < 0$，我们有 $f(n_1) = -2n_1 - 1, f(n_2) = -2n_2 - 1$，故由 $f(n_1) = f(n_2)$ 之假设得 $n_1 = n_2$。因此得证 $f$ 为单射的。
+\end{enumerate}
+\end{example}
+
+和满射的情况一样，我们有一个不必由定义证明一个抽象函数为单射的方法。
+
+\begin{proposition}
+假设 $f : X \to Y$ 为函数。则 $f$ 为单射的当且仅当存在 $h : Y \to X$ 为函数满足 $h \circ f = \mathrm{id}_X$。
+\end{proposition}
+
+\begin{proof}
+($\Rightarrow$) 当 $f : X \to Y$ 为单射时，我们要利用 $f$ 找到一个函数 $h : Y \to X$ 满足 $h \circ f = \mathrm{id}_X$。首先由 $f$ 为单射，我们知道对任意 $y \in Y, \#(f^{-1}(\{y\})) \leq 1$。因此对于任意 $y \in Y$，若 $f^{-1}(\{y\}) = \emptyset$ 我们定义 $h(y)$ 为 $X$ 中某一个固定元素。而若 $f^{-1}(\{y\}) \neq \emptyset$，则 $f^{-1}(\{y\})$ 仅有一个元素。因此若 $f^{-1}(\{y\}) = \{x\}$ 我们便定义 $h(y) = x$。依此我们便定义了一个从 $Y$ 到 $X$ 的函数 $h$。依此定义我们有 $h \circ f : X \to X$ 且对于任意 $x \in X$，若 $f(x) = y$，则因 $x \in f^{-1}(\{y\})$，知 $h(y) = x$。也就是说 $h \circ f(x) = h(f(x)) = h(y) = x$。得证 $h \circ f = \mathrm{id}_X$。
+
+($\Leftarrow$) 现假设 $h : Y \to X$ 为函数且满足 $h \circ f = \mathrm{id}_X$，我们要证明 $f : X \to Y$ 为单射的，也就是说若 $x_1, x_2 \in X$ 满足 $f(x_1) = f(x_2)$，我们要证明 $x_1 = x_2$。然而因 $x_1 \in X$，我们有 $x_1 = \mathrm{id}_X(x_1) = h \circ f(x_1) = h(f(x_1))$。同理因 $x_2 \in X$，我们有 $x_2 = h(f(x_2))$。现由假设 $f(x_1) = f(x_2) \in Y$ 以及 $h : Y \to X$ 为函数知 $h(f(x_1)) = h(f(x_2))$。因此得证
+\[x_1 = h(f(x_1)) = h(f(x_2)) = x_2. \qedhere\]
+\end{proof}
+
+\begin{example}
+考虑 $X = \{a, b\}, Y = \{1, 2, 3\}$ 以及 $f : X \to Y$，定义为 $f(a) = 3, f(b) = 1$。依此定义 $f : X \to Y$ 为单射的。我们要找到 $h : Y \to X$ 使得 $h \circ f = \mathrm{id}_X$。由于要定义从 $Y$ 到 $X$ 的函数，所以每个 $Y$ 中的元素都要定义其如何映射。现由于 $f^{-1}(\{2\}) = \emptyset$，我们任取 $X$ 中的一个元素，比方说取 $a$，因此定义 $h(2) = a$。又由于 $f^{-1}(\{1\}) = \{b\}$ 所以我们定义 $h(1) = b$。而 $f^{-1}(\{3\}) = \{a\}$ 所以我们定义 $h(3) = a$。依此定义我们有 $h : Y \to X$ 为一个函数且满足 $h \circ f(a) = h(f(a)) = h(3) = a$ 以及 $h \circ f(b) = h(f(b)) = h(1) = b$。故得 $h \circ f = \mathrm{id}_X$。
+\end{example}
+
+命题 5.3.9 可以帮我们不必用单射的定义处理有关单射的证明。例如我们有以下的性质。
+
+\begin{proposition}
+若 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为单射函数，则 $f_2 \circ f_1 : X \to Z$ 亦为单射的。
+\end{proposition}
+
+\begin{proof}
+（方法一） 我们可以用单射的定义处理。假设 $x_1, x_2 \in X$ 符合 $f_2 \circ f_1(x_1) = f_2 \circ f_1(x_2)$。也就是说 $f_2(f_1(x_1)) = f_2(f_1(x_2))$，然而 $f_2 : Y \to Z$ 为单射的，因此知 $f_1(x_1) = f_1(x_2)$。再由 $f_1 : X \to Y$ 为单射的，得证 $x_1 = x_2$。
+
+（方法二） 利用命题 5.3.9，要证明 $f_2 \circ f_1 : X \to Z$ 为单射的，我们仅要找到 $h : Z \to X$ 使得 $h \circ (f_2 \circ f_1) = \mathrm{id}_X$ 即可。然而已知 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为单射的，故由命题 5.3.9 知存在 $h_1 : Y \to X, h_2 : Z \to Y$ 满足 $h_1 \circ f_1 = \mathrm{id}_X$ 以及 $h_2 \circ f_2 = \mathrm{id}_Y$。现令 $h = h_1 \circ h_2 : Z \to X$，我们有 $h \circ (f_2 \circ f_1) = (h_1 \circ h_2) \circ (f_2 \circ f_1)$。利用复合函数的结合律（命题 5.1.6）以及引理 5.1.5，我们有 $(h_1 \circ h_2) \circ (f_2 \circ f_1) = h_1 \circ (h_2 \circ f_2) \circ f_1 = h_1 \circ (\mathrm{id}_Y \circ f_1) = h_1 \circ f_1 = \mathrm{id}_X$。得证 $h \circ (f_2 \circ f_1) = \mathrm{id}_X$。
+\end{proof}
+
+要注意命题 5.3.11 的反向不一定成立，也就是说 $f_2 \circ f_1$ 为单射并不表示 $f_1, f_2$ 皆为单射。例如在例 5.3.10 中 $h : \{1, 2, 3\} \to \{a, b\}$ 定义为 $h(1) = b, h(2) = a, h(3) = a$，不是单射。但 $h \circ f = \mathrm{id}_{\{a,b\}}$ 为单射。不过我们有以下之结果。
+
+\begin{corollary}
+若 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为函数且 $f_2 \circ f_1 : X \to Z$ 为单射的，则 $f_1$ 为单射的。
+\end{corollary}
+
+\begin{proof}
+由 $f_2 \circ f_1 : X \to Z$ 为单射的，利用命题 5.3.9 知存在 $h : Z \to X$ 满足 $h \circ (f_2 \circ f_1) = \mathrm{id}_X$。因此利用复合函数结合律得 $(h \circ f_2) \circ f_1 = \mathrm{id}_X$。现令 $h_1 = h \circ f_2$，我们有 $h_1 : Y \to X$ 且满足 $h_1 \circ f_1 = (h \circ f_2) \circ f_1 = \mathrm{id}_X$。所以再次利用命题 5.3.9 得证 $f_1 : X \to Y$ 为单射的。
+\end{proof}
+
+\begin{question}
+试利用单射的定义证明推论 5.3.12。
+\end{question}
+
+要注意推论 5.3.12 的反向也不一定成立，也就是说单仅假设 $f_1$ 为单射并不能保证 $f_2 \circ f_1$ 为单射。
+
+\begin{question}
+考虑 $X = \{a, b\}, Y = \{1, 2, 3\}$，试找到例子 $f_1 : X \to Y, f_2 : Y \to X$ 为函数其中 $f_1$ 为单射，但是 $f_2 \circ f_1$ 不是单射。
+\end{question}
+
+最后我们来探讨所谓双射（one-to-one and onto）的函数。这样的函数一般我们称之为双射函数（bijective function）或双射（bijection）。假设 $f : X \to Y$ 是双射的，由 $f$ 为满射知存在 $g : Y \to X$ 满足 $f \circ g = \mathrm{id}_Y$（命题 5.3.3）。又由 $f$ 为单射知存在 $h : Y \to X$ 使得 $h \circ f = \mathrm{id}_X$（命题 5.3.9）。因此由结合律以及引理 5.1.5，我们有
+$$ h = h \circ \mathrm{id}_Y = h \circ (f \circ g) = (h \circ f) \circ g = \mathrm{id}_X \circ g = g. $$
+也就是说当 $f : X \to Y$ 为双射时，我们可以找到 $g : Y \to X$，同时满足 $f \circ g = \mathrm{id}_Y$ 且 $g \circ f = \mathrm{id}_X$。事实上这样的函数 $g$ 是唯一的。这是因为假设 $g : Y \to X$ 和 $g' : Y \to X$ 皆满足 $f \circ g = f \circ g' = \mathrm{id}_Y$ 以及 $g \circ f = g' \circ f = \mathrm{id}_X$，利用刚才相同的理由我们有
+$$ g' = g' \circ \mathrm{id}_Y = g' \circ (f \circ g) = (g' \circ f) \circ g = \mathrm{id}_X \circ g = g. $$
+就因为这样的函数 $g$ 是唯一的且又和 $f$ 有关，我们给它一个特殊的符号 $f^{-1}$，且称之为 $f$ 的逆（inverse）。由于这个原因，我们也称双射函数为可逆函数（invertible function）。
+
+\begin{question}
+假设 $f : X \to Y$ 为双射的。试证明若 $g : Y \to X$ 满足 $f \circ g = \mathrm{id}_Y$，则 $g = f^{-1}$。且证明此时若 $h : Y \to X$ 满足 $h \circ f = \mathrm{id}_X$，则 $h = f^{-1}$。
+\end{question}
+
+要注意，千万不要将 $f^{-1}$ 和原像搞混了。一般的函数都可以定原像，也就是说不管 $f : X \to Y$ 是不是双射的，对任意 $Y$ 的子集 $C$，原像 $f^{-1}(C)$ 都是有定义的。但对于 $Y$ 元素 $y$，就只有当 $f$ 为双射时 $f^{-1}(y)$ 才有定义。所有要留意，对任意 $y \in Y, f^{-1}(\{y\})$ 都有定义，但 $f^{-1}(y)$ 就只有当 $f$ 为双射时才有定义。
+
+当 $f : X \to Y$ 为双射时，我们可以利用原像将 $f^{-1} : Y \to X$ 写下。事实上，对任意 $y \in Y$，由 $f$ 为满射以及单射，我们有 $\#(f^{-1}(\{y\})) = 1$。也就是说 $f^{-1}(\{y\})$ 恰有一个元素。因此若 $f^{-1}(\{y\}) = \{x\}$，则我们定义 $f^{-1}(y) = x$。依此定义，我们有 $f(x) = y$ 当且仅当 $f^{-1}(y) = x$，因此确实得 $f \circ f^{-1} = \mathrm{id}_Y$ 且 $f^{-1} \circ f = \mathrm{id}_X$。
+
+\begin{example}
+我们探讨例 5.3.2 中的双射函数其逆为何。
+\begin{enumerate}
+    \item 考虑函数 $g : \mathbb{R} \setminus \{3\} \to \mathbb{R} \setminus \{1\}$ 定义为 $g(x) = (x + 1)/(x - 3), \forall x \in X$，则 $g(x)$ 为满射的。在例 5.2.2 中我们知道对任意 $y \in \mathbb{R} \setminus \{1\}, g^{-1}(\{y\}) = \{(3y + 1)/(y - 1)\}$。因此知 $g^{-1} : \mathbb{R} \setminus \{1\} \to \mathbb{R} \setminus \{3\}$ 定义为 $g^{-1}(x) = (3x + 1)/(x - 1), \forall x \in \mathbb{R} \setminus \{1\}$。
+    \item 考虑函数 $f : \mathbb{Z} \to \mathbb{N} \cup \{0\}$ 定义为
+    $$ f(n) = \begin{cases} 2n, & \text{若}~ n \geq 0; \\ -2n - 1, & \text{若}~ n < 0. \end{cases} $$
+    在例 5.3.2 中我们知若 $k \in \mathbb{N} \cup \{0\}$ 为偶数，则 $f^{-1}(\{k\}) = \{k/2\}$。而若 $k \in \mathbb{N} \cup \{0\}$ 为奇数，则 $f^{-1}(\{k\}) = \{-(k + 1)/2\}$。因此得 $f^{-1} : \mathbb{N} \cup \{0\} \to \mathbb{Z}$ 定义为
+    $$ f^{-1}(n) = \begin{cases} n/2, & \text{若}~ n ~\text{为偶数}; \\ -(n + 1)/2, & \text{若}~ n \text{ 为奇数}. \end{cases} $$
+\end{enumerate}
+\end{example}
+
+我们知道当 $f : X \to Y$ 为双射时，$f$ 的逆存在。反之，若 $f$ 的逆存在，即存在 $f^{-1} : Y \to X$ 使得 $f \circ f^{-1} = \mathrm{id}_Y$ 且 $f^{-1} \circ f = \mathrm{id}_X$，则由命题 5.3.3 和命题 5.3.9 知 $f$ 为双射。因此我们有以下之结果。
+
+\begin{proposition}
+假设 $f : X \to Y$ 为函数。则 $f$ 为双射当且仅当存在 $f^{-1} : Y \to X$ 使得 $f \circ f^{-1} = \mathrm{id}_Y$ 且 $f^{-1} \circ f = \mathrm{id}_X$。
+\end{proposition}
+
+\begin{question}
+假设 $f : X \to Y$ 为双射函数。试证明 $f^{-1} : Y \to X$ 亦为双射且 $(f^{-1})^{-1} = f$。
+\end{question}
+
+利用命题 5.3.5 和命题 5.3.11 我们马上有以下的性质：
+
+\begin{proposition}
+若 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为双射函数，则 $f_2 \circ f_1 : X \to Z$ 亦为双射函数。且此时
+$$ (f_2 \circ f_1)^{-1} = f_1^{-1} \circ f_2^{-1}. $$
+\end{proposition}
+
+\begin{proof}
+其实我们只要证明 $(f_2 \circ f_1) \circ (f_1^{-1} \circ f_2^{-1}) = \mathrm{id}_Z$ 以及 $(f_1^{-1} \circ f_2^{-1}) \circ (f_2 \circ f_1) = \mathrm{id}_X$。再利用命题 5.3.14 就可得 $f_2 \circ f_1 : X \to Z$ 为双射。又因逆函数的唯一性，也证得了 $(f_2 \circ f_1)^{-1} = f_1^{-1} \circ f_2^{-1}$。然而
+$$ (f_2 \circ f_1) \circ (f_1^{-1} \circ f_2^{-1}) = f_2 \circ (f_1 \circ f_1^{-1}) \circ f_2^{-1} = f_2 \circ \mathrm{id}_Y \circ f_2^{-1} = f_2 \circ f_2^{-1} = \mathrm{id}_Z $$
+以及
+$$ (f_1^{-1} \circ f_2^{-1}) \circ (f_2 \circ f_1) = f_1^{-1} \circ (f_2^{-1} \circ f_2) \circ f_1 = f_1^{-1} \circ \mathrm{id}_Y \circ f_1 = f_1^{-1} \circ f_1 = \mathrm{id}_X. $$
+得证本定理。
+\end{proof}
+
+\begin{question}
+假设 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为函数且 $f_2 \circ f_1 : X \to Z$ 为双射。是否 $f_1 : X \to Y, f_2 : Y \to Z$ 皆为双射？又若 $f_1, f_2$ 其中有一个是双射，则另一个是否为双射？
+\end{question}
+
+\section{等势集与基数}
+
+当我们在计算一个集合里元素的个数时，其实是给了此集合和正整数的子集之间的一个一对一且满射的函数关系。例如假设集合 $A$ 有 $n$ 个元素，当我们一个一个地数 $A$ 的元素时，事实上就给了一个 $I_n = \{1, \dots, n\}$ 到 $A$ 的双射函数。所以我们很自然地有以下的定义。
+
+\begin{definition}
+假设 $A, B$ 为集合，若存在一个双射 $f : A \to B$，则称 $A$ 与 $B$ 等势（equivalent to），且用 $|A| = |B|$ 表示。
+\end{definition}
+
+要注意当 $A$ 为有限集，可以说 $|A|$ 就是指 $A$ 的元素个数 $\#(A)$。不过由于我们不只探讨 $A$ 为有限集情况，所以我们用 $|A|$ 这样的符号，且称之为 $A$ 的基数（cardinal number）。因此我们可以说 $A$ 与 $B$ 等势当且仅当 $A$ 和 $B$ 有一样的基数。
+
+等势集之间的关系事实上是一个等价关系。
+
+\begin{proposition}
+对于任意的集合 $A, B, C$，我们有以下的性质。
+\begin{enumerate}
+    \item $|A| = |A|$。
+    \item 若 $|A| = |B|$ 则 $|B| = |A|$。
+    \item 若 $|A| = |B|$ 且 $|B| = |C|$ 则 $|A| = |C|$。
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+    \item 对任意的集合 $A$，考虑 $\mathrm{id}_A : A \to A$。很明显地 $\mathrm{id}_A$ 为双射，故得 $|A| = |A|$。
+    \item 若 $|A| = |B|$，表示存在 $f : A \to B$ 为双射。故考虑 $f^{-1} : B \to A$，亦为双射（参见问题 5.12），得证 $|B| = |A|$。
+    \item 若 $|A| = |B|$ 且 $|B| = |C|$，表示存在 $f : A \to B, g : B \to C$ 皆为双射，故由命题 5.3.15 知 $g \circ f : A \to C$ 亦为双射。得证 $|A| = |C|$。
+\end{enumerate}
+\end{proof}
+
+以下，为了方便起见，对于任意正整数 $n$，我们用 $I_n$ 表示 1 到 $n$ 之间所有的正整数所成的集合，亦即 $I_1 = \{1\}, I_2 = \{1, 2\}, \dots, I_n = \{1, \dots, n\}$。现若 $A$ 是有 $n$ 个元素的有限集，我们很容易知道 $|A| = |I_n|$。因此若 $A$ 和 $B$ 皆有 $n$ 个元素，我们有 $|A| = |I_n|$ 以及 $|B| = |I_n|$，因此由命题 5.4.2 知 $|A| = |B|$。
+
+另外若 $A, B$ 皆为有限集但 $A$ 的元素个数 $n$ 不等于 $B$ 的元素个数 $m$，那么有可能 $|A| = |B|$ 吗？我们可以先考虑 $|I_n|$ 和 $|I_m|$ 是否相等。首先由于 $n \neq m$，不失一般性，我们假设 $m > n$。现若 $|I_m| = |I_n|$，表示存在双射 $f : I_m \to I_n$。然而由鸽笼原理定理 2.2.3（想象定义域的 $I_m$ 表示有 $m$ 只鸽子，陪域 $I_n$ 表示 $n$ 个笼子），知 $f : I_m \to I_n$ 不可能为单射的（鸽子数大于笼子数，所以一定有一个笼子住了多于 1 只的鸽子），此与 $f$ 为双射的假设相矛盾，得证 $|I_n| \neq |I_m|$。现若 $|A| = |B|$，则由 $|A| = |I_n|, |B| = |I_m|$ 以及命题 5.4.2 推得 $|I_n| = |I_m|$ 之矛盾，故知 $|A| \neq |B|$。
+
+到目前为止，在有限集的情况，我们知道基数颇符合我们对集合元素个数的计数原则。我们也可以利用基数来定义无限集（infinite set）。也就是说，因为有无穷多个元素的集合，其元素无法一个一个数完，所以对一个非空集合 $A$，如果对任意 $n \in \mathbb{N}$，皆有 $|A| \neq |I_n|$，我们称 $A$ 为无限集。
+
+其实基数还符合许多其他计数的原则，例如若 $A \cap B = \emptyset, C \cap D = \emptyset$，且 $|A| = |C|, |B| = |D|$，则由计数的原则，我们会预期 $|A \cup B| = |C \cup D|$。事实上这是对的，我们有以下的定理。
+
+\begin{lemma}
+假设 $I$ 为指标集，$\{A_i : i \in I\}, \{B_i : i \in I\}$ 分别为 $A, B$ 的划分。若对所有 $i \in I$，皆有 $|A_i| = |B_i|$，则 $|A| = |B|$。
+\end{lemma}
+
+\begin{proof}
+回顾一下，$\{A_i : i \in I\}$ 为 $A$ 的划分表示 $A = \bigcup_{i \in I} A_i$ 且对于 $i, j \in I$，若 $i \neq j$，则 $A_i \cap A_j = \emptyset$。现依假设，对所有 $i \in I$，皆有 $|A_i| = |B_i|$，此即表示存在 $f_i : A_i \to B_i$ 为双射函数。我们想利用这些 $f_i$，建构出一个双射函数 $f : A \to B$。依此便得证 $|A| = |B|$。
+定义 $f : A \to B$ 如下：对于任意 $a \in A$，由于 $\{A_i : i \in I\}$ 为 $A$ 的划分，我们知有唯一的 $i \in I$ 使得 $a \in A_i$，此时定义 $f(a) = f_i(a) \in B_i$。由于 $\{A_i : i \in I\}$ 为 $A$ 的划分，在 $f$ 的定义中每一个 $A$ 的元素皆有定义其映射规则且 $B_i \subseteq B$。所以这确实定义出了一个从 $A$ 到 $B$ 的函数。我们要证明 $f : A \to B$ 为单射且满射。
+
+现对任意 $b \in B$，由于 $\{B_i : i \in I\}$ 为 $B$ 的划分，故存在唯一的 $i \in I$，使得 $b \in B_i$。又因为 $f_i : A_i \to B_i$ 为满射的，故知存在 $a \in A_i$ 满足 $f_i(a) = b$。现依 $f$ 的定义，对于这个 $b$，我们只要取此 $a \in A$，因为 $a \in A_i$，由 $f$ 的定义得 $f(a) = f_i(a) = b$。得证 $f : A \to B$ 为满射的。
+
+现若 $a, a' \in A$ 满足 $f(a) = f(a')$。由 $f(a) \in B$，知存在唯一的 $i \in I$ 使得 $f(a) = f(a') \in B_i$。再由 $f$ 的定义，我们知若 $a \in A_j$，则 $f(a) = f_j(a) \in B_j$。因此由 $f(a) \in B_i \cap B_j$ 得 $i = j$，亦即 $a \in A_i$。同理我们有 $a' \in A_i$。所以由 $f$ 的定义我们有 $f(a) = f_i(a)$ 且 $f(a') = f_i(a')$。因此由 $f(a) = f(a')$ 之假设得 $f_i(a) = f_i(a')$，再由 $f_i$ 为单射的得证 $a = a'$。因此得证 $f$ 为单射的。
+\end{proof}
+
+既然基数和集合的元素个数有关，我们当然希望它能比较大小。在有限集的情况，我们都知道元素比较少的集合可以单射地映射到元素比较多的集合。因此我们有以下的定义。
+
+\begin{definition}
+假设 $A, B$ 为集合，我们用 $|A| \leq |B|$ 表示存在一个单射函数 $f : A \to B$。
+\end{definition}
+
+这个定义也很符合我们的直觉。例如若 $A \subseteq B$，则考虑 $f : A \to B$，定义为 $f(a) = a, \forall a \in A$。很容易验证 $f$ 为单射函数，所以在这情况之下我们有 $|A| \leq |B|$。特别地，当 $m, n \in \mathbb{N}$ 且 $m > n$，则由于 $I_n \subseteq I_m$，所以我们有 $|I_n| \leq |I_m|$。而前面我们利用鸽笼原理知道不可能有单射函数 $f : I_m \to I_n$，所以我们也知道 $|I_m| \leq |I_n|$ 不成立。
+
+另外直觉上元素比较多的集合可以找到满射的函数对应到元素比较少的集合，对基数这也是对的。我们有以下的结果。
+
+\begin{proposition}
+假设 $A, B$ 为集合。则 $|A| \leq |B|$ 当且仅当存在满射函数 $h : B \to A$。
+\end{proposition}
+
+\begin{proof}
+($\Rightarrow$) 由 $|A| \leq |B|$，我们知存在一个单射函数 $f : A \to B$。由命题 5.3.9 知存在 $h : B \to A$ 满足 $h \circ f = \mathrm{id}_A$。然而 $\mathrm{id}_A : A \to A$ 是满射函数，故由推论 5.3.6 知 $h : B \to A$ 为满射的。
+
+($\Leftarrow$) 由 $h : B \to A$ 为满射知，存在 $g : A \to B$ 满足 $h \circ g = \mathrm{id}_A$（命题 5.3.3）。故由 $\mathrm{id}_A$ 为单射的得知 $g : A \to B$ 为单射的（推论 5.3.12）。因此得证 $|A| \leq |B|$。
+\end{proof}
+
+接下来我们要说明定义 5.4.4 定义出基数之间的偏序。（事实上它可定义出基数之间的全序，不过这需用到选择公理而且我们之后也不会用到，所以这里略过不谈。）首先对于自反性，对于任意的集合 $A$，我们仅要考虑 $\mathrm{id}_A : A \to A$，由于 $\mathrm{id}_A$ 是单射的，故得证 $|A| \leq |A|$。至于传递性，若 $|A| \leq |B|$ 且 $|B| \leq |C|$，则由存在 $f : A \to B$ 以及 $g : B \to C$ 皆为单射的，可得 $g \circ f : A \to C$ 为单射的（命题 5.3.11）。故证得 $|A| \leq |C|$。至于反对称性性质，就比较复杂，这是所谓的 Cantor-Schröder-Bernstein 定理。
+
+\begin{theorem}[Cantor-Schröder-Bernstein]
+假设 $A, B$ 为集合满足 $|A| \leq |B|$ 且 $|B| \leq |A|$，则 $|A| = |B|$。
+\end{theorem}
+
+\begin{proof}
+由假设 $|A| \leq |B|$ 知存在 $f : A \to B$ 为单射函数。又由 $|B| \leq |A|$，知存在 $g : B \to A$ 为单射函数。我们要利用 $f, g$ 得到 $A, B$ 的划分，再利用引理 5.4.3 得到 $|A| = |B|$。
+
+首先对于任意 $a \in A$，我们建构出一个由 $A \cup B$ 的元素所组成的数列。其建构方式如下：首先令第一项 $x_1 = a$，考虑原像 $g^{-1}(\{a\})$。由于 $g$ 是单射的，我们知 $g^{-1}(\{a\})$ 最多仅有一个元素。若 $g^{-1}(\{a\}) = \emptyset$，则这个数列仅有 $x_1$ 这个元素。而若 $g^{-1}(\{a\}) = \{b\}$，则令 $x_2 = b$。由于 $b \in B$，接着考虑 $f^{-1}(\{b\})$。同样地，因为 $f$ 为单射的，我们知 $f^{-1}(\{b\})$ 最多仅有一个元素。若 $f^{-1}(\{b\}) = \emptyset$，则这个数列仅有 $x_1, x_2$ 两个元素。而若 $f^{-1}(\{b\}) = \{a'\}$，则令 $x_3 = a'$。又由于 $a' \in A$，我们又可考虑 $g^{-1}(\{a'\})$, 然后依前面规则这样一直下去。令 $\langle a \rangle$ 表示利用这个规则由 $a$ 所建构出的数列（若对如何建构这样的数列仍不清楚，请参考底下例 5.4.7）。这样由所有 $a \in A$ 而得的数列 $\langle a \rangle = x_1, x_2, \dots$，我们可以分成三类。第一类是有奇数项的有限数列。例如若 $a \in A$ 且 $g^{-1}(\{a\}) = \emptyset$，此时 $\langle a \rangle$ 仅有一项，故属于这一类的数列。第二类是有偶数项的有限数列。例如 $a \in A$ 且 $g^{-1}(\{a\}) = \{b\}$ 但 $f^{-1}(\{b\}) = \emptyset$，此时 $\langle a \rangle$ 有 $a, b$ 两项，故属于这一类的数列。第三类是有无穷多项的数列，也就是说 $a \in A$ 所建构的数列每一项的原像皆不是空集。现令
+\begin{align*}
+    A_o &= \{a \in A : \langle a \rangle \text{有奇数项}\},\\
+    A_e &= \{a \in A : \langle a \rangle \text{有偶数项}\}, \\
+    A_\infty &= \{a \in A : \langle a \rangle \text{有无穷多项}\}.
+\end{align*}
+由于每一个 $a \in A$，都可依这个规则建构出一组唯一数列 $\langle a \rangle$，因此 $a$ 一定会是 $A_o, A_e, A_\infty$ 其中之一的元素，且任两个不会有交集。所以 $A_o, A_e, A_\infty$ 是 $A$ 的一个划分。
+
+要注意这样做出的数列，其奇数项一定是 $A$ 中的元素，而偶数项一定是 $B$ 中的元素。也就是说若 $\langle a \rangle = x_1, x_2, \dots$，则当 $i$ 为奇数时 $x_i \in A$。又此时因 $x_i \in f^{-1}(\{x_{i-1}\})$，故有 $f(x_i) = x_{i-1}$。而当 $i$ 为偶数时 $x_i \in B$。又此时因 $x_i \in g^{-1}(\{x_{i-1}\})$，故有 $g(x_i) = x_{i-1}$。
+
+同样地对任意 $b \in B$，我们也用相同规则做出一个由 $b$ 起始的数列，亦即 $y_1 = b$，然后考虑 $f^{-1}(\{b\})$ 来决定下一项，这样一直下去。令 $\langle b \rangle$ 表示 $b$ 利用这个规则所建构出的数列。同样地，我们得到 $B$ 的一个划分 $B_o, B_e, B_\infty$，其中
+\begin{align*}
+    B_o &= \{b \in B : \langle b \rangle \text{有奇数项}\}, \\
+    B_e &= \{b \in B : \langle b \rangle \text{有偶数项}\},\\
+    B_\infty &= \{b \in B : \langle b \rangle \text{有无穷多项}\}.
+\end{align*}
+
+现考虑限制映射 $f|_{A_o} : A_o \to B$，也就是说对任意 $a \in A_o, f|_{A_o}(a) = f(a)$。由于 $f$ 为单射的，很自然地 $f|_{A_o}$ 仍为单射的。我们要说明 $f|_{A_o}$ 的像 $f|_{A_o}(A_o)$ 为 $B_e$。对于任意 $a \in A_o$，我们有 $f|_{A_o}(a) = f(a) \in B$。此时考虑 $f(a)$ 所产生的序列，首项为 $y_1 = f(a)$，而因 $f^{-1}(\{f(a)\}) = \{a\}$（因 $f(a) \in \{f(a)\}$），依 $\langle f(a) \rangle$ 的建构方式我们有 $y_2 = a$。换言之，数列 $\langle f(a) \rangle$ 前两项为 $y_1 = f(a), y_2 = a$，又由于下一项（即第三项）$y_3$ 完全由 $g^{-1}(\{a\})$ 所决定。这和考虑 $a$ 所建构的数列 $\langle a \rangle$ 第二项 $x_2$ 是一样的。换言之，数列 $\langle f(a) \rangle$ 只是将数列 $\langle a \rangle$ 的第一项之前再多加一项 $f(a)$ 而已。现 $a \in A_o$，表示 $\langle a \rangle$ 有奇数项，所以 $\langle f(a) \rangle$ 会有偶数项，故由 $f(a) \in B$ 知 $f(a) \in B_e$。得证 $f|_{A_o}(A_o) \subseteq B_e$。反之，若 $b \in B_e$，表示 $b$ 所产生的数列 $\langle b \rangle$ 有偶数项。因此 $\langle b \rangle$ 的第二项一定存在（否则仅有一项，造成矛盾）。所以由 $\langle b \rangle$ 的建构方法知 $f^{-1}(\{b\})$ 不是空集，也就是说存在 $a \in A$ 使得 $f(a) = b$。事实上 $a$ 就是 $\langle b \rangle$ 的第二项，因此如前所述， $\langle a \rangle$ 是将 $\langle b \rangle = \langle f(a) \rangle$ 的第一项除去所得，也就是说 $\langle a \rangle$ 有奇数项，因此得 $a \in A_o$。我们证得了对任意 $b \in B_e$，皆存在 $a \in A_o$ 使得 $f(a) = f|_{A_o}(a) = b$。因此知 $B_e \subseteq f|_{A_o}(A_o)$，也得证了 $f|_{A_o}$ 的像 $f|_{A_o}(A_o)$ 就是 $B_e$。换言之，$f|_{A_o}$ 可以视为是一个从 $A_o$ 到 $B_e$ 的单射且满射函数。我们证得了 $|A_o| = |B_e|$。
+
+同理，考虑 $g : B \to A$ 在 $B_o$ 的限制 $g|_{B_o} : B_o \to A$，我们可以得到 $|B_o| = |A_e|$（只是将上面的证明 $f, g$ 互换即可）。最后我们考虑 $g$ 在 $B_\infty$ 上的限制 $g|_{B_\infty}$（也可考虑 $f$ 在 $A_\infty$ 上的限制）。此时 $g|_{B_\infty}$ 依然为单射的。而对于任意 $b \in B_\infty$，我们考虑 $g(b)$ 所产生的数列 $\langle g(b) \rangle$。由于 $g(b) \in A$，而 $g^{-1}(\{g(b)\}) = \{b\}$，故 $\langle g(b) \rangle$ 的第一项为 $g(b)$，第二项为 $b$，之后依序就是 $\langle b \rangle$ 的其他各项。因此由 $b \in B_\infty$ 即 $\langle b \rangle$ 有无穷多项得 $\langle g(b) \rangle$ 亦有无穷多项。得证 $g(b) \in A_\infty$，亦即证得 $g|_{B_\infty}$ 的像 $g|_{B_\infty}(B_\infty)$ 包含于 $A_\infty$。反之，若 $a \in A_\infty$，表示 $a$ 所产生的数列 $\langle a \rangle$ 有无穷多项。因此 $\langle a \rangle$ 的第二项一定存在。所以由 $\langle a \rangle$ 的建构方法知 $g^{-1}(\{a\})$ 不是空集，也就是说存在 $b \in B$ 使得 $g(b) = a$。事实上 $b$ 就是 $\langle a \rangle$ 的第二项，因此如前所述， $\langle b \rangle$ 是将 $\langle a \rangle$ 的第一项除去所得，也就是说 $\langle b \rangle$ 仍有无穷多项，因此得 $b \in B_\infty$。我们证得了对任意 $a \in A_\infty$，皆存在 $b \in B_\infty$ 使得 $g(b) = g|_{B_\infty}(b) = a$。因此知 $A_\infty \subseteq g|_{B_\infty}(B_\infty)$，也得证了 $g|_{B_\infty}$ 的像 $g|_{B_\infty}(B_\infty)$ 就是 $A_\infty$。换言之，$g|_{B_\infty}$ 可以视为是一个从 $B_\infty$ 到 $A_\infty$ 的单射且满射函数。我们证得了 $|B_\infty| = |A_\infty|$。
+
+最后因 $A_o, A_e, A_\infty$ 为 $A$ 的划分以及 $B_o, B_e, B_\infty$ 为 $B$ 的划分，又因 $|A_o| = |B_e|, |A_e| = |B_o|$ 以及 $|A_\infty| = |B_\infty|$，利用引理 5.4.3 得证 $|A| = |B|$。
+\end{proof}
+
+\begin{question}
+定理 5.4.6 的证明中，$|A_e| = |B_o|$ 的证明为何是考虑 $g$ 在 $B_o$ 的限制而不是考虑 $f$ 在 $A_e$ 的限制？若考虑 $f$ 在 $A_e$ 的限制 $f|_{A_e} : A_e \to B$，其像为何？又 $|A_\infty| = |B_\infty|$ 的证明可以考虑 $f$ 在 $A_\infty$ 上的限制 $f|_{A_\infty} : A_\infty \to B$ 吗？
+\end{question}
+
+\begin{example}
+考虑 $A = \{1, 2, \dots\}$ 为正整数所成的集合，$B = \{-1, -2, \dots\}$ 为负整数所成的集合。考虑 $f : A \to B$ 定义为 $f(a) = -1 - a, \forall a \in A$ 以及 $g : B \to A$ 定义为 $g(b) = 1 - b, \forall b \in B$。我们利用这个例子说明定理 5.4.6 中建构数列的方法。首先我们用以下图示来表示这两个函数的映射关系：
+\begin{center}
+    \begin{tabular}{cccccccc}
+        $A:$ & 1 & 2 & 3 & 4 & 5 & \dots \\
+        & $\downarrow f$ & $\uparrow g$ & $\downarrow f$ & $\uparrow g$ & $\downarrow f$ & \\
+        $B:$ & -1 & -2 & -3 & -4 & -5 & \dots
+    \end{tabular}
+\end{center}
+注意上图中由上往下的映射是 $f$，而由下往上的是 $g$。
+
+现考虑 $3 \in A$，由 $g^{-1}(\{3\}) = \{-2\}, f^{-1}(\{-2\}) = \{1\}$ 以及\linebreak $g^{-1}(\{1\}) = \emptyset$，我们知道利用 3 所建构的数列 $\langle 3 \rangle$ 为 3, -2, 1。因为此数列有 3 项，所以知 $3 \in A_o$。同理，由上图很快看出利用 4 所建构的数列 $\langle 4 \rangle$ 为 4, -3, 2, -1，得 $4 \in A_e$。很快地我们可以归纳出，当 $a \in A$ 为奇数时 $a \in A_o$，而当 $a \in A$ 为偶数时 $a \in A_e$。也因此知 $A_\infty = \emptyset$。事实上此时 $A_o, A_e$ 就是 $A$ 的一个划分（恰好就是奇数与偶数的划分）。
+
+而对于 $-3 \in B$，由 $f^{-1}(\{-3\}) = \{2\}, g^{-1}(\{2\}) = \{-1\}$ 以及 $f^{-1}(\{-1\}) = \emptyset$，我们知道利用 -3 所建构的数列 $\langle -3 \rangle$ 为 -3, 2, -1。因为此数列有 3 项，所以知 $-3 \in B_o$。同理，由上图很快看出利用 -4 所建构的数列 $\langle -4 \rangle$ 为 -4, 3, -2, 1，得 $-4 \in B_e$。很快地我们可以归纳出，当 $b \in B$ 为奇数时 $b \in B_o$，而当 $b \in B$ 为偶数时 $b \in B_e$。也因此知 $B_\infty = \emptyset$。事实上此时 $B_o, B_e$ 就是 $B$ 的一个划分。
+
+接着我们看 $f$ 确实单射地将 $A_o$ 满射至 $B_e$（一一对应，英文称之为 one-to-one correspondence）。首先当 $a \in A_o$ 表示 $a$ 为正奇数，利用 $f(a) = -(1 + a)$ 知 $f(a)$ 为负偶数，即 $f(a) \in B_e$。因此 $f$ 确实单射地将 $A_o$ 映射至 $B_e$。而对于 $b \in B_e$，我们知 $b$ 为负偶数。今考虑 $a = -b - 1$，我们有 $a > 0$（因 $b \leq -2$）且 $a$ 为奇数，即 $a \in A_o$。将 $a = -b - 1 \in A_o$ 代入 $f$ 得 $f(a) = -(1 + a) = b$。故知 $f$ 确实单射地将 $A_o$ 满射至 $B_e$。注意 $f$ 无法将 $A_e$ 满射至 $B_o$。主要原因是 $B_o$ 中可能有元素其原像是空集。例如这里我们有 $-1 \in B_o$ 且 $f^{-1}(\{-1\}) = \emptyset$。所以这里我们是用 $g$ 来得到 $B_o$ 至 $A_e$ 之间的单射且满射对应。事实上对任意 $b \in B_o$，我们有 $b$ 为负奇数，因此 $g(b) = 1 - b$ 为正偶数，即 $g(b) \in A_e$。反之，对任意 $a \in A_e$，我们有 $b = 1 - a < 0$（因 $a \geq 2$）且为奇数。此时将 $b = 1 - a \in B_o$ 代入 $g$，得 $g(b) = 1 - b = 1 - (1 - a) = a$，故得证 $g$ 确实单射地将 $B_o$ 满射至 $A_e$。
+\end{example}
+
+\begin{question}
+试利用例 5.4.7 中的 $f$ 和 $g$ 写下一个从 $A$ 到 $B$ 的双射函数 $h : A \to B$ 满足 $h|_{A_o} = f|_{A_o}$。
+\end{question}
+
+最后，我们想定义基数之间的 “严格序”。当 $A, B$ 为集合，满足 $|A| \leq |B|$ 且 $|A| \neq |B|$ 时，我们就用 $|A| < |B|$ 来表示。前面已知当 $m, n$ 为正整数且 $m > n$ 时，我们有 $|I_n| \leq |I_m|$ 且 $|I_n| \neq |I_m|$，所以我们有 $|I_n| < |I_m|$。另外当 $A$ 为无限集，依定义对任意 $n \in \mathbb{N}$ 皆有 $|I_n| \leq |A|$ 但 $|I_n| \neq |A|$，因此我们有 $|I_n| < |A|$。现若 $B$ 为有限集，我们知存在 $n \in \mathbb{N}$ 使得 $|B| = |I_n|$，所以得 $|B| < |A|$。因此这样的严格序颇符合我们直观对集合计数的想法。
+
+\section{可数与不可数集}
+
+一个有限集的基数，我们知道就是其元素的个数，但对于无限集，其基数并不是只有一种 “无穷大” 而已。事实上会有无穷多个无限集它们的基数都相异，也就是说利用基数，我们有可以把 “无穷大” 区分成好几种。不过在本讲义中，我们不会深入地讨论这个问题。我们仅谈论最简单的区分方法，即分成可数集和不可数集两种。
+
+\begin{definition}
+假如 $S$ 是一个集合满足 $|S| \leq |\mathbb{N}|$，则称 $S$ 为{\bf 可数集（countable set）}\index{可数集（countable set）}。反之则称为{\bf 不可数集（uncountable set）}。\index{不可数集（uncountable set）}
+\end{definition}
+
+\begin{question}
+假设 $S, T$ 为集合且 $|S| \leq |T|$。若 $T$ 为可数的，是否可知 $S$ 为可数的？
+\end{question}
+
+简单来说，若存在一个单射函数 $f : S \to \mathbb{N}$，则 $S$ 就是一个可数集。由此定义我们知道若 $S$ 是有限集，那一定是可数的。不过有可能一个无限集也是可数的，例如 $\mathbb{N}$ 本身，或是如 $2\mathbb{N}$（正的偶数所成的集合），都是无限集且为可数的。不过不可数集就一定会是无限集。所以当一个无限集是可数时，我们会将其称为可数无限的（countably infinite）特别将这种无限集和不可数集区分出来。
+
+首先我们要关注的是，在有限集和 $\mathbb{N}$ 之间是否还有其他的基数？答案是否定的。也就是说对于无限集来说 $|\mathbb{N}|$ 就是最小的基数。现假设 $S$ 是一个无限集且 $|S| \leq |\mathbb{N}|$。依定义存在一个单射函数 $f : S \to \mathbb{N}$。考虑 $T = f(S)$，我们可以将 $f$ 视为是一个由 $S$ 到 $T$ 的单射且满射的函数，所以 $|S| = |T|$。由于 $T$ 是 $\mathbb{N}$ 的无限子集，所以我们若能证明此时 $|T| = |\mathbb{N}|$，那么就有 $|S| = |T| = |\mathbb{N}|$，也就是说所有的可数无限集其基数皆等于 $|\mathbb{N}|$。
+
+\begin{lemma}
+假设 $T \subseteq \mathbb{N}$ 且为无限集，则 $|T| = |\mathbb{N}|$。
+\end{lemma}
+
+\begin{proof}
+由于 $T \subseteq \mathbb{N}$，我们知 $|T| \leq |\mathbb{N}|$。现只要证明存在 $f : \mathbb{N} \to T$ 为单射函数，则由此知 $|\mathbb{N}| \leq |T|$，故由定理 5.4.6 (Cantor-Schröder-Bernstein) 得证 $|T| = |\mathbb{N}|$。
+
+这里我们要利用 $\mathbb{N}$ 在一般的序 $\leq$ 之下是一个良序集（良序原理）来证明。回顾一下，这表示每一个 $\mathbb{N}$ 的非空子集都有最小元。若 $S$ 为 $\mathbb{N}$ 的非空子集，我们用 $\min(S)$ 表示 $S$ 的最小元，也就是说，若 $a = \min(S)$，表示 $a \in S$ 且对于任意 $S$ 中的元素 $s$，若 $s \neq a$，则 $a < s$。
+
+首先令 $f(1) = \min(T)$，我们有 $f(1) \in T$。如何定 $f(2)$ 呢？很自然地我们考虑 $T_2 = T \setminus \{f(1)\}$，然后令 $f(2) = \min(T_2)$。注意此时 $T_2 \neq \emptyset$，否则会有 $T \subseteq \{f(1)\}$ 此和 $T$ 为无限集之前题相矛盾，所以我们得到 $f(2) \in T$。如此一直下去，我们令 $T_{n+1} = T \setminus \{f(1), \dots, f(n)\}$ 且令 $f(n+1) = \min(T_{n+1})$，这样 “大致” 就定义出了一个由 $\mathbb{N}$ 到 $T$ 的函数 $f : \mathbb{N} \to T$ 了。当然我们要说明这样定出的确实是一个 “良定义的” 函数，且要证明其为单射的。首先检查良定义的。也就是说我们要说明对于任意 $n \in \mathbb{N}$ 皆存在唯一的 $t_n \in T$ 满足 $f(n) = t_n$。由于当初我们定义 $f$ 的方法是类似用归纳法的手法定义的，所以这里的证明很自然的是要用到数学归纳法。我们要用数学归纳法证明对所有 $n \in \mathbb{N}$，皆存在唯一的 $t_n \in T$ 满足 $f(n) = t_n$。当 $k = 1$ 时，我们知 $t_1 = \min(T)$ 是 $T$ 中唯一满足 $t_1 \leq t, \forall t \in T$ 的元素，所以确实 $f(1) = t_1 \in T$ 而且是唯一的。现假设对于任意 $k = 1, \dots, n$ 皆有唯一的 $t_k \in T$ 使得 $f(k) = t_k$。现考虑 $f(n+1)$，依定义 $T_{n+1} = T \setminus \{f(1), \dots, f(n)\} = T \setminus \{t_1, \dots, t_n\}$ 且 $f(n+1) = \min(T_{n+1})$。由于 $T$ 为无限集，我们知 $T_{n+1} \neq \emptyset$，否则会造成 $T \subseteq \{t_1, \dots, t_n\}$ 此与 $T$ 为无限集相矛盾。又因前面归纳法假设 $T_{n+1}$ 是一个可以被唯一确定的集合（因 $t_1, \dots, t_n$ 皆已被唯一确定），所以利用 $\mathbb{N}$ 的良序原理，我们知 $t_{n+1} = \min(T_{n+1})$ 必属于 $T$ 且唯一。因此由强数学归纳法（推论 2.3.6）得证对所有 $n \in \mathbb{N}$，皆存在唯一的 $t_n \in T$ 满足 $f(n) = t_n$。
+
+我们已知 $f : \mathbb{N} \to T$ 是一个函数，接着要证明 $f : \mathbb{N} \to T$ 是单射的。也就是说任取 $n_1, n_2 \in \mathbb{N}$ 且 $n_1 \neq n_2$，我们要说明 $f(n_1) \neq f(n_2)$。不失一般性，我们假设 $n_1 < n_2$。此时由于 $T_{n_2} = T \setminus \{f(1), \dots, f(n_1), \dots, f(n_2-1)\}$，亦即 $f(n_1) \notin T_{n_2}$，当然由 $f(n_2) = \min(T_{n_2}) \in T_{n_2}$ 得知 $f(n_2) \neq f(n_1)$。得证 $f : \mathbb{N} \to T$ 是单射的。
+\end{proof}
+
+如前所述，由引理 5.5.2 我们证得了以下定理。
+
+\begin{proposition}
+假设 $S$ 为一个集合。则 $S$ 为可数无限的当且仅当 $|S| = |\mathbb{N}|$。
+\end{proposition}
+
+\begin{question}
+假设 $S$ 为无限集。试证明 $S$ 为不可数的当且仅当 $|S| \neq |\mathbb{N}|$。
+\end{question}
+
+依照可数集的定义，我们知道任意一个可数集的子集仍为可数的。这是因为若 $S$ 为可数的，则依定义我们有 $|S| \leq |\mathbb{N}|$，也因此若 $S_0 \subseteq S$，则由 $|S_0| \leq |S|$ 以及 $|S| \leq |\mathbb{N}|$，可得 $|S_0| \leq |\mathbb{N}|$。不过要注意的是比可数集大的集合，仍有可能是可数的。我们有以下的情形。
+
+\begin{proposition}
+有限多个可数集的并集仍为可数集。亦即若 $S_1, \dots, S_n$ 为可数集，则 $\bigcup_{i=1}^n S_i$ 仍为可数集。
+\end{proposition}
+
+\begin{proof}
+我们用数学归纳法证明。首先证明若 $S_1, S_2$ 为可数的，则 $S_1 \cup S_2$ 为可数的。依定义 $S_1, S_2$ 是可数的，故存在 $f_1 : S_1 \to \mathbb{N}$ 以及 $f_2 : S_2 \to \mathbb{N}$ 皆为单射函数。现定义新的函数 $f : S_1 \cup S_2 \to \mathbb{N}$，其定义为
+$$ f(s) = \begin{cases} 2f_1(s), & \text{if } s \in S_1; \\ 2f_2(s) + 1, & \text{if } s \in S_2 \setminus S_1. \end{cases} $$
+很清楚地，$f$ 是良定义的函数，因为 $S_1 \cup S_2 = S_1 \cup (S_2 \setminus S_1)$ 以及 $S_1 \cap (S_2 \setminus S_1) = \emptyset$，因此对任意 $s \in S_1 \cup S_2, s$ 一定会在 $S_1$ 和 $S_2 \setminus S_1$ 其中一个，且不会同时皆在其中。而当 $s \in S_1, f_1(s)$ 的取值是明确确定的（因 $f_1 : S_1 \to \mathbb{N}$ 是一个函数），所以此时 $f(s)$ 取值 $2f_1(s)$ 亦确定。同理当 $s \in S_2 \setminus S_1$，因 $s \in S_2, f_2(s)$ 的取值是明确确定的，所以此时 $f(s)$ 取值 $2f_2(s) + 1$ 亦确定。我们剩下要证明 $f : S_1 \cup S_2 \to \mathbb{N}$ 是单射的，也就是要证明任取 $s, t \in S_1 \cup S_2$ 其中 $s \neq t$，皆会有 $f(s) \neq f(t)$。我们分成两种情况。第一种情形就是 $s, t$ 同属于 $S_1$ 或是同属于 $S_2 \setminus S_1$。此时我们分别有 $f(s) = 2f_1(s) \neq 2f_1(t) = f(t)$（因 $f_1$ 为单射的），以及 $f(s) = 2f_2(s) + 1 \neq 2f_2(t) + 1 = f(t)$（因 $f_2$ 为单射的）。第二种情况是 $s \in S_1$ 但 $t \in S_2 \setminus S_1$ 或是 $t \in S_1$ 但 $s \in S_2 \setminus S_1$。此时由于 $f(s), f(t)$ 必为一奇一偶，故亦得 $f(s) \neq f(t)$。我们证得了 $f : S_1 \cup S_2 \to \mathbb{N}$ 为单射的，故证得 $S_1 \cup S_2$ 为可数的。
+
+接着我们要用数学归纳法证明，对于任意 $n \in \mathbb{N}$ 且 $n \geq 2$，若 $S_1, \dots, S_n$ 为可数集，则 $\bigcup_{i=1}^n S_i$ 仍为可数集。我们考虑 $n = k + 1$ 的情形。利用归纳假设，$S_1, \dots, S_k$ 为可数集，所以 $\bigcup_{i=1}^k S_i$ 为可数集。现又若 $S_{k+1}$ 为可数集，利用上面证过 $k = 2$ 的情形，我们知 $(\bigcup_{i=1}^k S_i) \cup S_{k+1}$ 为可数集。故由 $\bigcup_{i=1}^{k+1} S_i = (\bigcup_{i=1}^k S_i) \cup S_{k+1}$ 得证 $\bigcup_{i=1}^{k+1} S_i$ 为可数集。
+\end{proof}
+
+命题 5.5.4 有许多应用，最简单的一种就是证得所有整数所成的集合为可数的。这是因为所有的整数可视为正整数、负整数以及 0 所成的集合的并集。然而负整数所成的集合和正整数所成的集合 $\mathbb{N}$ 有一个一对一的对应关系（即 $-n \mapsto n$），所以是可数的。而 $\{0\}$ 是有限集，亦为可数的，因此得证：
+
+\begin{corollary}
+$\mathbb{Z}$ 是可数的。
+\end{corollary}
+
+其实有理数所成的集合 $\mathbb{Q}$ 也是可数的，我们首先看一个简单的定理。
+
+\begin{lemma}
+笛卡儿积 $\mathbb{N} \times \mathbb{N}$ 是可数的。
+\end{lemma}
+
+\begin{proof}
+回顾一下 $\mathbb{N} \times \mathbb{N}$ 的元素为任意的数对 $(n_1, n_2)$，其中 $n_1, n_2 \in \mathbb{N}$，而且 $(n_1, n_2) = (n_1', n_2')$ 当且仅当 $n_1 = n_1'$ 且 $n_2 = n_2'$。现考虑函数 $f : \mathbb{N} \times \mathbb{N} \to \mathbb{N}$，其定义为
+$$ f(n_1, n_2) = 2^{n_1} 3^{n_2}, \forall n_1, n_2 \in \mathbb{N}. $$
+很容易知道 $f : \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ 为函数，我们仅要检验 $f$ 为单射的。现若 $(n_1, n_2) \neq (n_1', n_2')$，由整数的唯一分解性质我们知
+$$ f(n_1, n_2) = 2^{n_1} 3^{n_2} \neq 2^{n_1'} 3^{n_2'} = f(n_1', n_2'). $$
+得证 $f : \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ 为单射的，故 $\mathbb{N} \times \mathbb{N}$ 是可数的。
+\end{proof}
+
+引理 5.5.6 证明了 $|\mathbb{N} \times \mathbb{N}| \leq |\mathbb{N}|$，不过我们很容易理解 $\mathbb{N} \times \mathbb{N}$ 为无限集，所以 $\mathbb{N} \times \mathbb{N}$ 为可数无限的，亦即 $|\mathbb{N} \times \mathbb{N}| = |\mathbb{N}|$。命题 5.5.6 最常见的应用是可以推得有限多个可数集的笛卡儿积仍为可数的。
+
+\begin{proposition}
+若 $S_1, \dots, S_n$ 为可数集，则 $S_1 \times S_2 \times \dots \times S_n$ 仍为可数集。
+\end{proposition}
+
+\begin{proof}
+首先我们证明 $S_1 \times S_2$ 为可数的。利用 $S_1, S_2$ 为可数的假设，我们知道存在 $f_1 : S_1 \to \mathbb{N}, f_2 : S_2 \to \mathbb{N}$ 皆为单射函数。现考虑 $f : S_1 \times S_2 \to \mathbb{N} \times \mathbb{N}$ 其定义为
+$$ f(s_1, s_2) = (f_1(s_1), f_2(s_2)), \forall s_1 \in S_1, s_2 \in S_2. $$
+很容易知道 $f : S_1 \times S_2 \to \mathbb{N} \times \mathbb{N}$ 为函数，我们仅要检验 $f$ 为单射的。对于任意 $(s_1, s_2), (s_1', s_2') \in S_1 \times S_2$ 且 $(s_1, s_2) \neq (s_1', s_2')$，我们知 $s_1 \neq s_1'$ 或 $s_2 \neq s_2'$。现若 $s_1 \neq s_1'$，由 $f_1 : S_1 \to \mathbb{N}$ 为单射的，知 $f_1(s_1) \neq f_1(s_1')$，故此时 $f(s_1, s_2) = (f_1(s_1), f_2(s_2)) \neq (f_1(s_1'), f_2(s_2')) = f(s_1', s_2')$。同理当 $s_2 \neq s_2'$ 时，亦可得 $f(s_1, s_2) \neq f(s_1', s_2')$。得证 $f : S_1 \times S_2 \to \mathbb{N} \times \mathbb{N}$ 为单射的。亦即 $|S_1 \times S_2| \leq |\mathbb{N} \times \mathbb{N}| = |\mathbb{N}|$，因此证明了 $S_1 \times S_2$ 为可数的。
+
+至于当 $S_1, \dots, S_n$ 为可数集，则利用 $S_1 \times S_2 \times \dots \times S_n = (S_1 \times S_2 \times \dots \times S_{n-1}) \times S_n$ 以及数学归纳法可证明 $S_1 \times S_2 \times \dots \times S_n$ 为可数集，我们就不多做说明了。
+\end{proof}
+
+我们可以利用命题 5.5.7 证明有理数所成的集合 $\mathbb{Q}$ 为可数的。这是因为有理数除了 0 以外都可以唯一写成 $a/b$ 其中 $a \in \mathbb{Z}, b \in \mathbb{N}$ 且 $\gcd(a, b) = 1$ 的形式（我们称此为最简分数）。所以考虑 $f : \mathbb{Q} \to \mathbb{Z} \times \mathbb{N}$，定义为 $f(0) = (0, 1)$；而当 $q \in \mathbb{Q}, q \neq 0$ 且 $a/b$ 为 $q$ 的最简分数时，则定义 $f(q) = (a, b)$。由非零有理数最简分数表法的唯一性，我们知 $f : \mathbb{Q} \to \mathbb{Z} \times \mathbb{N}$ 为函数。而若 $q \neq q'$，当 $q, q'$ 其中有一个为 0 时，我们知道另一个不为 0，故其最简分数不可能写成 $0/1$，因此此时 $f(q) \neq f(q')$。而若 $q, q'$ 皆不为 0 时，设其最简分数分别为 $q = a/b, q' = a'/b'$。由于 $a/b \neq a'/b'$，我们知 $f(q) = (a, b) \neq (a', b') = f(q')$。因此知 $f : \mathbb{Q} \to \mathbb{Z} \times \mathbb{N}$ 为单射的，得证 $|\mathbb{Q}| \leq |\mathbb{Z} \times \mathbb{N}|$。由 $\mathbb{Z}$ 为可数的以及命题 5.5.7 知 $\mathbb{Z} \times \mathbb{N}$ 为可数的，又 $\mathbb{Z} \times \mathbb{N}$ 为无限集，故 $|\mathbb{Z} \times \mathbb{N}| = |\mathbb{N}|$。因此 $|\mathbb{Q}| \leq |\mathbb{N}|$，得证以下的定理：
+
+\begin{corollary}
+$\mathbb{Q}$ 是可数的。
+\end{corollary}
+
+利用引理 5.5.6，我们也可将命题 5.5.4 推广到更一般的情况。
+
+\begin{proposition}
+若对任意 $i \in \mathbb{N}, S_i$ 皆为可数集，则 $\bigcup_{i=1}^\infty S_i$ 仍为可数集。
+\end{proposition}
+
+\begin{proof}
+依假设，对任意 $i \in \mathbb{N}$，皆存在 $f_i : S_i \to \mathbb{N}$ 为单射函数。现考虑 $f : \bigcup_{i=1}^\infty S_i \to \mathbb{N} \times \mathbb{N}$ 定义为，对任意 $s \in \bigcup_{i=1}^\infty S_i$，若 $i$ 为最小的正整数满足 $s \in S_i$，则令 $f(s) = (i, f_i(s))$。很容易验证 $f : \bigcup_{i=1}^\infty S_i \to \mathbb{N} \times \mathbb{N}$ 为单射的，即 $|\bigcup_{i=1}^\infty S_i| \leq |\mathbb{N} \times \mathbb{N}| = |\mathbb{N}|$。证得 $\bigcup_{i=1}^\infty S_i$ 为可数集。
+\end{proof}
+
+目前我们处理的都是可数集，是否存在着不可数集呢？答案是肯定的。例如命题 5.5.7 中笛卡儿积并不能如并集一样推广到无穷多个集合的情形。也就是说有可能 $S_1, \dots, S_n, \dots$ 为可数的但是 $S_1 \times \dots \times S_n \times \dots$ 为不可数的。还有 $\mathbb{N}$ 的幂集 $\mathcal{P}(\mathbb{N})$ 也是不可数的。回顾一下，一个集合 $A$ 的幂集 $\mathcal{P}(A)$，即为 $A$ 的所有子集所成的集合。首先我们有以下的结果。
+
+\begin{theorem}
+假设 $A$ 为一个集合， $\mathcal{P}(A)$ 为 $A$ 的幂集，则 $|A| < |\mathcal{P}(A)|$。
+\end{theorem}
+
+\begin{proof}
+考虑函数 $\iota : A \to \mathcal{P}(A)$ 定义为 $\iota(a) = \{a\}, \forall a \in A$。我们很容易看出 $\iota : A \to \mathcal{P}(A)$ 为单射函数，因此得 $|A| \leq |\mathcal{P}(A)|$。所以要证明 $|A| < |\mathcal{P}(A)|$，就是要证明 $|A| \neq |\mathcal{P}(A)|$。
+
+我们要证明对于任何函数 $f : A \to \mathcal{P}(A)$ 都不可能是满射的。若证得这个结果就表示不可能存在函数 $f : A \to \mathcal{P}(A)$ 是单射且满射的，因此得证 $|A| \neq |\mathcal{P}(A)|$。现对于任何函数 $f : A \to \mathcal{P}(A)$，考虑 $A$ 的一个子集合 $S = \{s \in A \mid s \notin f(s)\}$。注意 $S$ 是有可能为空集的，不过不管怎样我们都有 $S \in \mathcal{P}(A)$。我们要说明不可能存在一个元素 $a \in A$ 使得 $f(a) = S$。也就是说 $S$ 不会在函数 $f : A \to \mathcal{P}(A)$ 的像中，因此得到 $f : A \to \mathcal{P}(A)$ 不可能是满射的。利用反证法，假设 $a \in A$ 使得 $f(a) = S$。我们检查是否 $a \in S$。假设 $a \in S$，表示 $a \in f(a)$（因 $f(a) = S$），但依 $S$ 的定义若 $a \in S$ 表示 $a \notin f(a)$，因此得到矛盾，故知 $a \notin S$。不过由 $a \notin S$，得 $a \in f(a)$，又依 $S$ 的定义得 $a \in S$ 之矛盾。也就是说若存在 $a \in A$ 使得 $f(a) = S$，会造成 $a \in S$ 和 $a \notin S$ 都不可能发生的矛盾（注意即使 $S$ 为空集，这依然不成立）。所以证得 $S \in \mathcal{P}(A)$ 不在 $f : A \to \mathcal{P}(A)$ 的像中，得证 $f : A \to \mathcal{P}(A)$ 不是满射的。
+\end{proof}
+
+\begin{question}
+令 $A = \{1, 2, 3\}$，考虑 $f : A \to \mathcal{P}(A)$ 定义为 $f(1) = \{1, 2\}, f(2) = \{1, 3\}, f(3) = \{2\}$。令 $S = \{s \in A \mid s \notin f(s)\}$。试写下 $S$ 为何？并检验 $S$ 不在 $f : A \to \mathcal{P}(A)$ 的像中。
+\end{question}
+
+\begin{corollary}
+$\mathbb{N}$ 的幂集 $\mathcal{P}(\mathbb{N})$ 是不可数的。
+\end{corollary}
+
+\begin{proof}
+由定理 5.5.10 知 $|\mathbb{N}| < |\mathcal{P}(\mathbb{N})|$，所以因基数之间是一个偏序，$|\mathcal{P}(\mathbb{N})| \leq |\mathbb{N}|$ 不可能成立。得证 $\mathcal{P}(\mathbb{N})$ 为不可数的。
+\end{proof}
+
+我们知道有限多个可数集的笛卡儿积仍为可数的（命题 5.5.7），不过这对于无穷多个可数集的笛卡儿积并不成立。事实上我们有以下之结果。
+
+\begin{proposition}
+对于任意 $n \in \mathbb{N}$，令 $S_n = \{0, 1\}$。则无穷的笛卡儿积 $S_1 \times S_2 \times \dots \times S_n \times \dots$ 为不可数的。
+\end{proposition}
+
+\begin{proof}
+为了符号方便起见，令 $S = S_1 \times S_2 \times \dots \times S_n \times \dots$。我们要证明 $|S| = |\mathcal{P}(\mathbb{N})|$（亦即存在一单射且满射的函数 $f : S \to \mathcal{P}(\mathbb{N})$），因此由推论 5.5.11 得证 $S$ 为不可数的。对于任意 $s = (s_1, s_2, \dots, s_n, \dots) \in S$，我们令 $f(s) = \{n \in \mathbb{N} \mid s_n = 1\} \in \mathcal{P}(\mathbb{N})$。依此定义我们得 $f : S \to \mathcal{P}(\mathbb{N})$ 是一个（良定义的）函数。我们要证明 $f$ 是单射且满射的函数。首先若 $s = (s_1, \dots, s_n, \dots) \neq s' = (s_1', \dots, s_n', \dots)$，表示存在 $n \in \mathbb{N}$ 使得 $s_n \neq s_n'$。也就是说如果 $s_n = 1$，则 $s_n' = 0$，此时依定义，我们有 $n \in f(s)$ 但 $n \notin f(s')$，因此得 $f(s) \neq f(s')$。同理若 $s_n = 0$，亦可得 $f(s) \neq f(s')$，得证 $f$ 为单射的。至于满射部分，给定 $S' \in \mathcal{P}(\mathbb{N})$（亦即 $S' \subseteq \mathbb{N}$），若对于任意 $n \in \mathbb{N}$，若 $n \in S'$，则令 $s_n = 1$；反之，则令 $s_n = 0$。此时考虑 $s = (s_1, \dots, s_n, \dots) \in S$，可得 $f(s) = S'$，因此得证 $f$ 为满射的。
+\end{proof}
+
+接下来我们用命题 5.5.12 来证明实数所成的集合 $\mathbb{R}$ 是不可数的。
+
+\begin{proposition}
+$\mathbb{R}$ 是不可数的。
+\end{proposition}
+
+\begin{proof}
+考虑 $S$ 为所有整数部分为 0，而小数点后各位数是 0 或 1 所组成的实数所成的集合。例如 0.1011010 和 0.101101 都是 $S$ 中的元素。要注意我们将 $S$ 中的元素都写成无限小数（若是有限小数，我们将之写成最后皆为 0 的无限循环小数。例如 0.101101 = 0.1011010）。也要注意 $S$ 中不只有无限循环小数，也有无限不循环小数（其实无限不循环小数占了大多数）。由命题 5.5.12 我们知道 $S$ 是不可数的，所以利用 $S \subseteq \mathbb{R}$，可得 $|S| \leq |\mathbb{R}|$，因此 $|\mathbb{R}| \leq |\mathbb{N}|$ 不可能成立（否则会造成 $|S| \leq |\mathbb{N}|$ 的矛盾）。得证 $\mathbb{R}$ 为不可数的。
+\end{proof}
+
+定理 5.5.10 的证明方法是数学家 Cantor 所提出的。他利用类似的想法也证出实数所成的集合 $\mathbb{R}$ 为不可数的，这个证明方法就留做习题。
+
+最后我们要强调，一般来说要探讨一个无限集 $S$ 是可数的或是不可数的并不容易。首先我们必须先用一些信息来判断它为可数的或是不可数的。若判断是可数的，就必须证明它，也就是找到一个 $S \to \mathbb{N}$ 的单射函数。而若判断为不可数的，要证明其为不可数的，一般都是用反证法，也就是说假设其为可数的，然后得到矛盾。其中最常用的方法就是如前面的证明，说明所有 $S \to \mathbb{N}$ 的函数都不会是满射的。
+
+\begin{problemset}
+    \item 令 $f \subseteq \mathbb{R} \times \mathbb{R}$ 是从 $\mathbb{R}$ 到 $\mathbb{R}$ 的关系，定义为
+    $$ f = \{(a, b) : b - a = 1 \text{ 如果 } a \geq 0; \quad b - a = -1 \text{ 如果 } a \leq 0\} $$
+    $f$ 是从 $\mathbb{R}$ 到 $\mathbb{R}$ 的函数吗？请说明理由。
+
+    \item 假设 $f : X \to X$ 是一个函数，并将 $f$ 看作 $X$ 上的关系。证明如果 $f$ 是对称的，那么 $f \circ f = \text{id}_X$。
+
+    \item 令 $f : X \to Y$ 且 $g : Y \to Z$ 为函数。假设 $\forall x, x' \in X, y, y' \in Y$ 且 $z, z' \in Z$，我们有 $x \star x' \in X, y \diamond y' \in Y$ 且 $z \ast z' \in Z$。此外，假设有
+    $$ f(x \star x') = f(x) \diamond f(x'), \quad g(y \diamond y') = g(y) \ast g(y'). $$
+    证明如果 $(g \circ f)(x) = z$ 且 $(g \circ f)(x') = z'$，那么 $(g \circ f)(x \star x') = z \ast z'$。
+
+    \item 考虑函数 $f : \{1, 2, 3\} \to \{1, 2, 3\}$，定义为 $f(1) = f(3) = 2$ 且 $f(2) = 3$。列出 $\{1, 2, 3\}$ 的所有子集 $A$，并求出 $f(A)$ 和 $f^{-1}(A)$。
+
+    \item 假设 $f : X \to X$ 是一个函数且 $A \subseteq X$。下列哪些命题为真？解释每种情况。
+    \begin{probenumerate}
+        \item $f(A^c) \subseteq f(A)^c$
+        \item $f(A)^c \subseteq f(A^c)$
+        \item $f^{-1}(A^c) \subseteq f^{-1}(A)^c$
+        \item $f^{-1}(A)^c \subseteq f^{-1}(A^c)$
+    \end{probenumerate}
+
+    \item 假设 $g : X \to Y$ 是满射函数且 $B \subseteq Y$。
+    \begin{probenumerate}
+        \item 证明存在 $A \subseteq X$ 使得 $g(A) = B$。
+        \item 证明 $g(g^{-1}(B)) = B$。
+        \item 假设 $B' \subseteq Y$ 且 $B' \neq B$。证明 $g^{-1}(B') \neq g^{-1}(B)$。
+    \end{probenumerate}
+
+    \item 找到函数 $f : \mathbb{N} \to \mathbb{N}$ 和 $g : \mathbb{N} \to \mathbb{N}$，使得 $f$ 不是满射，但 $g \circ f$ 是满射。
+
+    \item 找到函数 $f : \mathbb{N} \to \mathbb{N}$ 和 $g : \mathbb{N} \to \mathbb{N}$，使得 $g$ 不是单射，但 $g \circ f$ 是单射。
+
+    \item 假设 $f : X \to Y$ 是双射且 $g : Y \to Z$ 是函数。证明以下内容：
+    \begin{probenumerate}
+        \item $g \circ f$ 是满射当且仅当 $g$ 是满射。
+        \item $g \circ f$ 是单射当且仅当 $g$ 是单射。
+    \end{probenumerate}
+
+    \item 假设 $h : X \to Y$ 是单射。
+    \begin{probenumerate}
+        \item 对于 $A \subseteq X$，证明 $|A| = |h(A)|$。
+        \item 对于 $B \subseteq Y$，证明 $|h^{-1}(B)| \leq |B|$。
+    \end{probenumerate}
+
+    \item 假设 $A, B, C, D$ 是非空集合，且 $|A| = |B|$ 且 $|C| = |D|$。证明 $|A \times C| = |B \times D|$。
+
+    \item 令 $X$ 是非空集合且 $Y, Z \subseteq X$。
+    \begin{probenumerate}
+        \item 假设 $Y$ 是不可数的且 $Z$ 是可数的。证明 $Y \setminus Z$ 是不可数的。
+        \item 利用 $\mathbb{R}$ 是不可数的这一事实，证明無理数集合是不可数的。
+        \item 假设 $Y \times Z$ 是不可数的。证明 $Y$ 或 $Z$ 是不可数的。
+    \end{probenumerate}
+
+    \item 给定 $n \in \mathbb{N}$，试证明所有次数小于 $n$ 的整系数多项式所成的集合为可数的。（提示：利用若 $S_1, \dots, S_n$ 为可数，则 $S_1 \times \dots \times S_n$ 为可数。）
+
+    \item 试证明所有整系数多项式所成的集合为可数。（提示：利用若 $S_i, \forall i \in \mathbb{N}$ 是可数的，则 $\bigcup_{i=1}^{\infty} S_i$ 是可数。）
+
+    \item 令 $S$ 为所有整数部分为 0，而小数点后各位数是 0 或 1 所组成的实数所成的集合。假设 $f : \mathbb{N} \to S$ 是一个函数。考虑 $S$ 中的元素 $s = 0.a_1a_2a_3 \dots a_i \dots$，其中对任意 $i \in \mathbb{N}$，我们令 $s$ 的小数点后第 $i$ 位的值 $a_i$ 为：
+    $$ a_i = \begin{cases} 1, & \text{若 } f(i) \text{ 小数点后第 } i \text{ 位为 } 0; \\ 0, & \text{若 } f(i) \text{ 小数点后第 } i \text{ 位为 } 1. \end{cases} $$
+    试证明 $s$ 不在 $f : \mathbb{N} \to S$ 的图像（image）中，并以此说明 $S$ 是不可数的。
+
+    \item 对于集合 $A, B$，我们定义集合 $A^B = \{f \mid f : B \to A \text{ 是一个函数}\}$。假设 $A_1, A_2, B$ 是集合。证明 $|(A_1 \times A_2)^B| = |A_1^B \times A_2^B|$。（提示：对于 $f_1 \in A_1^B, f_2 \in A_2^B$，通过设置 $(f_1 \times f_2)(b) = (f_1(b), f_2(b)), \forall b \in B$ 来定义 $(f_1 \times f_2) \in (A_1 \times A_2)^B$。）
+\end{problemset}

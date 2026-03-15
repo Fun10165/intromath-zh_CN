@@ -1,0 +1,615 @@
+
+%%%%%%%%%%%%%%%%%%%% 基础逻辑 %%%%%%%%%%%%%%%%%%%%%。
+
+\chapter{基础逻辑}
+
+其实学习数学就像学习新的语言。一些名词的定义就像“单词”一样，而逻辑（logic）\index{逻辑（logic）}就好比是将这些单词组合成一个句子所需的“语法”。一般同学在学习逻辑时，会不自觉地将一些逻辑规则以背诵的方式记忆，这会造成以后学习上许多障碍。其实这些规则应该是潜意识内的直觉，这样学习数学才能通行无阻。
+
+逻辑学可以是非常抽象的，不只与数学关系密切，也与信息科学以及哲学发展有着密切的关系。不过这里，我们仅介绍很基本的与数学论证相关的逻辑。
+
+\section{联结词}
+
+在数学中能明确知道对或错的论述我们称之为\textbf{命题（statement）}\index{命题（statement）}\footnote{更常用的英文为proposition。——译者注}。例如 \(2 > 0\) 是一个命题， \(3 < 2\) 也是一个命题。但 \(x > 0\) 就不是一个命题（除非我们知道 \(x\) 是什么）。注意一个命题只能是对或错其中之一，不能是半对半错或是有时候对有时候错。所以我们称一个命题的\textbf{真值（truth value）}\index{真值（truth value）}为 T 当这个命题是对的（即 true）；反之则以 F 表示，即此命题是错的（false）。
+
+举例来说“今天天气很热”不是一个命题。为什么呢？因为大家对热的标准不同，除非我们明确定义“很热”的标准（例如超过某度）。再例如“天空打雷会下雨”这个论述我们觉得半对半错，有时候会下有时候不会下，所以它也不是一个命题。但如果改为“天空打雷一定会下雨”，那它便是一个真值为 F 的命题。这里要注意，在数学上的叙述，我们往往会省略“一定”这个字眼，所以数学上当一个论述有时候对有时候错，我们会认定它是\textbf{错}的。例如“由 \(x^{2} > 4\)，可得 \(x > 2\)”虽没有加上“一定”的字眼，但我们认定它是真值为 F 的命题。
+
+数个命题可以组合成一个命题，联结这些命题的就是所谓\textbf{联结词（connectives）}\index{联结词（connectives）}。我们要探讨经由联结词联结成的命题对或错的情形。
+
+\subsection{且}
+首先介绍的便是“且（and）”\index{且（and）}这一个联结词。这一个联结词应该是大家最容易理解的一个。若 \(P\) 和 \(Q\) 皆为命题，我们用 \(P \land Q\) 表示“ \(P\) 且 \(Q\)”这一个命题（逻辑上称为\(P, Q\)的合取，\index{合取（conjunction）}即the ``conjunction" of \(P, Q\)）。\(P \land Q\) 什么时候是对的、什么时候是错的呢？就如同习惯用语，当 \(P\) 而且 \(Q\) 都是对时我们才能说 \(P \land Q\) 是对的，而只要 \(P\) 和 \(Q\) 其中有一个是错的，我们便会说 \(P \land Q\) 是错的。例如 “\(2 > 0\) 且 \(2 < 7\)” 是对的，而 “\(2 > 0\) 且 \(2 > 7\)” 便是错的。
+
+我们可利用所谓的\textbf{真值表（truth table）}\index{真值表（truth table）}来表示用联结词联结两个命题后其对错的情况。前面提过，我们用 T 表示对，F 表示错。所以我们有以下真值表。
+\[
+\begin{array}{|c|c||c|}
+\hline
+P & Q & P \land Q \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{F} \\
+\mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\hline
+\end{array}
+\]
+
+基本上真值表就是将 \(P, Q\) 每个可能对错的情况列出，然后由 \(P, Q\) 所对应的情况，写下它们联结后的对错情况。例如上表第三横排为 \(P\) 为 T，\(Q\) 为 F，故写下 \(P \land Q\) 为 F。
+
+很容易发现不管 \(P, Q\) 的对错情况如何， \(P \land Q\) 和 \(Q \land P\) 的对错情形皆相同。也就是说 \(P \land Q\) 和 \(Q \land P\) 在逻辑上是相等的。我们称它们为\textbf{逻辑等价的（logically equivalent）}\index{逻辑等价（logically equivalent）}。
+
+对于逻辑等价，我们需再厘清一下说法。当 \(P, Q\) 是确定的命题时，\(P \land Q\) 和 \(Q \land P\) 也会是确定的命题（也就是说它们对错的情况已经固定），所以此时说 \(P \land Q\) 和 \(Q \land P\) 逻辑等价并不很恰当。事实上我们是将 \(P, Q\) 看成变量一般，它们可以用任意的命题取代，所以此时 \(P \land Q\) 的对错会因为 \(P, Q\) 的不同而有所不同，故此时说 \(P \land Q\) 是命题也不恰当。在本讲义，当 \(P, Q\) 是可变动的情况之下，我们便称它们利用联结词联结起来的结果为“命题形式（statement form）”。\index{命题形式（statement form）}两个命题形式在所有情况之下的真值表皆相同，我们便称它们为逻辑等价的。所以我们应该说成 \(P \land Q\) 和 \(Q \land P\) 这两个命题形式为逻辑等价的。不过为了方便起见，我们常常会省略“命题形式”且用 `` \(\sim\) " 来表示两个命题形式为逻辑等价的，例如我们有 \((P \land Q) \sim (Q \land P)\)。
+
+真值表可以帮助我们判断许多命题用联结词联结起来后的对错情况，例如 \((P \land Q) \land R\) 的真值表为
+\[
+\begin{array}{|c|c|c||c|c|}
+\hline
+P & Q & R & P\land Q & (P\land Q)\land R \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{F} \\
+\mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{F} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\hline
+\end{array}
+\]
+
+\begin{question}
+你会列出 \(P \land (Q \land R)\) 的真值表吗？
+\end{question}
+
+注意 \((P\land Q)\land R\) 和 \(P\land (Q\land R)\) 在定义上是不一样的。\((P\land Q)\land R\) 是先探讨 \(P\land Q\) 的对错再和 \(R\) 联结；而 \(P\land (Q\land R)\) 是先探讨 \(Q\land R\) 的对错再和 \(P\) 联结。不过从它们的真值表我们知道 \(((P\land Q)\land R)\sim (P\land (Q\land R))\)。既然 \((P\land Q)\land R\) 和 \((P\land (Q\land R))\) 在逻辑上意义相同，以后我们就可以不必括弧，而直接用 \(P\land Q\land R\) 表示。
+
+\subsection{或}\index{或（or）}
+当 \(P\) 和 \(Q\) 皆为命题，我们用 \(P\lor Q\) 表示“\(P\) 或 \(Q\)”（\(P\) or \(Q\)）这一个命题（逻辑上称为\(P, Q\)的析取，\index{析取（disjunction）}即 ``disjunction" of \(P, Q\)）。不过在我们日常用语中 “或” 有两种用法：例如在速食店点套餐，饮料可以选择“可乐或果汁”。这里的“或”表示二者择一，你不可以两个都选（这种“或” 称为“{\bf 异或}”，exclusive or）；而游乐园购票时规定“六岁以下或身高 105 公分以下”才可购买儿童票。这里的“或”表示六岁以下和身高 105 公分以下二者有一个成立就可以，并不排除六岁以下且身高 105 公分以下同时成立的情况（这种“或” 称为“{\bf 兼或}”，inclusive or）。在数学逻辑上，“或” 指的是后面那种“兼或”的说法，也就是说当 \(P\) 和 \(Q\) 其中有一个是对的 \(P\lor Q\) 便是对的（并不排除 \(P\) 和 \(Q\) 皆为对的情况）。换言之，只有当 \(P\) 和 \(Q\) 都是错的，\(P\lor Q\) 才是错的。
+
+例如，“\(4< 5\)或 \(4< 3\)” 这个命题是对的，因为 \(4< 5\) 是对的。而 “\(4 > 5\) 或  \(4 > 6\)” 这个命题便是错的，因为二者皆不成立。要注意 “\(4< 5\) 或  \(4 > 3\)” 这个命题依然是对的，虽然你会认为用且比较好，不过在逻辑上它依然是对的，千万别搞错。
+
+我们有以下关于 \(P\lor Q\) 的真值表。
+\[
+\begin{array}{|c|c||c|}
+\hline
+P & Q & P\lor Q \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{T} \\
+\mathrm{F} & \mathrm{T} & \mathrm{T} \\
+\mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\hline
+\end{array}
+\]
+
+\begin{question}
+\(P\lor Q\) 和 \(Q\lor P\) 是否为逻辑等价的命题形式？\((P\lor Q)\lor R\) 和 \(P\lor (Q\lor R)\) 是否为逻辑等价的命题形式？\(P\lor Q\lor R\) 有意义吗？
+\end{question}
+
+既然且、或皆为联结词，我们可以将其混合使用。例如当 \(P,Q,R\) 为命题，我们可以考虑如 \((P\land Q)\lor R\) , \((P\lor Q)\land R\)  等形式的命题。如何判定它们的对错呢？例如 \((P\land Q)\lor R\) 是对的就必须 \((P\land Q)\) 或 \(R\) 其中一个是对的。所以只要是 \(R\) 是对的，\((P\land Q)\lor R\) 就一定对，而若 \(R\) 是错的那就必须 \(P,Q\) 皆对，\((P\land Q)\lor R\) 才会是对的。注意，千万不要误以为 \((P\land Q)\lor R\) 和 \(P\land (Q\lor R)\) 这两个命题形式是逻辑等价的。很显然，\(P\land (Q\lor R)\) 是对的就必须 \(P\) 和 \(Q\lor R\) 皆为对的。例如当 \(R\) 是对的时，不管 \(Q\) 为对或错 \(Q\lor R\) 皆为对，但还必须 \(P\) 为对才可得到 \(P\land (Q\lor R)\) 是对的。这和只要 \(R\) 是对的，\((P\land Q)\lor R\) 就一定对是不同的，所以 \((P\land Q)\lor R\) 和 \(P\land (Q\lor R)\) 不是逻辑等价的命题形式。当然我们也可利用以下的真值表判定它们不是逻辑等价的。
+\[
+\begin{array}{|c|c|c||c|c|}
+\hline
+P & Q & R & P\land Q & (P\land Q)\lor R \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T}  \\
+\mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{T}  \\
+\mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{T}  \\
+\mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F}  \\
+\hline
+\end{array}
+\quad
+\begin{array}{|c|c|c||c|c|}
+\hline
+P & Q & R & Q\lor R & P\land (Q\lor R) \\
+\hline
+ \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+ \mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{T} \\
+ \mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+ \mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+ \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{F} \\
+ \mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{F} \\
+ \mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{F} \\
+ \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\hline
+\end{array}
+\]
+
+另一方面，考虑 \((P\lor R)\land (Q\lor R)\) 的真值表，
+\[
+\begin{array}{|c|c|c||c|c|c|}
+\hline
+P & Q & R & P\lor R & Q\lor R & (P\lor R)\land (Q\lor R) \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{F} \\
+\mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\hline
+\end{array}
+\]
+不难发现
+\[
+((P\land Q)\lor R)\sim ((P\lor R)\land (Q\lor R)).
+\]
+同样地，我们可利用真值表检查 \((P\lor Q)\land R\) 和 \((P\land R)\lor (Q\land R)\) 亦为逻辑等价的命题形式。
+
+我们可以利用真值表检验一些命题形式是否为逻辑等价的。在一些有关逻辑的书也会有一些逻辑等价的列表供大家检验。不过这些都是为了大家熟悉这些联结词以及真值表的运用。除了以后同证明有关的逻辑等价我们需要注意且会特别提醒大家要熟悉，一般来说大家不必花时间于记忆这些逻辑等价。
+
+最后提醒一下和“或”有关的数学符号 \(\ge\) 和 \(\le\)。在数学上 \(x\ge y\) 表示“ \(x > y\) 或 \(x = y\)”，所以 \(4\ge 3\) 这一个命题按照或的逻辑规则是对的。同理 \(4\le 5\) 是对的。当然 \(4\le 4\) 也是对的。
+
+\subsection{若-则}\index{若-则（if-then）}
+这是一个数学定理里常见的联结词，但又是许多同学不甚了解而经常误解的联结词，请务必弄清楚。当 \(P\) 和 \(Q\) 皆为命题，我们用 \(P\Rightarrow Q\) 表示“若 \(P\) 则 \(Q\)”（if \(P\) then \(Q\)）这个命题（逻辑上称为\(P,Q\)的条件逻辑，即the ``conditional" of \(P,Q\)）。要注意 \(P\Rightarrow Q\) 在数学上的意涵与纯粹逻辑上有所不同。主要的区别是，数学上 \(P\Rightarrow Q\) 较常表达的是 \(P,Q\) 之间的因果关系（也就是 \(P,Q\) 通常是相关的）。这里 \(P,Q\) 通常不是命题，而是如“ \(x\) 为实数”这样的“性质”。而逻辑上将 \(\Rightarrow\) 看成一个联结词，可以联结任意的 \(P,Q\)（即使它们毫无关系）。例如数学上我们有 “若 \(x > 3\) 则 \(x^{2} > 9\)” 这样的命题（注意 \(x > 3\) 和 \(x^{2} > 9\) 皆不是命题，但用若-则联结后，它是一个命题）。 \(x > 3\) 和 \(x^{2} > 9\) 是有关系的。而在逻辑上我们有 “若 \(3 > 2\) 则 $2$ 为偶” 这样的命题（即使 \(3>2\) 和 $2$ 为偶数是没有关系的）。在探讨 \(P\Rightarrow Q\) 在逻辑上对错的情况之前，我们先强调它在数学理论以及推理与证明上的意涵。
+
+在数学上，当我们说“若 \(P\) 则 \(Q\)”意即“当 \(P\) 成立时， \(Q\) 一定成立”（注意：为了区别性质与命题，我们说一个性质成不成立，而不用对错这样的说法）。这里要强调的是，当我们说“若 \(P\) 则 \(Q\)” 表示我们知道如果 \(P\) 成立，则可确定 \(Q\) 一定成立。如果 \(P\) 不成立，就无法知道 \(Q\) 是否成立。所以在数学上要论述“若 \(P\) 则 \(Q\)”我们只关心当 \(P\) 成立时， \(Q\) 是否也成立这样的“因果关系”，不必在意 \(P\) 不成立的情况。这一点和逻辑上把“若 \(P\) 则 \(Q\)”看成 \(P,Q\) 这两个命题的联结词十分不同，因为既然要使“若 \(P\) 则 \(Q\)”成为一个命题，就必须明定 \(P,Q\) 在任何的对错情况时 \(P\Rightarrow Q\) 的对错情况。另外我们也要强调 \(P\Rightarrow Q\) 和 \(Q\Rightarrow P\) 在数学上是完全不一样的。有许多同学会误以为可由 \(P\Rightarrow Q\) 是对的，推得 \(Q\Rightarrow P\) 是对的。这个是不正确的，事实上 \(P\Rightarrow Q\) 仅表示由 \(P\) 成立可推得 \(Q\) 成立，但不表示当 \(P\) 不成立时不会使得 \(Q\) 成立。例如我们知道若 \(x > 3\) 则 \(x^{2}\ge 9\)，但这并不表示当 \(x\le 3\) 时不会使得 \(x^{2}\ge 9\)。也就是我们无法由 \(Q\) 成立得到 \(P\) 成立。总而言之， \(P\Rightarrow Q\) 是对的，并不能确保 \(Q\Rightarrow P\) 是对的。稍后我们定义“若 \(P\) 则 \(Q\)”在逻辑上的对错情况时，我们也会发现 \(P\Rightarrow Q\) 和 \(Q\Rightarrow P\) 在逻辑上也不是等价的命题形式。
+
+\begin{question}
+如果我们知道 \(P\) 成立则 \(Q\) 成立，那么当我们发现 \(Q\) 不成立时，是否可以断言 \(P\) 也不成立？
+\end{question}
+
+现在我们来看在逻辑上如何定义 \(P\Rightarrow Q\) 的对错情况。从前面数学上的意义来看，当 \(P,Q\) 为命题时，如果 \(P\) 是对的且 \(Q\) 是对的，那么并未违背 \(P\Rightarrow Q\) 的说法，所以在这种情况我们定 \(P\Rightarrow Q\) 为对。但若 \(P\) 是对的而 \(Q\) 是错的，那么就违背 \(P\Rightarrow Q\) 的说法，所以在这种情况我们定 \(P\Rightarrow Q\) 为错。但是若 \(P\) 是错的，如何定 \(P\Rightarrow Q\) 的对错呢？由于 \(P\Rightarrow Q\) 并未论及当 \(P\) 是错时， \(Q\) 会如何，所以当 \(P\) 是错时，不管 \(Q\) 的对错都未违背前述 \(P\Rightarrow Q\) 的说法，所以此时我们都定义 \(P\Rightarrow Q\) 为对。例如 \(2 > 3\) 是错的且 \(2^{2} > 9\) 是错的，但这并不违背前面所提若 \(x > 3\) 则 \(x^{2} > 9\) 这一个对的命题。另一方面， \(- 4 > 3\) 是错的，但 \((- 4)^{2} > 9\) 是对的，也不违背前述若 \(x > 3\) 则 \(x^{2} > 9\) 这一个对的命题。简单来说，在数学上 \(x > 3\Rightarrow x^{2} > 9\) 这个对的叙述，由逻辑上 \(P\Rightarrow Q\) 的定义便可以解构成将 \(x\) 代入任何的实数， \(x > 3\Rightarrow x^{2} > 9\) 都是对的。总而言之，关于 \(P\Rightarrow Q\) 我们有以下的真值表。
+\[
+\begin{array}{|c|c||c|}
+\hline
+P & Q & P\Rightarrow Q \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{T} \\
+\mathrm{F} & \mathrm{F} & \mathrm{T} \\
+\hline
+\end{array}
+\]
+
+\begin{question}
+试利用真值表判断 \(Q\Rightarrow P\) 和 \(P\Rightarrow Q\) 是否为逻辑等价的命题形式？ \((P\Rightarrow Q)\Rightarrow R\) 是否和 \(P\Rightarrow (Q\Rightarrow R)\) 为逻辑等价的命题形式？ \(P\Rightarrow Q\Rightarrow R\) 是否有意义？
+\end{question}
+
+或许有些同学对 \(P\Rightarrow Q\) 的对错情况为何这样定义仍有疑虑，在我们介绍“当且仅当”这个联结词时会再进一步说明。
+
+最后我们补充 \(P \Rightarrow Q\) 在英文上的几种说法。除了“若 \(P\) 则 \(Q\)”外，还有
+\begin{itemize}
+\item \(Q\) if \(P\)（意即\(Q\) 若 \(P\)）
+\item \(P\) implies \(Q\)（意即\(P\) 蕴涵/意味着/推出 \(Q\)）
+\item \(P\) is sufficient for \(Q\) （意即 \(P\) 成立足以使得 \(Q\) 成立）
+\item \(Q\) is necessary for \(P\) （意即需要 \(Q\) 成立才有可能使得 \(P\) 成立）
+\item \(P\) only if \(Q\) （意即只有当 \(Q\) 成立时 \(P\) 才可能成立）
+\item \(Q\) whenever \(P\) （意即每当 \(P\) 成立时 \(Q\) 都会成立）
+\end{itemize}
+
+\subsection{当且仅当}\index{当且仅当（if and only if）}
+当我们用且联结 \(P \Rightarrow Q\) 和 \(Q \Rightarrow P\) 时，即 \((P \Rightarrow Q) \land (Q \Rightarrow P)\)，我们称之为“\(P\) 当且仅当 \(Q\)”（\(P\) if and only if \(Q\)），用 \(P \Leftrightarrow Q\) 来表示（逻辑上称为\(P,Q\)的双向条件逻辑，即 the ``biconditional" of \(P , Q\) ）。
+
+\(P \Leftrightarrow Q\) 其实是由很多联结词组合起来的（以后我们会知道 \(P \Rightarrow Q\) 也是如此），所以我们可以将它看成是联结词组合起来的“缩写”。会特地用缩写，当然是因为它会经常被用到，特别是在数学上，所以我们依然先探讨在数学上 \(P \Leftrightarrow Q\) 的意义。依定义在数学上我们说 \(P \Leftrightarrow Q\) 表示 \(P \Rightarrow Q\) 且 \(Q \Rightarrow P\)。也就是说若 \(P\) 成立则 \(Q\) 一定成立，另一方面若 \(Q\) 成立则 \(P\) 一定成立。因此 \(P, Q\) 有一个成立时另一个一定也成立。换言之， \(P \Leftrightarrow Q\) 表示若 \(Q\) 成立则 \(P\) 一定成立，而且只有当 \(Q\) 成立时才会使得 \(P\) 成立（否则会造成 \(P\) 成立但 \(Q\) 不成立的情况）。这也是在中文我们将 \(P \Leftrightarrow Q\) 称之为“ \(P\) 当且仅当 \(Q\)”（或 \(P\) 若且唯若 \(Q\)）的原因。
+
+现在我们来看在逻辑上 \(P \Leftrightarrow Q\) 的对错情况。从前面数学上的意义来看，我们可以知道 \(P \Leftrightarrow Q\) 表示 \(P\) 对则 \(Q\) 对，而且 \(Q\) 对则 \(P\) 对。不会有一对一错的情况。因此若 \(P, Q\) 有一个错则另一个一定也是错的。也就是说在逻辑上 \(P \Leftrightarrow Q\) 是对的表示 \(P\) 和 \(Q\) 必须是同时是对的或同时是错的。所以我们有以下关于 \(P \Leftrightarrow Q\) 的真值表。
+\[
+\begin{array}{|c|c||c|}
+\hline
+P & Q & P \Leftrightarrow Q \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{F} \\
+\mathrm{F} & \mathrm{F} & \mathrm{T} \\
+\hline
+\end{array}
+\]
+
+\begin{question}
+试利用 \(P \Rightarrow Q\) 以及 \(Q \Rightarrow P\) 的真值表写下 \(P \Leftrightarrow Q\) 的真值表。
+\end{question}
+
+\begin{question}
+\(P \Leftrightarrow Q\) 和 \(Q \Leftrightarrow P\) 是否为逻辑等价的？ \((P \Leftrightarrow Q) \Leftrightarrow R\) 和 \(P \Leftrightarrow (Q \Leftrightarrow R)\) 是否为逻辑等价的？ \(P \Leftrightarrow Q \Leftrightarrow R\) 是否有意义？
+\end{question}
+
+逻辑上 \(P \Leftrightarrow Q\) 对错的情况，和数学上的情况很一致，大家应该觉得较为自然。现在我们利用 \(P \Leftrightarrow Q\) 来解释为何逻辑上只要 \(P\) 是错的，不管 \(Q\) 的对错， \(P \Rightarrow Q\) 都定义为对的。当然，因为 \((P \Rightarrow Q) \land (Q \Rightarrow P)\) 就是 \(P \Leftrightarrow Q\)，所以当 \(P, Q\) 皆为错时，为了让 \(P \Leftrightarrow Q\) 为对，我们当然要定义 \(P \Rightarrow Q\) 和 \(Q \Rightarrow P\) 为对。所以当 \(P, Q\) 皆为错时，我们定义 \(P \Rightarrow Q\) 为对。至于 \(P\) 错 \(Q\) 对的情形，由于此时 \(Q \Rightarrow P\) 为错，不管 \(P \Rightarrow Q\) 怎么定都可以使得 \(P \Leftrightarrow Q\) 为错。然而此时若 \(P \Rightarrow Q\) 定为错，将会导致 \(P \Rightarrow Q, Q \Rightarrow P\) 和 \(P \Leftrightarrow Q\) 皆有相同的真值表（亦即等价），此和前述数学上不能由 \(P \Rightarrow Q\) 推得 \(Q \Rightarrow P\) 相违背，所以当 \(P\) 错 \(Q\) 对的情形，我们依然定义 \(P \Rightarrow Q\) 为对。
+
+最后我们补充 \(P \Leftrightarrow Q\) 在英文上的几种说法。除了“ \(P\) if and only if \(Q\)”外，还有
+\begin{itemize}
+\item \(P\) iff \(Q\)
+\item \(P\) is equivalent to \(Q\)（意即\(P\) 等价于 \(Q\)）
+\item \(P\) is necessary and sufficient for \(Q\)
+\end{itemize}
+
+\section{逻辑等价和恒真}
+
+前面我们介绍过逻辑等价（logical equivalence）的概念。我们可以利用逻辑等价的一些规则推导出更多的逻辑等价。这样的好处是不必每次都求真值表来探讨有关逻辑等价的问题。
+
+第一个常见的逻辑等价的使用规则是：我们可以将逻辑等价的两种命题形式中的同一个变量用其他的命题形式取代，仍可得到逻辑等价。例如已知 \((P \land Q) \sim (Q \land P)\)，我们可将 \(P\) 用 \(P \Rightarrow Q\) 取代得
+\[
+((P \Rightarrow Q) \land Q) \sim (Q \land (P \Rightarrow Q)).
+\]
+这个规则的原因很简单，因为既然逻辑等价的命题形式有相同的真值表，我们将其中某个变量任意变换当然最后所得新的命题形式仍会有相同的真值表。同样的道理，我们可以将其中某个变量用两个（或好几个）逻辑等价的命题形式取代，最后所得新的命题形式仍为逻辑等价的。例如已知 \((P \land Q) \sim (Q \land P)\) 以及 \((R \lor S) \sim (S \lor R)\)，所以可以将 \((P \land Q) \sim (Q \land P)\) 左边的 \(P\) 用 \(R \lor S\) 取代，而右边的 \(P\) 用 \(S \lor R\) 取代得
+\[
+((R \lor S) \land Q) \sim (Q \land (S \lor R)).
+\]
+
+还有一个常用的规则是，如果两个命题形式 \(A, B\) 是逻辑等价的，而 \(B\) 和另一个命题形式 \(C\) 也是逻辑等价的，那么 \(A\) 和 \(C\) 也是逻辑等价的。例如我们有 \(((P \land Q) \lor R) \sim ((Q \land P) \lor R)\)，也有 \(((Q \land P) \lor R) \sim (R \lor (Q \land P))\)，故可得
+\[
+((P \land Q) \lor R) \sim (R \lor (Q \land P)).
+\]
+这个规则会成立的原因仍然由真值表的全等可以得到。
+
+利用这些规则我们不必藉由真值表就可以很容易推得一些命题形式为逻辑等价的。简单来说我们可以将逻辑等价如“等号”一样运用。我们前面学过的逻辑等价，例如 \(\land\) 的交换性和 \(\lor\) 的交换性，即
+\[
+(P \land Q) \sim (Q \land P), \quad (P \lor Q) \sim (Q \lor P) \tag{1.1}
+\]
+以及 \(\land\) 的结合性和 \(\lor\) 的结合性，即
+\[
+((P \land Q) \land R) \sim (P \land (Q \land R)), \quad ((P \lor Q) \lor R) \sim (P \lor (Q \lor R)) \tag{1.2}
+\]
+还有 \(\land , \lor\) 之间的分配性质，即
+\[
+((P \land Q) \lor R) \sim ((P \lor R) \land (Q \lor R)), \quad ((P \lor Q) \land R) \sim ((P \land R) \lor (Q \land R)) \tag{1.3}
+\]
+都是常用来帮助我们推导许多逻辑等价的工具。
+
+\begin{example}
+考虑 \((P \land Q) \lor (P \lor Q)\) 这一个命题形式。利用式子 (1.3) 中的 \(((P \land Q) \lor R) \sim ((P \lor R) \land (Q \lor R))\)，将 \(R\) 用 \(P \lor Q\) 取代，我们有
+\[
+(P \land Q) \lor (P \lor Q) \sim ((P \lor (P \lor Q)) \land (Q \lor (P \lor Q))). \tag{1.4}
+\]
+再由 \((P \lor (P \lor Q)) \sim ((P \lor P) \lor Q)\) 以及 \((Q \lor (P \lor Q)) \sim (Q \lor (Q \lor P)) \sim ((Q \lor Q) \lor P)\) 得
+\[
+((P \lor (P \lor Q)) \land (Q \lor (P \lor Q)) \sim ((P \lor P) \lor Q) \land ((Q \lor Q) \lor P)). \tag{1.5}
+\]
+很容易检查 \((P \lor P) \sim P\) 以及 \((Q \land Q) \sim Q\)，故知
+\[
+(((P \lor P) \lor Q) \land ((Q \lor Q) \lor P)) \sim ((P \lor Q) \land (Q \lor P)) \sim (P \lor Q). \tag{1.6}
+\]
+最后联结式子 (1.4), (1.5), (1.6)，得
+\[
+((P \land Q) \lor (P \lor Q)) \sim (P \lor Q).
+\]
+\end{example}
+
+当一个命题形式的真值表在任何情况之下皆为对，我们称此命题形式为\textbf{恒真（tautology）}\index{恒真（或重言，tautology）}，也称作重言，意即它是重复多余的。例如 \(P \Leftrightarrow P\) 的真值表为%“也称作重言”是为了衔接“意即它是重复多余的”而补充的
+\[
+\begin{array}{|c|c||c|}
+\hline
+P & P & P \Leftrightarrow P \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{F} & \mathrm{F} & \mathrm{T} \\
+\hline
+\end{array}
+\]
+故 \(P \Leftrightarrow P\) 为恒真。
+
+\begin{question}
+\(P \Rightarrow P\) 是否为恒真？ \(P \Rightarrow (P \Rightarrow P)\) 是否为恒真？
+\end{question}
+
+恒真虽然有重复多余的意思，但它在逻辑上仍是有意思的。它可以帮我们用另一种方法来诠释逻辑等价。当两个命题形式 \(A, B\) 逻辑等价时，因为 \(A, B\) 的对错情况一致，我们有 \(A \Leftrightarrow B\) 恒为对，意即 \(A \Leftrightarrow B\) 为恒真。反之，当 \(A \Leftrightarrow B\) 为恒真时，由于 \(A, B\) 的对错情形一致，它们有相同的真值表。意即 \(A \sim B\)。我们有以下的性质。
+
+\begin{proposition}
+假设 \(A, B\) 为两个命题形式。则 \(A\) 和 \(B\) 为逻辑等价的，等同于 \(A \Leftrightarrow B\) 为恒真。
+\end{proposition}
+
+其实在前面的说明中，我们先假设 \(A \sim B\) 成立推得 \(A \Leftrightarrow B\) 为恒真（即若 \(A \sim B\) 则 \(A \Leftrightarrow B\) 为恒真），后又由 \(A \Leftrightarrow B\) 为恒真推得 \(A \sim B\)。故命题1.2.2可以说成 \(A \sim B\) 当且仅当 \(A \Leftrightarrow B\) 为恒真。
+
+\begin{question}
+假设 \(A, B\) 为两个命题形式。若 \(A \sim B\) 可否推得 \(A \Rightarrow B\) 为恒真？若 \(A \Rightarrow B\) 为恒真可否推得 \(A \sim B\) ？
+\end{question}
+
+\begin{question}
+假设 \(A, B, C\) 为命题形式。若 \(A \Leftrightarrow B\) 和 \(B \Leftrightarrow C\) 皆为恒真，是否可推得 \(A \Leftrightarrow C\) 为恒真？
+\end{question}
+
+和恒真相反的是所谓的\textbf{矛盾（contradiction）}\index{矛盾（contradiction）}。它指的是一个命题形式在任何情况之下皆为错的。关于矛盾，我们会在下一节介绍“非”之后再探讨。
+
+\begin{question}
+假设 \(A, B\) 为命题形式。
+\begin{enumerate}
+    \item 若 \(A\) 为恒真，试说明 \((A \land B) \sim B\) 并说明 \(A \lor B\) 为恒真。
+    \item 若 \(A\) 为矛盾，试说明 \((A \lor B) \sim B\) 并说明 \(A \land B\) 为矛盾。
+\end{enumerate}
+\end{question}
+
+\section{非和矛盾}
+
+我们介绍非（not）\index{非（not）}以及与之有关的等价关系。本节内容分量比前面几节重，而且许多情形很可能和你的直觉不同。希望大家能好好熟习，纠正错误的直觉，而将正确观念成为你的本能反应而不是盲目地背诵。
+
+非有否定和相反的意思，给定一个命题 \(P\)，我们用 \(\neg P\) 来表示非 \(P\)（not $P$）。它的定义就是当 \(P\) 为对时，\(\neg P\) 就为错。反之，当 \(P\) 为错时，\(\neg P\) 就为对。所以我们有以下 \(\neg P\) 的真值表。
+\[
+\begin{array}{|c||c|}
+\hline
+P & \neg P \\
+\hline
+\mathrm{T} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} \\
+\hline
+\end{array}
+\]
+
+利用这个定义，我们马上有
+\[
+P \sim (\neg (\neg P)). \tag{1.7}
+\]
+
+非 \(P\) 虽然定义简单，但是对于由许多联结词联结的命题取非之后，其对错状况就较复杂了。例如 \(\neg (P \land Q)\)，或许很多人会误以为是 \((\neg P) \land (\neg Q)\)，不过检查一下真值表可得
+\[
+\begin{array}{|c|c||c|c|}
+\hline
+P & Q & P\land Q & \neg(P\land Q) \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{T} & \mathrm{F} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{T} \\
+\mathrm{F} & \mathrm{T} & \mathrm{F} & \mathrm{T} \\
+\mathrm{F} & \mathrm{F} & \mathrm{F} & \mathrm{T} \\
+\hline
+\end{array}
+\qquad 
+\begin{array}{|c|c||c|c|c|}
+\hline
+ P & Q & \neg P & \neg Q & (\neg P)\land (\neg Q) \\
+\hline
+ \mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+ \mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{F} \\
+ \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{F} \\
+ \mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\hline
+\end{array}
+\]
+很明显看出，在 \(P\) 对 \(Q\) 错或 \(P\) 错 \(Q\) 对时，\(\neg (P \land Q)\) 和 \((\neg P) \land (\neg Q)\) 是不同的。事实上，利用真值表，我们可得
+\[
+\neg (P \land Q) \sim (\neg P) \lor (\neg Q). \tag{1.8}
+\]
+
+我们藉由大家熟知的数学例子来理解这个事实。考虑 \(0 \le x \le 1\)，这表示 \(x \le 1\) 且 \(x \ge 0\)。它的相反，大家都知是 \(x > 1\) 或 \(x < 0\)。我们可以任取一个数 \(x\)，再令 \(P\) 为 \(x \le 1\) 这个命题，而 \(Q\) 为 \(x \ge 0\)，则 \(\neg P, \neg Q\) 分别为 \(x > 1, x < 0\)，也就是说 \(0 \le x \le 1\) 可以用 \(P \land Q\) 表示，而 \(x > 1\) 或 \(x < 0\) 就是 \((\neg P) \lor (\neg Q)\)。由此可以看出 \(\neg (P \land Q)\) 和 \((\neg P) \lor (\neg Q)\)为逻辑等价的，而不是 \((\neg P) \land (\neg Q)\) （否则会得到 \(x > 1\) 且 \(x < 0\) 这个矛盾）。
+
+我们可以用上一节有关命题形式的逻辑等价的规则来处理非。例如将式子 (1.8) 中的 \(P, Q\) 分别用 \(\neg P\) 和 \(\neg Q\) 取代，可得
+\[
+\neg((\neg P)\land (\neg Q))\sim (\neg (\neg P))\lor (\neg (\neg Q)).
+\]
+再利用 \(\neg (\neg P)\sim P\)，得
+\[
+\neg((\neg P)\land (\neg Q))\sim (P\lor Q).
+\]
+最后两边取非，得
+\[
+\neg(P\lor Q)\sim (\neg P)\land (\neg Q). \tag{1.9}
+\]
+例如考虑 \(x\ge 0\) 的情形，我们知道它的相反为 \(x< 0\)。若令 \(P,Q\) 分别为 \(x > 0,x = 0\)，则 \(x\ge 0\) 即为 \(P\lor Q\)。此时 \(\neg P\) 为 \(x\le 0,\neg Q\) 为 \(x\neq 0\)。而 \((\neg P)\land (\neg Q)\) 为 \(x\le 0\) 且 \(x\neq 0\)，即为 \(x< 0\)， 也就是 \(x\ge 0\) 的相反。
+
+式子 (1.7), (1.8), (1.9) 对于推导和非有关的命题形式之间的逻辑等价相当重要。其中式子 (1.8), (1.9) 称为\index{德摩根定律（DeMorgan's laws）}\textbf{德摩根定律（DeMorgan's laws）}。
+
+接下来我们自然会问，怎样的命题形式会和 \(\neg (P\Rightarrow Q)\) 逻辑等价呢？或许大家会以为是 \(P\Rightarrow \neg Q\)，不过利用真值表检查一下，大家会发现当 \(P\) 是对的时候 \(P\Rightarrow Q\) 和 \(P\Rightarrow \neg Q\) 确实对错相反，但是当 \(P\) 为错时 \(P\Rightarrow Q\) 和 \(P\Rightarrow \neg Q\) 皆为对。所以 \(\neg (P\Rightarrow Q)\) 和 \(P\Rightarrow \neg Q\) 并不是逻辑等价的，千万要记住。
+
+\begin{question}
+试写下会使得 \(x\ge 0\Rightarrow x\ge 1\) 为对的所有实数 \(x\)，也写下会使得 \(x\ge 0\Rightarrow x< 1\) 为对的所有实数 \(x\)。它们是否相反呢？
+\end{question}
+
+大家常忽略的就是 \(P\Rightarrow Q\) 中 \(P\) 错的情况，而造成逻辑的错误，千万要注意。不过另一方面，若 \(A,B\) 为命题形式且 \(A\) 为恒真，那么 \(\neg (A\Rightarrow B)\) 就和 \(A\Rightarrow \neg B\) 为逻辑等价的。主要的原因是， \(A\) 既然全为对，那么 \(A\Rightarrow B\) 的对错就会和 \(B\) 的对错完全一致了。
+
+\begin{question}
+试写下会使得 \(x^{2}\ge 0\Rightarrow x > 0\) 为对的所有实数 \(x\)，也写下会使得 \(x^{2}\ge 0\Rightarrow\) \(x\le 0\) 为对的所有实数 \(x\)。它们是否相反呢？
+\end{question}
+
+要处理 \(\neg (P\Rightarrow Q)\) 会和什么为逻辑等价的，我们可以换一个角度来看 \(P\Rightarrow Q\)。首先回顾一下 \(P\Rightarrow Q\) 较通俗的说法是 \(P\) 对则 \(Q\) 一定对。所以我们知道 \(Q\) 会对，除非 \(P\) 是错的。也就是说要不然是 \(Q\) 对，要不然就是 \(P\) 错。这让我们想到 \(Q\lor \neg P\) 这一个命题形式。事实上用真值表检验
+\[
+\begin{array}{|c|c||c|c|}
+\hline
+P & Q & \neg P & Q\lor \neg P \\
+\hline
+\mathrm{T} & \mathrm{T} & \mathrm{F} & \mathrm{T} \\
+\mathrm{T} & \mathrm{F} & \mathrm{F} & \mathrm{F} \\
+\mathrm{F} & \mathrm{T} & \mathrm{T} & \mathrm{T} \\
+\mathrm{F} & \mathrm{F} & \mathrm{T} & \mathrm{T} \\
+\hline
+\end{array}
+\]
+我们得到
+\[
+(P\Rightarrow Q)\sim (Q\lor \neg P). \tag{1.10}
+\]
+利用 \((Q\lor \neg P)\sim ((\neg P)\lor Q)\) 以及 \(\neg (\neg Q)\sim Q\)，我们得 \((P\Rightarrow Q)\sim ((\neg P)\lor \neg (\neg Q))\)，再利用式子 (1.10) 得 \(((\neg P)\lor \neg (\neg Q))\sim ((\neg Q)\Rightarrow (\neg P))\)，故知
+\[
+(P\Rightarrow Q)\sim ((\neg Q)\Rightarrow (\neg P)). \tag{1.11}
+\]
+这和我们提过的“\(P\Rightarrow Q\) 为对，表示若 \(Q\) 为错则 \(P\) 一定错”相吻合。
+
+利用式子 (1.10)，我们可得 \(\neg (P\Rightarrow Q)\sim \neg (Q\lor \neg P)\)。而由德摩根定律知
+\[
+\neg (Q\lor \neg P)\sim ((\neg Q)\land \neg (\neg P))
+\]
+故得
+\[
+\neg (P\Rightarrow Q)\sim (P\land (\neg Q)). \tag{1.12}
+\]
+式子 (1.10), (1.11), (1.12) 是我们将来处理“若 \(P\) 则 \(Q\)”这种类型的论述时常用的逻辑等价。
+
+由式子 (1.10) 我们知道，所有的命题形式都可以利用逻辑等价写成 \(\neg , \land , \lor\) 的组合。例如由 \(P\Leftrightarrow Q\) 的定义，我们可得
+\[
+(P\Leftrightarrow Q)\sim (Q\lor (\neg P))\land (P\lor (\neg Q)). \tag{1.13}
+\]
+再利用 \(\land , \lor\) 的分配性（即式子 (1.3)）推得
+\[
+(P\Leftrightarrow Q)\sim (P\land Q)\lor ((\neg P)\land (\neg Q)). \tag{1.14}
+\]
+因此我们可以用德摩根定律，式子 (1.7)，以及 \(\land , \lor\) 之间的关系式（式子 (1.1), (1.2), (1.3)），推导出一个命题形式取非之后的逻辑等价。例如式子 (1.13) 取非可得
+\[
+\neg (P\Leftrightarrow Q)\sim ((\neg Q)\land P)\lor ((\neg P)\land Q).
+\]
+有趣的是，若比较式子 (1.14) 中的 \(Q\) 用 \(\neg Q\) 取代后的结果，我们得到
+\[
+\neg (P\Leftrightarrow Q)\sim (P\Leftrightarrow \neg Q).
+\]
+
+以上差不多就是我们需要了解有关 "非" 的性质。为了方便起见，我们将比较常用的再列出如下：
+\begin{enumerate}
+    \item \(P\sim \neg(\neg P)\)
+    \item 若已知 \(P\sim Q\) 则 \(\neg P\sim \neg Q\)
+    \item \(\neg (P\land Q)\sim (\neg P)\lor (\neg Q)\)
+    \item \(\neg (P\lor Q)\sim (\neg P)\land (\neg Q)\)
+    \item \((P\Rightarrow Q)\sim ((\neg Q)\Rightarrow (\neg P))\sim (Q\lor \neg P)\)
+    \item \(\neg (P\Rightarrow Q)\sim (P\land (\neg Q))\)
+    \item \((P\Leftrightarrow Q)\sim (P\land Q)\lor ((\neg P)\land (\neg Q))\)
+    \item \(\neg (P\Leftrightarrow Q)\sim (P\Leftrightarrow \neg Q)\sim (\neg P\Leftrightarrow Q)\)
+\end{enumerate}
+
+最后我们再谈一下矛盾，回顾一下这表示一个命题形式在任何情况之下皆为错的。当 \(A\) 为命题形式时，\(\neg A\) 的对错完全和 \(A\) 的对错相反，所以 \(A\Leftrightarrow \neg A\) 的真值表在任何情况之下皆为错，可知 \(A\Leftrightarrow \neg A\) 为矛盾。反之，若 \(B\) 为命题形式且 \(A\Leftrightarrow B\) 为矛盾，表示在任何情况下 \(A\) 和 \(B\) 的对错情况相反，可知 \(B\sim \neg A\)。因此我们有以下和命题1.2.2相对应的性质。
+
+\begin{proposition}
+假设 \(A, B\) 为两个命题形式。则 \(\neg A\) 和 \(B\) 为逻辑等价的，等同于 \(A\Leftrightarrow B\) 为矛盾。
+\end{proposition}
+
+\section{量词}
+
+我们已经了解在已知各命题的对错情况之下它们用联结词以及非联结之后其对错的状况，我们也知道一个命题形式的否定为何。不过一个单一的命题，很可能已经很复杂，不容易判断对错。例如在数学上一个命题常常会有一些量词（quantifier）\index{量词（quantifier）}出现，而增加了判断对错的困难度。在本节中我们将介绍常见的量词，并探讨它们取否定的情形。
+
+数学上常见的量词有以下几种：
+\begin{itemize}
+    \item ``for all", ``for every"（即对所有的），常用 \(\forall\) 表示。
+    \item ``there exists", ``there is"（即存在，可以找到），常用 \(\exists\) 表示。
+    \item ``there is a unique"（即存在唯一的），常用 \(\exists !\) 表示。
+\end{itemize}
+
+\(\exists !\) 牵涉到唯一性的问题，以后我们在谈论证明方法时会提到它，这里我们先探讨 \(\forall\) 和 \(\exists\)。首先要说明的是，在谈论这些量词时必须说明清楚是在怎样的集合内。比方说对所有的整数和对所有的有理数就是完全不同的两回事，而存在一个自然数和存在一个偶数也不同。不过由于我们仅介绍这些量词的概念，而不触及证明，所以这里为了简单起见我们说明的例子考虑的都是整个实数。例如我们说 \(\forall x\) 或 \(\exists x\)，它们分别表示的就是“对于$\mathbb{R}$中的所有$x$”（for all \(x\) in \(\mathbb{R}\)） 或“\(\mathbb{R}\)中存在一个$x$”（there exists an \(x\) in \(\mathbb{R}\)），以后就不再声明指的是实数了。
+
+我们先看简单的例子： \(\forall x, x^2 \ge 0\)。指的就是所有的实数 \(x\) 皆会满足 \(x^2 \ge 0\)。我们知道这个命题是对的，因为每一个实数 \(x\) 都对，没有例外。这类命题我们可以表示成“\(\forall x, P(x)\)”。这里 \(P(x)\) 指的是和 \(x\) 有关的性质（例如上例中 \(P(x)\) 就是 \(x^2 \ge 0\) ）。它指的就是所有的 \(x\) 皆会满足 \(P(x)\) 这个性质。这个命题要对就必须所有的 \(x\) 都对，一个都不能错。例如 \(\forall x, x^2 > 0\) 便是错的（ \(x = 0\) 就不成立）。
+
+类似地，我们可以用“ \(\exists x, P(x)\)”来表示存在 \(x\) 使得 \(P(x)\) 成立。这个命题要对，只要能找到一个 \(x\) 使得 \(P(x)\) 成立即可。注意它并没有说有多少个会对，有可能很多，有可能只有一个，所以只要找到一个对即可（这就是英文用 there exists 的原因）。上面提过 \(\forall x, x^2 > 0\) 是错的，但若改为 \(\exists x, x^2 > 0\) 便是对的（取 \(x = 1\)，即可）。 \(\exists x, x^2 = 0\) 也是对的；但 \(\exists x, x^2 < 0\) 便是错的（因为我们仅考虑实数）。
+
+\(\forall\) 和 \(\exists\) 有着有趣的关系，例如“\(\forall x, P(x)\)”是对的话，那么“\(\exists x, P(x)\)”就一定对（只要挑随便一个 \(x\) 即可）。不过反过来就不对。你不能随便挑个 \(x\) 符合 \(P(x)\)，就声称对所有的 \(x\) 都会符合 \(P(x)\)。另外 \(\forall\) 和 \(\exists\) 在取否定时关系就更密切了。当你发现“\(\forall x, P(x)\)”有可能错时，如何说明它是错的呢？前面说过“\(\forall x, P(x)\)”只要有一个 \(x\) 不符合 \(P(x)\) 就是错的，所以要否定它，我们只要找到一个 \(x\) 让 \(P(x)\) 不成立即可。用符号表示就是 \(\exists x, \neg P(x)\)。例如前面提过 \(\forall x, x^2 > 0\) 是错的，因为我们发现 \(\exists x, x^2 \le 0\)。
+
+再次提醒，很多同学会误以为“\(\forall x, P(x)\)”的否定是“\(\forall x, \neg P(x)\)”。虽然若“\(\forall x, \neg P(x)\)”是对的可以知道“\(\forall x, P(x)\)”是错的。但是“\(\forall x, P(x)\)”是错的，并不表示“\(\forall x, \neg P(x)\)”是对的。所以不能说“\(\forall x, P(x)\)”的否定是“\(\forall x, \neg P(x)\)”。例如 \(\forall x, x^2 > 0\) 是错的，但 \(\forall x, x^2 \le 0\) 也是错的，唯有 \(\exists x, x^2 \le 0\) 才会对。大家千万注意，不要弄错。总而言之我们有以下的逻辑等价
+\[
+\neg(\forall x,P(x)) \sim (\exists x,\neg P(x)). \tag{1.15}
+\]
+
+同理要否定 \(\exists x,P(x)\)，表示找不到 \(x\) 使得 \(P(x)\) 成立。所以我们便需说明所有的 \(x\) 皆不满足 \(P(x)\)，也就是说 \(\forall x,\neg P(x)\)。同样的，很多同学会误以为“ \(\exists x,P(x)\)”的否定是 “\(\exists x,\neg P(x)\)”。这是错的，因为找到 \(x\) 不满足 \(P(x)\) 还是有可能找到另一个 \(x\) 会满足 \(P(x)\)。因此光由 “\(\exists x,\neg P(x)\)”不能否定 “\(\exists x,P(x)\)”。总而言之我们有以下的逻辑等价
+\[
+\neg(\exists x,P(x)) \sim (\forall x,\neg P(x)). \tag{1.16}
+\]
+
+\begin{question}
+试利用式子 (1.15) 以及逻辑等价的规则推导出式子 (1.16)。
+\end{question}
+
+量词有时会发生在一个或更多变量的情形，这里我们仅探讨两个变量的情形，更多变量的情况可以依两个变量的情况类推下去。所谓两个变量的情况，是形如 \(\forall x,\exists y,P(x,y)\) 的命题，这里 \(P(x,y)\) 指的是和 \(x,y\) 有关的性质。例如微积分中，函数 \(f(x)\) 在 \(x = a\) 的极限为 \(l\)（即 \(\lim_{x\to a}f(x) = l\) ）的定义 \(\forall \epsilon >0,\exists \delta >0\)，满足 \(0< |x - a|< \delta \Rightarrow |f(x) - l|< \epsilon\) 就是两个变量的情况。大致上我们会有下面四种类型的命题。
+\[
+(1)\forall x,\exists y,P(x,y)\quad (2)\exists x,\forall y,P(x,y)
+\]
+\[(3)\forall x,\forall y,P(x,y)\quad (4)\exists x,\exists y,P(x,y)\]
+
+(1)指的是：对于所有的 \(x\) 皆可找到 \(y\) 使得 \(P(x,y)\) 成立。注意这里 \(x\) 的部分先讲，再提存在 \(y\)，所以这个存在的 \(y\) 并不是固定的，它可能会随着 \(x\) 的选取而变动。例如 \(\forall x,\exists y,x + y = 0\) 这个命题是对的。它说任意选取 \(x\)，皆可找到 \(y\) 满足 \(x + y = 0\)。这里 \(y\) 会随着 \(x\) 而变动，即 \(y = -x\)。例如 \(x = 1\) 时 \(y = -1\)，而 \(x = 2\) 时 \(y = -2\)。这里 \(x,y\) 的先后顺序很重要，千万要注意。
+
+(2)指的是：存在 \(x\) 使得对所有的 \(y\) 都会满足 \(P(x,y)\)。注意这里存在的 \(x\) 先讲，再提所有的 \(y\)，所以这个存在的 \(x\) 是固定的，它不可以随着 \(y\) 而变动。例如 \(\exists x,\forall y,x + y = y\) 这个命题是对的。它是说可以找到 \(x\) 让任意的 \(y\) 皆满足 \(x + y = y\)。这里 \(x\) 找到后便固定下来了，即 \(x = 0\)。不过例如在(1)的情形我们知道 \(\forall x,\exists y,x + y = 0\) 这个命题是对的，但若将 \(\forall x\) 和 \(\exists y\) 的顺序交换得 \(\exists y,\forall x,x + y = 0\) 这个命题便是错的。因为我们无法找到一个固定的 \(y\) 使得所有的 \(x\) 都会满足 \(x + y = 0\)。再次强调，这里先后顺序很重要， \(\forall x,\exists y,P(x,y)\) 和 \(\exists y,\forall x,P(x,y)\) 虽然只是 \(\forall x\) 和 \(\exists y\) 先后顺序调动，但意义完全不同，千万要注意。
+
+\begin{question}
+\(\exists x,\forall y,x + y = y\) 这个命题是对的，但若换成 \(\forall y,\exists x,x + y = y\)，是否为对呢？又换成 \(\forall x,\exists y,x + y = y\) 及 \(\exists y,\forall x,x + y = y\)，哪一个对呢？
+\end{question}
+
+\begin{question}
+假设 \(f(x,y),g(x,y)\) 皆为两个变量的多项式。已知$\forall x,\exists y,$ $f(x,y) = 0$ 和 \(\exists y,\forall x,g(x,y) = 0\) 皆为对。试问 \(f(x,y) = 0\) 和 \(g(x,y) = 0\) 在坐标平面上的图形哪一个一定会包含一条水平直线，哪一个一定会和铅直线 \(x = 101\) 相交？
+\end{question}
+
+(3)和(4)的情况较为单纯。(3)指的是任取一个 \(x\)，对于任意的 \(y\) 都会使得 \(P(x,y)\) 成立。利用坐标平面的看法，我们可以说平面上任一点 \((x,y)\) 都会使得 \(P(x,y)\) 成立，所以此时 \(\forall x\) 和 \(\forall y\) 变换顺序并不会改变整个命题。而 (4) 指的是可以找到 \(x\) 使得有一个 \(y\) 满足 \(P(x,y)\)。利用坐标平面的看法，我们可以说平面上存在一点 \((x,y)\) 使得 \(P(x,y)\) 成立。因此此时 \(\exists x\) 和 \(\exists y\) 变换顺序并不会改变整个命题。例如若我们在 \(x = 3\) 时，可找到 \(y = 7\) 使得 \(P(3,7)\) 是正确的，此时我们也可以说 \(y = 7\) 时，可找到 \(x = 3\) 使得 \(P(x,y)\) 为对。总而言之 (3), (4) 因两个变量的量词皆相同，所以 \(x,y\) 的先后不重要。(3) 一般会简化成 \(\forall x,y\) , \(P(x,y)\)，而 (4) 简化成 \(\exists x,y,P(x,y)\)。
+
+接下来我们来看有两个变量的命题取否定时量词的变化情形。在 (1) 的情形，即 \( \forall x,\exists y,P(x,y)\)。此时，我们可以把 \( \exists y,P(x,y)\) 看成是 \(H(x)\) 这样的条件。所以原命题可看成 \(\forall x,H(x)\)。利用式子 (1.15)，我们知道它的否定为 \(\exists x,\neg H(x)\)。然而式子 (1.16) 告诉我们 \(\neg H(x) \sim (\forall y,\neg P(x,y))\)，所以我们得
+\[
+\neg (\forall x,\exists y,P(x,y)) \sim (\exists x,\forall y,\neg P(x,y)).
+\]
+同理我们可得
+\[
+\neg (\exists x,\forall y,P(x,y)) \sim (\forall x,\exists y,\neg P(x,y))
+\]
+\[
+\neg (\forall x,\forall y,P(x,y)) \sim (\exists x,\exists y,\neg P(x,y))
+\]
+\[
+\neg (\exists x,\exists y,P(x,y)) \sim (\forall x,\forall y,\neg P(x,y)).
+\]
+例如前面所提，函数 \(f(x)\) 满足 \(\lim_{x \to a} f(x) = l\) 的否定应为
+\[
+\exists \epsilon >0,\forall \delta >0, \neg (0 < |x - a| < \delta \Rightarrow |f(x) - l| < \epsilon).
+\]
+利用式子 (1.12) 我们知道
+\[
+\neg (0 < |x - a| < \delta \Rightarrow |f(x) - l| < \epsilon) \sim ((0 < |x - a| < \delta) \land (|f(x) - l| \ge \epsilon)).
+\]
+所以 \(\lim_{x \to a} f(x) = l\) 的否定应为
+\[
+\exists \epsilon >0, \forall \delta >0, (0 < |x - a| < \delta) \land (|f(x) - l| \ge \epsilon).
+\]
+
+最后，我们说明一下 \(\forall\) 和 \(\exists\) 在习惯上用法的差异。在习惯上的用语，我们常会省略 \(\forall x\)。例如 \(x \ge 3 \Rightarrow x^2 \ge 9\)，这一个命题严格来说应写成 \(\forall x, (x \ge 3 \Rightarrow x^2 \ge 9)\)。也就是说，在逻辑上我们说这个命题是对的，应该是对所有的实数 \(x\) 都是对的。给定一实数 \(x\)，当 \(x \ge 3\)，当然可得 \(x^2 \ge 9\)。而当 \(x < 3\)，因为它已不符合 \(x \ge 3\) 的前提，我们知道此时 \(x \ge 3 \Rightarrow x^2 \ge 9\) 也是对的。所以我们可以认定 \(\forall x, (x \ge 3 \Rightarrow x^2 \ge 9)\) 是对的（这也是逻辑上定义 \(P\) 错时 \(P \Rightarrow Q\) 为对的用意，希望同学能体会）。要注意的是 \(\exists x\) 就绝不能省略，否则就弄不清楚是 \(\forall x\) 或 \(\exists x\) 了。
+
+总而言之，当我们看到 “\( P(x) \Rightarrow Q(x) \)” 这样的说法，可以看成 “\( \forall x, P(x) \Rightarrow Q(x)\)”。也就是说，对所有的 \(x\)，皆会使得 \(P(x) \Rightarrow Q(x)\) 成立。由于逻辑上当 \(x\) 会使得 \(P(x)\) 不成立时，\(P(x) \Rightarrow Q(x)\) 依然成立，所以仅剩下那些使得 \(P(x)\) 成立的 \(x\) 需要探讨。也因此“对所有的 \(x\)，皆会使得 \(P(x) \Rightarrow Q(x)\) 成立” 就表示那些剩下的 \(x\)（即 \(P(x)\) 成立）皆会使得 \(P(x) \Rightarrow Q(x)\) 成立（即 \(Q(x)\) 成立）。因此在数学上对于“\( P(x) \Rightarrow Q(x) \)”，我们可以将之解读为 "只要 \(x\) 符合 \(P(x)\) 也会符合 \(Q(x)\) " 这种命题。
+
+至于 \(\exists\) 的用法，就要注意了。在数学上，我们几乎不会有“$\exists x,$ $ P(x) \Rightarrow Q(x)$”这样的用法。这个命题当然在逻辑上是说得通的，也就是说存在 \(x\) 使得“\(P(x) \Rightarrow Q(x)\)” 成立。让我们分两种情况来探讨这个命题在逻辑上的意义。
+
+\begin{enumerate}
+    \item 存在 \(x\) 使得 \(P(x)\) 不成立: 此时利用此 \(x\) 知 \(P(x)\) 不成立，也因此不管 \(Q(x)\) 是否成立，\(P(x) \Rightarrow Q(x)\) 是成立的。所以“ \(\exists x, P(x) \Rightarrow Q(x)\)”这个命题当然是对的。也就是说，在此情况 \(Q(x)\) 这个性质根本没意义。
+    \item 不存在 \(x\) 使得 \(P(x)\) 不成立: 此时表示对所有 \(x\)，皆会使得 \(P(x)\) 成立，所以“ \(\exists x, P(x) \Rightarrow Q(x)\)”就等同于存在 \(x\) 使得 \(Q(x)\) 成立。也就是说，在此情况 \(P(x)\) 这个性质根本没意义。
+\end{enumerate}
+
+由此可知，数学上应该看不到“ \(\exists x, P(x) \Rightarrow Q(x)\)”这样的命题。那我们如何表达“存在一个 \(x\) 满足由 \(P(x)\) 成立可得 \(Q(x)\)”成立呢？因为这个 \(x\) 使得 \(P(x)\) 成立，所以要 \(P(x) \Rightarrow Q(x)\) 成立就表示 \(Q(x)\) 也成立。因此这个说法真的很奇怪，我们应该说“存在一个 \(x\) 满足 \(P(x)\) 成立且 \(Q(x)\) 成立”，即用“ \(\exists x, P(x) \land Q(x)\)”来表达。例如当我们要表达 \(\sqrt{10}\) 是存在的，我们可以说“存在一个大于 0 的实数 \(x\) , 满足 \(x^2 = 10\)”，因此应写成“ \(\exists x, (x > 0) \land (x^2 = 10)\)”，而不能写成“ \(\exists x, (x > 0) \Rightarrow (x^2 = 10)\)”；否则找到任意小于等于 0 的 \(x\) 都会使得“ \(\exists x, (x > 0) \Rightarrow (x^2 = 10)\)”为对，就无法让人知道这和 \(\sqrt{10}\) 有什么关系了。
+
+\begin{question}
+假设 \(f(x, y)\) 是一个两个变量的多项式。“存在一实数 \(a > 0\) 使得 \(f(a, y) = 0\) 无解”这一个命题，数学的表示法为何？并写出这命题的否定。
+\end{question}
+
+\begin{problemset}
+    \item 试分别在以下各小题，找出使之为真命题（true statement）的所有可能整数 $n$（请不要只写答案，尽量说明理由）。
+    \begin{probenumerate}
+        \item $n \geq 3$ 且 $n < 5$。
+        \item $n > 3$ 或 $n \leq 5$。
+        \item $n \geq 3$ 且 $n \leq 3$。
+        \item $n > 3$ 或 $n < 3$。
+    \end{probenumerate}
+
+    \item 在课堂上我们介绍了 $((P \wedge Q) \vee R) \sim ((P \vee R) \wedge (Q \vee R))$，这称为析取对合取的分配律（distribution of disjunction over conjunction）。试利用真值表检查以下的分配律。
+    \begin{probenumerate}
+        \item $((P \wedge Q) \wedge R) \sim ((P \wedge R) \wedge (Q \wedge R))$，合取对合取的分配律。
+        \item $((P \vee Q) \vee R) \sim ((P \vee R) \vee (Q \vee R))$，析取对析取的分配律。
+        \item $((P \vee Q) \wedge R) \sim ((P \wedge R) \vee (Q \wedge R))$，合取对析取的分配律。
+    \end{probenumerate}
+
+    \item（选做）在课堂上我们提及当一个命题 $P$ 为 T 时，我们可以定它的值 $p = 1$；若为 F，则定 $p = 0$。假设 $P, Q$ 为命题且其值分别为 $p, q$。
+    \begin{probenumerate}
+        \item 试说明 $P \wedge Q$ 的值可表成 $p \times q$，也可表成 $\min\{p, q\}$。
+        \item 试说明 $P \vee Q$ 的值可表成 $p + q - p \times q$，也可表成 $\max\{p, q\}$。
+        \item 利用真值表以及（a）,（b）的各种方法验证 $(P \wedge P) \sim P$ 以及 $(P \vee P) \sim P$。你觉得哪一种方法较好用？
+        \item 利用 $P \wedge Q$ 和 $P \vee Q$ 的值可分别表成 $p \times q$ 和 $p + q - p \times q$，证明 $((P \wedge Q) \vee R) \sim ((P \vee R) \wedge (Q \vee R))$ 以及 $((P \vee Q) \wedge R) \sim ((P \wedge R) \vee (Q \wedge R))$。
+        \item 利用当 $a, b, c \geq 0$ 时 $\max\{a, b\} \times c = \max\{a \times c, b \times c\}$（可尝试证明看看），证明 $((P \vee Q) \wedge R) \sim ((P \wedge R) \vee (Q \wedge R))$。
+    \end{probenumerate}
+
+    \item 试依照指定方式解决以下问题。
+    \begin{probenumerate}
+        \item 否定 $(P \Rightarrow Q) \Rightarrow P$（写出否定句，不需化简）。
+        \item 利用 $((P \wedge Q) \vee P) \sim P$ 说明 $\neg[(P \Rightarrow Q) \Rightarrow P]$ 和 $\neg P$ 是逻辑等价的。
+        \item 叙述 命题 1.2.2 且利用它说明 $((P \Rightarrow Q) \Rightarrow P) \Leftrightarrow P$ 是一个恒真式。
+    \end{probenumerate}
+
+    \item 将下列的命题形式，仅利用 $\neg$ 和 $\vee$ 写下与之等价的命题形式。
+    \begin{probenumerate}
+        \item $P \Leftrightarrow \neg Q$。
+        \item $(P \vee Q) \Rightarrow (P \wedge Q)$。
+        \item $(P \Rightarrow Q) \vee (Q \Rightarrow P)$。
+    \end{probenumerate}
+
+    \item 我们会将 $(\neg P) \wedge (\neg Q)$ 缩写成 $P \triangle Q$。仅利用 $\triangle$ 和 $\neg$ 写下与 $P \Rightarrow Q$ 等价的命题形式。
+
+    \item 证明：如果 “$\exists y < 0, \forall x > 0, P(x, y)$”，那么 “$\forall x > 0, \exists y < 0, P(x, y)$”。
+
+    \item 找出一个 $P(x, y)$ 的例子，使得命题 “$\forall x < 0, \exists y < 0, P(x, y)$” 为真，但命题 “$\exists y < 0, \forall x < 0, P(x, y)$” 为假。
+
+    \item 否定命题：如果 $\forall x > 0, \exists y < 0, P(x) \wedge Q(y)$，那么 $\exists z \leq 0, R(x, z) \vee S(y, z)$。
+
+    \item 令 $P$ 为命题：如果 $x^2 - 3x + 2 < 0$，那么 $1.3 < x < 1.7$。
+    \begin{probenumerate}
+        \item 写出 $\neg P$。（提示：注意在 if-then 命题中隐含的 “$\forall x$”。）
+        \item 说明 $P$ 或 $\neg P$ 哪一个是正确的。
+    \end{probenumerate}
+\end{problemset}
