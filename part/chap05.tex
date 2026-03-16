@@ -137,7 +137,7 @@ $$ f(A) \cup f(B) = f(A \cup B). $$
 对于差集，我们要考虑的是 $f(A \setminus B)$ 和 $f(A) \setminus f(B)$ 的关系。首先若 $y \in f(A) \setminus f(B)$，表示存在 $a \in A$ 使得 $y = f(a)$ 但 $y \notin f(B)$。现若 $a \in B$，会造成 $y = f(a) \in f(B)$ 之矛盾。故知 $a \in A \setminus B$，即 $y = f(a) \in f(A \setminus B)$。得证 $f(A) \setminus f(B) \subseteq f(A \setminus B)$。不过反过来并不成立，因为若 $y \in f(A \setminus B)$，表示存在 $a \in A \setminus B$。因为 $(A \setminus B) \subseteq A$，我们当然有 $f(a) \in f(A)$。但 $a \notin B$，并不表示 $y = f(a) \notin f(B)$，因为很有可能存在 $b \in B$ 满足 $f(a) = f(b)$。例如前面 $f : \{1, 2\} \to \{0\}$ 定义为 $f(1) = f(2) = 0$ 的例子。若令 $A = \{1\}, B = \{2\}$，我们有 $A \setminus B = A$，因此有 $f(A \setminus B) = f(A) = \{0\}$。但 $f(A) = f(B) = \{0\}$，所以 $f(A) \setminus f(B) = \emptyset$。由此例知 $f(A \setminus B)$ 有可能不包含于 $f(A) \setminus f(B)$。不过 $f(A) \setminus f(B) \subseteq f(A \setminus B)$ 永远是对的。
 
 \begin{question}
-假设 $X$ 为宇集，$A \subseteq X$ 且 $f : X \to X$ 为函数。试问 $f(A^c) \subseteq f(A)^c$ 是否成立？又 $f(A)^c \subseteq f(A^c)$ 是否成立？
+假设 $X$ 为全集，$A \subseteq X$ 且 $f : X \to X$ 为函数。试问 $f(A^c) \subseteq f(A)^c$ 是否成立？又 $f(A)^c \subseteq f(A^c)$ 是否成立？
 \end{question}
 
 接下来，我们来探讨所谓的原像（inverse image）。简单来说，给定一个函数 $f : X \to Y$ 以及 $Y$ 的子集 $C$，所谓 $C$ 在 $f$ 的作用之下所得的原像就是收集那些经由 $f$ 会落在 $C$ 中的元素所成的集合。我们有以下的定义。
@@ -168,7 +168,7 @@ $$ f(A) \cup f(B) = f(A \cup B). $$
 \end{proof}
 
 \begin{question}
-假设 $X$ 为宇集，$A \subseteq X$ 且 $f : X \to X$ 为函数。试问 $f^{-1}(A^c) \subseteq (f^{-1}(A))^c$ 是否成立？又 $(f^{-1}(A))^c \subseteq f^{-1}(A^c)$ 是否成立？
+假设 $X$ 为全集，$A \subseteq X$ 且 $f : X \to X$ 为函数。试问 $f^{-1}(A^c) \subseteq (f^{-1}(A))^c$ 是否成立？又 $(f^{-1}(A))^c \subseteq f^{-1}(A^c)$ 是否成立？
 \end{question}
 
 当 $f : X \to Y$ 为函数且 $A$ 为 $X$ 的子集时，既然 $f(A)$ 为 $Y$ 的子集，我们当然可以考虑 $f^{-1}(f(A))$。现假设 $a \in A$，我们有 $f(a) \in f(A)$，故依原像的定义得 $a \in f^{-1}(f(A))$，得证 $A \subseteq f^{-1}(f(A))$。反之，若 $x \in f^{-1}(f(A))$，表示 $f(x) \in f(A)$，但这并不表示 $x \in A$。例如前面 $f : \{1, 2\} \to \{0\}$ 定义为 $f(1) = f(2) = 0$ 的例子。若令 $A = \{1\}$，我们有 $f(A) = \{0\}$，但 $f^{-1}(f(A)) = f^{-1}(\{0\}) = \{1, 2\} \neq A$。由此例知 $f^{-1}(f(A))$ 有可能不包含于 $A$。不过 $A \subseteq f^{-1}(f(A))$ 永远是对的。
@@ -212,7 +212,7 @@ $$ f^{-1}(f(f^{-1}(C))) = f^{-1}(C). $$
 \begin{enumerate}
     \item 在例 5.2.2 中我们考虑函数 $f : \mathbb{R} \setminus \{3\} \to \mathbb{R}$ 定义为 $f(x) = (x + 1)/(x - 3), \forall x \in X$。我们找出 $f$ 的值域为 $\mathbb{R} \setminus \{1\}$。因此 $f$ 不是满射的。但若考虑 “新” 的函数 $g : \mathbb{R} \setminus \{3\} \to \mathbb{R} \setminus \{1\}$ 定义为 $g(x) = (x + 1)/(x - 3), \forall x \in X$，则 $g(x)$ 为满射的。
     \item 考虑函数 $f : \mathbb{Z} \to \mathbb{N} \cup \{0\}$ 定义为
-    $$ f(n) = \begin{cases} 2n, & \text{if } n \geq 0; \\ -2n - 1, & \text{if } n < 0. \end{cases} $$
+    $$ f(n) = \begin{cases} 2n, & \text{若 } n \geq 0; \\ -2n - 1, & \text{若 } n < 0. \end{cases} $$
     我们说明 $f$ 为满射的。首先由 $f$ 的映射规则我们大致知道可以将 $f$ 的陪域元素分成偶数与奇数。现若 $k \in \mathbb{N} \cup \{0\}$ 为偶数，表示 $k/2 \in \mathbb{Z}$ 且 $k/2 \geq 0$。故此时取 $n = k/2$，我们有 $f(n) = 2n = k$。而若 $k \in \mathbb{N} \cup \{0\}$ 为奇数，表示 $k + 1 \in \mathbb{Z}$ 为偶数且 $k + 1 > 0$。此时取 $n = -(k + 1)/2$，我们有 $n \in \mathbb{Z}$ 且 $n < 0$，故依定义有 $f(n) = -2n - 1 = (-2(-(k + 1)/2)) - 1 = k$。得证 $f$ 为满射的。
 \end{enumerate}
 \end{example}
@@ -268,7 +268,7 @@ $$ f^{-1}(f(f^{-1}(C))) = f^{-1}(C). $$
 接下来我们探讨所谓单射函数，简单来说就是定义域里相异的元素都会被映射到陪域里相异的元素。其正式定义如下：
 
 \begin{definition}
-假设 $f : X \to Y$ 为函数。若对于 $X$ 中任两相异元素 $x_1 \neq x_2$，皆有 $f(x_1) \neq f(x_2)$，则我们称 $f$ 为一对一的（one-to-one）。有时也称一对一的函数为单射函数（injective function）。
+假设 $f : X \to Y$ 为函数。若对于 $X$ 中任两相异元素 $x_1 \neq x_2$，皆有 $f(x_1) \neq f(x_2)$，则我们称 $f$ 为一对一的（one-to-one）\footnote{部分教材将双射翻译为“一一”“一对一”，本教材的翻译不同，请读者注意——译者注}。有时也称一对一的函数为单射函数（injective function）。
 \end{definition}
 
 用原像的观点来看 $f : X \to Y$ 为单射也等同于对于任意 $y \in Y, \#(f^{-1}(\{y\})) \leq 1$（有可能 $f^{-1}(\{y\}) = \emptyset$）。另外一般来说要处理不等号较为困难，所以当要证明单射时，我们大都用定义 5.3.7 的逆否命题处理。也就是说证明对任意 $x_1, x_2 \in X$ 满足 $f(x_1) = f(x_2)$，则 $x_1 = x_2$。我们看以下的例子。
@@ -278,7 +278,7 @@ $$ f^{-1}(f(f^{-1}(C))) = f^{-1}(C). $$
 \begin{enumerate}
     \item 考虑函数 $f : \mathbb{R} \setminus \{3\} \to \mathbb{R}$ 定义为 $f(x) = (x + 1)/(x - 3), \forall x \in X$。现若 $x_1, x_2 \in \mathbb{R} \setminus \{3\}$ 满足 $f(x_1) = f(x_2)$，表示 $(x_1 + 1)/(x_1 - 3) = (x_2 + 1)/(x_2 - 3)$，即 $(x_1 + 1)(x_2 - 3) = (x_2 + 1)(x_1 - 3)$。化简得 $x_2 - 3x_1 = x_1 - 3x_2$，即 $x_1 = x_2$。因此得证 $f$ 为单射的。
     \item 考虑函数 $f : \mathbb{Z} \to \mathbb{N} \cup \{0\}$ 定义为
-    $$ f(n) = \begin{cases} 2n, & \text{if } n \geq 0; \\ -2n - 1, & \text{if } n < 0. \end{cases} $$
+    $$ f(n) = \begin{cases} 2n, & \text{若 } n \geq 0; \\ -2n - 1, & \text{若 } n < 0. \end{cases} $$
     现假设 $n_1, n_2 \in \mathbb{Z}$ 满足 $f(n_1) = f(n_2)$。由于若 $n_1, n_2$ 其中有一个为大于等于 0 另一个为小于 0，则依 $f$ 的定义 $f(n_1)$ 和 $f(n_2)$ 必为一奇一偶，此与 $f(n_1) = f(n_2)$ 相矛盾。因此我们有 $n_1 \geq 0, n_2 \geq 0$ 或 $n_1 < 0, n_2 < 0$。当 $n_1 \geq 0, n_2 \geq 0$，我们有 $f(n_1) = 2n_1, f(n_2) = 2n_2$，故由 $f(n_1) = f(n_2)$ 之假设得 $n_1 = n_2$。同理，当 $n_1 < 0, n_2 < 0$，我们有 $f(n_1) = -2n_1 - 1, f(n_2) = -2n_2 - 1$，故由 $f(n_1) = f(n_2)$ 之假设得 $n_1 = n_2$。因此得证 $f$ 为单射的。
 \end{enumerate}
 \end{example}
@@ -347,7 +347,7 @@ $$ g' = g' \circ \mathrm{id}_Y = g' \circ (f \circ g) = (g' \circ f) \circ g = \
 当 $f : X \to Y$ 为双射时，我们可以利用原像将 $f^{-1} : Y \to X$ 写下。事实上，对任意 $y \in Y$，由 $f$ 为满射以及单射，我们有 $\#(f^{-1}(\{y\})) = 1$。也就是说 $f^{-1}(\{y\})$ 恰有一个元素。因此若 $f^{-1}(\{y\}) = \{x\}$，则我们定义 $f^{-1}(y) = x$。依此定义，我们有 $f(x) = y$ 当且仅当 $f^{-1}(y) = x$，因此确实得 $f \circ f^{-1} = \mathrm{id}_Y$ 且 $f^{-1} \circ f = \mathrm{id}_X$。
 
 \begin{example}
-我们探讨例 5.3.2 中的双射函数其逆为何。
+我们探讨例 5.3.2 中的双射函数其逆是什么函数。
 \begin{enumerate}
     \item 考虑函数 $g : \mathbb{R} \setminus \{3\} \to \mathbb{R} \setminus \{1\}$ 定义为 $g(x) = (x + 1)/(x - 3), \forall x \in X$，则 $g(x)$ 为满射的。在例 5.2.2 中我们知道对任意 $y \in \mathbb{R} \setminus \{1\}, g^{-1}(\{y\}) = \{(3y + 1)/(y - 1)\}$。因此知 $g^{-1} : \mathbb{R} \setminus \{1\} \to \mathbb{R} \setminus \{3\}$ 定义为 $g^{-1}(x) = (3x + 1)/(x - 1), \forall x \in \mathbb{R} \setminus \{1\}$。
     \item 考虑函数 $f : \mathbb{Z} \to \mathbb{N} \cup \{0\}$ 定义为
@@ -490,7 +490,7 @@ $$ (f_1^{-1} \circ f_2^{-1}) \circ (f_2 \circ f_1) = f_1^{-1} \circ (f_2^{-1} \c
 \end{proof}
 
 \begin{question}
-定理 5.4.6 的证明中，$|A_e| = |B_o|$ 的证明为何是考虑 $g$ 在 $B_o$ 的限制而不是考虑 $f$ 在 $A_e$ 的限制？若考虑 $f$ 在 $A_e$ 的限制 $f|_{A_e} : A_e \to B$，其像为何？又 $|A_\infty| = |B_\infty|$ 的证明可以考虑 $f$ 在 $A_\infty$ 上的限制 $f|_{A_\infty} : A_\infty \to B$ 吗？
+定理 5.4.6 的证明中，$|A_e| = |B_o|$ 的证明为何是考虑 $g$ 在 $B_o$ 的限制而不是考虑 $f$ 在 $A_e$ 的限制？若考虑 $f$ 在 $A_e$ 的限制 $f|_{A_e} : A_e \to B$，其像是什么集合？又 $|A_\infty| = |B_\infty|$ 的证明可以考虑 $f$ 在 $A_\infty$ 上的限制 $f|_{A_\infty} : A_\infty \to B$ 吗？
 \end{question}
 
 \begin{example}
@@ -508,7 +508,7 @@ $$ (f_1^{-1} \circ f_2^{-1}) \circ (f_2 \circ f_1) = f_1^{-1} \circ (f_2^{-1} \c
 
 而对于 $-3 \in B$，由 $f^{-1}(\{-3\}) = \{2\}, g^{-1}(\{2\}) = \{-1\}$ 以及 $f^{-1}(\{-1\}) = \emptyset$，我们知道利用 -3 所建构的数列 $\langle -3 \rangle$ 为 -3, 2, -1。因为此数列有 3 项，所以知 $-3 \in B_o$。同理，由上图很快看出利用 -4 所建构的数列 $\langle -4 \rangle$ 为 -4, 3, -2, 1，得 $-4 \in B_e$。很快地我们可以归纳出，当 $b \in B$ 为奇数时 $b \in B_o$，而当 $b \in B$ 为偶数时 $b \in B_e$。也因此知 $B_\infty = \emptyset$。事实上此时 $B_o, B_e$ 就是 $B$ 的一个划分。
 
-接着我们看 $f$ 确实单射地将 $A_o$ 满射至 $B_e$（一一对应，英文称之为 one-to-one correspondence）。首先当 $a \in A_o$ 表示 $a$ 为正奇数，利用 $f(a) = -(1 + a)$ 知 $f(a)$ 为负偶数，即 $f(a) \in B_e$。因此 $f$ 确实单射地将 $A_o$ 映射至 $B_e$。而对于 $b \in B_e$，我们知 $b$ 为负偶数。今考虑 $a = -b - 1$，我们有 $a > 0$（因 $b \leq -2$）且 $a$ 为奇数，即 $a \in A_o$。将 $a = -b - 1 \in A_o$ 代入 $f$ 得 $f(a) = -(1 + a) = b$。故知 $f$ 确实单射地将 $A_o$ 满射至 $B_e$。注意 $f$ 无法将 $A_e$ 满射至 $B_o$。主要原因是 $B_o$ 中可能有元素其原像是空集。例如这里我们有 $-1 \in B_o$ 且 $f^{-1}(\{-1\}) = \emptyset$。所以这里我们是用 $g$ 来得到 $B_o$ 至 $A_e$ 之间的单射且满射对应。事实上对任意 $b \in B_o$，我们有 $b$ 为负奇数，因此 $g(b) = 1 - b$ 为正偶数，即 $g(b) \in A_e$。反之，对任意 $a \in A_e$，我们有 $b = 1 - a < 0$（因 $a \geq 2$）且为奇数。此时将 $b = 1 - a \in B_o$ 代入 $g$，得 $g(b) = 1 - b = 1 - (1 - a) = a$，故得证 $g$ 确实单射地将 $B_o$ 满射至 $A_e$。
+接着我们看 $f$ 确实单射地将 $A_o$ 满射至 $B_e$（一一对应，英文称之为 one-to-one correspondence）\footnote{“一一对应”即双射——译者注}。首先当 $a \in A_o$ 表示 $a$ 为正奇数，利用 $f(a) = -(1 + a)$ 知 $f(a)$ 为负偶数，即 $f(a) \in B_e$。因此 $f$ 确实单射地将 $A_o$ 映射至 $B_e$。而对于 $b \in B_e$，我们知 $b$ 为负偶数。今考虑 $a = -b - 1$，我们有 $a > 0$（因 $b \leq -2$）且 $a$ 为奇数，即 $a \in A_o$。将 $a = -b - 1 \in A_o$ 代入 $f$ 得 $f(a) = -(1 + a) = b$。故知 $f$ 确实单射地将 $A_o$ 满射至 $B_e$。注意 $f$ 无法将 $A_e$ 满射至 $B_o$。主要原因是 $B_o$ 中可能有元素其原像是空集。例如这里我们有 $-1 \in B_o$ 且 $f^{-1}(\{-1\}) = \emptyset$。所以这里我们是用 $g$ 来得到 $B_o$ 至 $A_e$ 之间的单射且满射对应。事实上对任意 $b \in B_o$，我们有 $b$ 为负奇数，因此 $g(b) = 1 - b$ 为正偶数，即 $g(b) \in A_e$。反之，对任意 $a \in A_e$，我们有 $b = 1 - a < 0$（因 $a \geq 2$）且为奇数。此时将 $b = 1 - a \in B_o$ 代入 $g$，得 $g(b) = 1 - b = 1 - (1 - a) = a$，故得证 $g$ 确实单射地将 $B_o$ 满射至 $A_e$。
 \end{example}
 
 \begin{question}
@@ -565,7 +565,7 @@ $$ (f_1^{-1} \circ f_2^{-1}) \circ (f_2 \circ f_1) = f_1^{-1} \circ (f_2^{-1} \c
 
 \begin{proof}
 我们用数学归纳法证明。首先证明若 $S_1, S_2$ 为可数的，则 $S_1 \cup S_2$ 为可数的。依定义 $S_1, S_2$ 是可数的，故存在 $f_1 : S_1 \to \mathbb{N}$ 以及 $f_2 : S_2 \to \mathbb{N}$ 皆为单射函数。现定义新的函数 $f : S_1 \cup S_2 \to \mathbb{N}$，其定义为
-$$ f(s) = \begin{cases} 2f_1(s), & \text{if } s \in S_1; \\ 2f_2(s) + 1, & \text{if } s \in S_2 \setminus S_1. \end{cases} $$
+$$ f(s) = \begin{cases} 2f_1(s), & \text{若 } s \in S_1; \\ 2f_2(s) + 1, & \text{若 } s \in S_2 \setminus S_1. \end{cases} $$
 很清楚地，$f$ 是良定义的函数，因为 $S_1 \cup S_2 = S_1 \cup (S_2 \setminus S_1)$ 以及 $S_1 \cap (S_2 \setminus S_1) = \emptyset$，因此对任意 $s \in S_1 \cup S_2, s$ 一定会在 $S_1$ 和 $S_2 \setminus S_1$ 其中一个，且不会同时皆在其中。而当 $s \in S_1, f_1(s)$ 的取值是明确确定的（因 $f_1 : S_1 \to \mathbb{N}$ 是一个函数），所以此时 $f(s)$ 取值 $2f_1(s)$ 亦确定。同理当 $s \in S_2 \setminus S_1$，因 $s \in S_2, f_2(s)$ 的取值是明确确定的，所以此时 $f(s)$ 取值 $2f_2(s) + 1$ 亦确定。我们剩下要证明 $f : S_1 \cup S_2 \to \mathbb{N}$ 是单射的，也就是要证明任取 $s, t \in S_1 \cup S_2$ 其中 $s \neq t$，皆会有 $f(s) \neq f(t)$。我们分成两种情况。第一种情形就是 $s, t$ 同属于 $S_1$ 或是同属于 $S_2 \setminus S_1$。此时我们分别有 $f(s) = 2f_1(s) \neq 2f_1(t) = f(t)$（因 $f_1$ 为单射的），以及 $f(s) = 2f_2(s) + 1 \neq 2f_2(t) + 1 = f(t)$（因 $f_2$ 为单射的）。第二种情况是 $s \in S_1$ 但 $t \in S_2 \setminus S_1$ 或是 $t \in S_1$ 但 $s \in S_2 \setminus S_1$。此时由于 $f(s), f(t)$ 必为一奇一偶，故亦得 $f(s) \neq f(t)$。我们证得了 $f : S_1 \cup S_2 \to \mathbb{N}$ 为单射的，故证得 $S_1 \cup S_2$ 为可数的。
 
 接着我们要用数学归纳法证明，对于任意 $n \in \mathbb{N}$ 且 $n \geq 2$，若 $S_1, \dots, S_n$ 为可数集，则 $\bigcup_{i=1}^n S_i$ 仍为可数集。我们考虑 $n = k + 1$ 的情形。利用归纳假设，$S_1, \dots, S_k$ 为可数集，所以 $\bigcup_{i=1}^k S_i$ 为可数集。现又若 $S_{k+1}$ 为可数集，利用上面证过 $k = 2$ 的情形，我们知 $(\bigcup_{i=1}^k S_i) \cup S_{k+1}$ 为可数集。故由 $\bigcup_{i=1}^{k+1} S_i = (\bigcup_{i=1}^k S_i) \cup S_{k+1}$ 得证 $\bigcup_{i=1}^{k+1} S_i$ 为可数集。
@@ -634,7 +634,7 @@ $\mathbb{Q}$ 是可数的。
 \end{proof}
 
 \begin{question}
-令 $A = \{1, 2, 3\}$，考虑 $f : A \to \mathcal{P}(A)$ 定义为 $f(1) = \{1, 2\}, f(2) = \{1, 3\}, f(3) = \{2\}$。令 $S = \{s \in A \mid s \notin f(s)\}$。试写下 $S$ 为何？并检验 $S$ 不在 $f : A \to \mathcal{P}(A)$ 的像中。
+令 $A = \{1, 2, 3\}$，考虑 $f : A \to \mathcal{P}(A)$ 定义为 $f(1) = \{1, 2\}, f(2) = \{1, 3\}, f(3) = \{2\}$。令 $S = \{s \in A \mid s \notin f(s)\}$。试写下 $S$ 是什么集合？并检验 $S$ 不在 $f : A \to \mathcal{P}(A)$ 的像中。
 \end{question}
 
 \begin{corollary}
@@ -718,17 +718,17 @@ $\mathbb{R}$ 是不可数的。
     \item 令 $X$ 是非空集合且 $Y, Z \subseteq X$。
     \begin{probenumerate}
         \item 假设 $Y$ 是不可数的且 $Z$ 是可数的。证明 $Y \setminus Z$ 是不可数的。
-        \item 利用 $\mathbb{R}$ 是不可数的这一事实，证明無理数集合是不可数的。
+        \item 利用 $\mathbb{R}$ 是不可数的这一事实，证明无理数集合是不可数的。
         \item 假设 $Y \times Z$ 是不可数的。证明 $Y$ 或 $Z$ 是不可数的。
     \end{probenumerate}
 
-    \item 给定 $n \in \mathbb{N}$，试证明所有次数小于 $n$ 的整系数多项式所成的集合为可数的。（提示：利用若 $S_1, \dots, S_n$ 为可数，则 $S_1 \times \dots \times S_n$ 为可数。）
+    \item 给定 $n \in \mathbb{N}$，试证明所有次数小于 $n$ 的整系数多项式所成的集合为可数的。（提示：利用若 $S_1, \dots, S_n$ 为可数的，则 $S_1 \times \dots \times S_n$ 为可数的。）
 
-    \item 试证明所有整系数多项式所成的集合为可数。（提示：利用若 $S_i, \forall i \in \mathbb{N}$ 是可数的，则 $\bigcup_{i=1}^{\infty} S_i$ 是可数。）
+    \item 试证明所有整系数多项式所成的集合为可数的。（提示：利用若 $S_i, \forall i \in \mathbb{N}$ 是可数的，则 $\bigcup_{i=1}^{\infty} S_i$ 是可数集。）
 
     \item 令 $S$ 为所有整数部分为 0，而小数点后各位数是 0 或 1 所组成的实数所成的集合。假设 $f : \mathbb{N} \to S$ 是一个函数。考虑 $S$ 中的元素 $s = 0.a_1a_2a_3 \dots a_i \dots$，其中对任意 $i \in \mathbb{N}$，我们令 $s$ 的小数点后第 $i$ 位的值 $a_i$ 为：
     $$ a_i = \begin{cases} 1, & \text{若 } f(i) \text{ 小数点后第 } i \text{ 位为 } 0; \\ 0, & \text{若 } f(i) \text{ 小数点后第 } i \text{ 位为 } 1. \end{cases} $$
-    试证明 $s$ 不在 $f : \mathbb{N} \to S$ 的图像（image）中，并以此说明 $S$ 是不可数的。
+    试证明 $s$ 不在 $f : \mathbb{N} \to S$ 的像（image）中，并以此说明 $S$ 是不可数的。
 
     \item 对于集合 $A, B$，我们定义集合 $A^B = \{f \mid f : B \to A \text{ 是一个函数}\}$。假设 $A_1, A_2, B$ 是集合。证明 $|(A_1 \times A_2)^B| = |A_1^B \times A_2^B|$。（提示：对于 $f_1 \in A_1^B, f_2 \in A_2^B$，通过设置 $(f_1 \times f_2)(b) = (f_1(b), f_2(b)), \forall b \in B$ 来定义 $(f_1 \times f_2) \in (A_1 \times A_2)^B$。）
 \end{problemset}
