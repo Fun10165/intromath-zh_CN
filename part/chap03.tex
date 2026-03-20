@@ -105,7 +105,7 @@
 \end{question}
 
 我们可以利用所谓\textbf{维恩图（Venn diagrams）}\index{维恩图（Venn diagrams）} 来帮助我们了解集合间的关系。大致上，我们先画一个框框表示全集，然后在此框框内画一个封闭区域（一般是画一个圆）表示一个集合。例如下图就是表示在全集 $X$ 中的一个集合 $A$。
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \begin{tikzpicture}
 
@@ -124,7 +124,7 @@
 
 我们可以用维恩图来表示两个集合 $A, B$ 之间三种可能的关系如下。
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \begin{tikzpicture}
 
@@ -175,7 +175,7 @@
 最左边图示表示的是 $A, B$ 没有共同的元素，中间图示表示的是 $A, B$ 有共同元素但互相没有包含关系，而最右边表示的是 $A \subseteq B$。
 
 有时维恩图可以帮助我们了解一些集合的性质，甚至给我们证明这些性质的提示。例如以下的图示便可以帮助我们理解命题 3.1.4 (2) “若 $A \subseteq B$ 且 $B \subseteq C$，则 $A \subseteq C$” 这个性质。
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \begin{tikzpicture}
 
@@ -498,7 +498,7 @@ $ \bigcup_{i \in I} (A_i \cap B) \subseteq \left( \bigcup_{i \in I} A_i \right) 
 另一方面，若 $x \in (\bigcup_{i \in I} A_i) \cap B$，表示 $x \in \bigcup_{i \in I} A_i$ 且 $x \in B$。因此存在 $i \in I$，使得 $x \in A_i$ 且 $x \in B$。亦即存在 $i \in I$ 使得 $x \in A_i \cap B$。故知此时 $x \in \bigcup_{i \in I} (A_i \cap B)$，得证 $((\bigcup_{i \in I} A_i) \cap B) \subseteq \bigcup_{i \in I} (A_i \cap B)$，故 $(\bigcup_{i \in I} A_i) \cap B = \bigcup_{i \in I} (A_i \cap B)$。
 \end{proof}
 
-最后我们推广有关于有限集合差集的德摩根定律\index{德摩根定律（DeMorgan's laws）}（命题 3.2.9 (2)(3)）。
+最后我们推广有限集合差集的德摩根定律\index{德摩根定律（DeMorgan's laws）}（命题 3.2.9 (2)(3)）。
 
 \begin{proposition}
 假设 $C$ 为集合且 $\{A_i, i \in I\}$ 是以 $I$ 为指标集的加标集族，我们有以下的性质。

@@ -185,7 +185,11 @@ $$ f(f^{-1}(C)) = C \cap f(X). $$
 \end{proposition}
 
 \begin{proof}
-前面已证得 $f(f^{-1}(C)) \subseteq C$，又因 $f^{-1}(C) \subseteq X$，故有 $f(f^{-1}(C)) \subseteq f(X)$，因此得 $f(f^{-1}(C)) \subseteq C \cap f(X)$。另一方面若 $y \in C \cap f(X)$，表示 $y \in C$ 且存在 $x \in X$ 使得 $y = f(x)$。因此知，此 $x$ 满足 $f(x) = y \in C$，亦即 $x \in f^{-1}(C)$。所以 $y = f(x) \in f(f^{-1}(C))$，得证 $C \cap f(X) \subseteq f(f^{-1}(C))$。因此证明了 $f(f^{-1}(C)) = C \cap f(X)$。
+前面已证得
+$$ f(f^{-1}(C)) \subseteq C. $$
+又因 $f^{-1}(C) \subseteq X$，故有 $f(f^{-1}(C)) \subseteq f(X)$，因此得
+$$ f(f^{-1}(C)) \subseteq C \cap f(X). $$
+另一方面若 $y \in C \cap f(X)$，表示 $y \in C$ 且存在 $x \in X$ 使得 $y = f(x)$。因此知，此 $x$ 满足 $f(x) = y \in C$，亦即 $x \in f^{-1}(C)$。所以 $y = f(x) \in f(f^{-1}(C))$，得证 $C \cap f(X) \subseteq f(f^{-1}(C))$。因此证明了 $f(f^{-1}(C)) = C \cap f(X)$。
 \end{proof}
 
 命题 5.2.7，有许多应用。例如给定函数 $f : X \to Y$ 以及 $X$ 的子集 $A$。我们有 $f(A)$ 为 $Y$ 的子集，且 $f(A) \subseteq f(X)$。故套用命题 5.2.7 ($C = f(A)$ 的情况)，可得

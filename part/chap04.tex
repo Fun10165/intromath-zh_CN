@@ -347,19 +347,21 @@ $$ \binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n-1} + \binom{n}{n} = 2^n. $$
 我们利用下表让大家更清楚这些定义：
 
 \begin{center}
-\small
-\begin{tabular}{lccc}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabularx}{\linewidth}{@{}l c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.25\linewidth}@{}}
 \hline
 名称 & 需属于 $T$ & 性质 & 附注 \\
 \hline
 $g = $ 最大元 & 是 & $\forall t \in T, t \preceq g$ & $g$ 存在则 $g = \mu$ \\
-$\mu = $ 极大元 & 是 & $(\lambda \in T) \wedge (\mu \preceq \lambda) \Rightarrow \lambda = \mu$ & $\mu$ 存在且为全序则 $\mu = g$ \\
+$\mu = $ 极大元 & 是 & \makecell[l]{$(\lambda \in T) \wedge$ \\ $(\mu \preceq \lambda) \Rightarrow \lambda = \mu$} & $\mu$ 存在且为全序则 $\mu = g$ \\
 $u = $ 上界 & 否 & $\forall t \in T, t \preceq u$ & $g$ 存在则 $g = \sup(T)$ \\
 $\ell = $ 最小元 & 是 & $\forall t \in T, \ell \preceq t$ & $\ell$ 存在则 $\ell = m$ \\
-$m = $ 极小元 & 是 & $(\lambda \in T) \wedge (\lambda \preceq m) \Rightarrow \lambda = m$ & $m$ 存在且为全序则 $m = \ell$ \\
+$m = $ 极小元 & 是 & \makecell[l]{$(\lambda \in T) \wedge$ \\ $(\lambda \preceq m) \Rightarrow \lambda = m$} & $m$ 存在且为全序则 $m = \ell$ \\
 $l = $ 下界 & 否 & $\forall t \in T, l \preceq t$ & $\ell$ 存在则 $\ell = \inf(T)$ \\
 \hline
-\end{tabular}
+\end{tabularx}
 \end{center}
 
 最后我们再定义一个重要的名词，就是所谓的良序（well order），其定义如下。

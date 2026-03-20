@@ -245,8 +245,8 @@
 %---------- 设置图表格式 ----------
 \numberwithin{figure}{chapter}
 \numberwithin{table}{chapter}
-%\renewcommand{\thetable}{\thechapter.\arabic{table}}
-\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 
 %---------- 设置图片和表格样式 ----------
 \RequirePackage{caption}
@@ -393,7 +393,7 @@
         }%
 
         \vspace*{0.75\baselineskip} % blank space under the title
-    
+
         \rule{\textwidth}{0.5pt}\vspace*{-\baselineskip}\vspace{3.2pt} % thin line
         \rule{\textwidth}{1.6pt}   % thick line
 

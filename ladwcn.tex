@@ -17,7 +17,7 @@
 \author{李华介}  % 作者姓名
 \date{\today}  % 日期
 % \version{1.0}  % 版本
-\bioinfo{译者}{吴俊达}  % 其他信息
+\bioinfo{译者}{吴俊达、孙昊}  % 其他信息
 % \extrainfo{仅供个人学习使用，禁止传播}
 
 % \extrainfo{\plogo \\[8pt] 出版社}
@@ -28,14 +28,18 @@
 
 %----- 设置英文字体 -----
 % \usepackage{newtxtext}  %New TX font for text
-\setmainfont{TeX Gyre Termes}  %Times New Roman 的开源复刻版本
+\setmainfont[
+  BoldFont=texgyretermes-bold.otf,
+  ItalicFont=texgyretermes-italic.otf,
+  BoldItalicFont=texgyretermes-bolditalic.otf
+]{texgyretermes-regular.otf}  % Times New Roman 的开源复刻版本
 % \setsansfont{TeX Gyre Termes}
 % \setsansfont{TeX Gyre Heros}  %Helvetica 的开源复刻版本
 % \setmonofont{TeX Gyre Cursor}  %Courier New 的开源复刻版本
 % \setmainfont{Times New Roman}
 % \setsansfont{Times New Roman}
 \everydisplay{\def\arraystretch{0.8}}
-\everymath{\def\arraystretch{0.8}}
+\everymath{\displaystyle\def\arraystretch{0.8}}
 %\setmonofont{Courier New}
 
 %----- 设置数学字体 -----
@@ -70,16 +74,15 @@
 %\makeindex[columns=2,intoc=true,title={索~~引}]
 %\indexsetup{level=\chapter*}
 
-% 可使用 zhmakeindex 改变索引排序 (默认拼音字母排序)
-% \usepackage[noautomatic]{imakeidx}
-\makeindex[columns=2,intoc=true,title={索~~引},options=xxx]
+% 当前使用 imakeidx 的默认 makeindex 流程, 按字符编码排序
+\makeindex[columns=2,intoc=true,title={索~~引}]
 
 
 %----- 调整列表项的间距 -----
 %\setlength{\itemsep}{3pt}
 
 %----- 调整页面避免出现过大空白 -----
-% \raggedbottom
+\raggedbottom
 
 %----- 定义符号描述命令  -----
 \newcommand{\nameditem}[3][]{
@@ -108,12 +111,15 @@
 \newcommand{\dx}[1][x]{\mathop{}\!\mathrm{d}#1}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 
-\newCJKfontfamily\gothic{IPAexMincho}
+\newCJKfontfamily\gothic{ipaexm.ttf}
 
 %----- 脚注格式 -----
-\usepackage{scrextend}
-\renewcommand{\thefootnote}{[\arabic{footnote}]}
-\deffootnote{2em}{1.5em}{\thefootnotemark\hspace{0.5em}}
+\makeatletter
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\renewcommand\@makefnmark{\hbox{\@textsuperscript{\normalfont[\@thefnmark]}}}
+\long\def\@makefntext#1{%
+\noindent\hb@xt@2em{\normalfont[\@thefnmark]\hspace{0.5em}\hfil}#1}
+\makeatother
 
 \begin{document}
 
@@ -209,7 +215,7 @@
 
 \clearpage
 \renewcommand*{\indexfont}{\small}
-\setindexprenote{\kaishu 各条目按照汉语拼音排序。部分条目下有若干子条目，子条目中用波浪线“$\sim$”指代其所属的条目。所有条目（含子条目）后附注英文原文。例如，“数学归纳法（mathematical induction）”条目下的“强$\sim$（strong）”，即表示“强数学归纳法”（strong mathematical induction）。}
+\setindexprenote{\kaishu 各条目按照字符编码顺序排序。部分条目下有若干子条目，子条目中用波浪线“$\sim$”指代其所属的条目。所有条目（含子条目）后附注英文原文。例如，“数学归纳法（mathematical induction）”条目下的“强$\sim$（strong）”，即表示“强数学归纳法”（strong mathematical induction）。}
 \printindex
 
 
@@ -219,5 +225,3 @@
 
 
 \end{document}
-
-
